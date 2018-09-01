@@ -1,0 +1,20 @@
+{
+  "extends": "../projects/s-rxjs-utils/tsconfig.lib.json",
+  "compilerOptions": {
+    "outDir": "build",
+    "target": "es5"
+  },
+  "typedocOptions": {
+    "name": "s-rxjs-utils",
+    "mode": "file",
+    "out": "typedoc",
+    "module": "commonjs",
+    "target": "ES6",
+    "exclude": "**/*.spec.ts",
+    "excludePrivate": true,
+    "theme": "typedoc-theme",
+    "readme": "none",
+    "gaID": "UA-111611854-2",
+    "gitRevision": "master"
+  }
+}
