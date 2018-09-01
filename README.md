@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/simontonsoftware/s-rxjs-utils.svg?branch=master)](https://travis-ci.org/simontonsoftware/s-rxjs-utils) [![Coverage Status](https://coveralls.io/repos/github/simontonsoftware/s-rxjs-utils/badge.svg?branch=master)](https://coveralls.io/github/simontonsoftware/s-rxjs-utils?branch=master)
+
 # SRxjsUtilsPlatform
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.1.5.
