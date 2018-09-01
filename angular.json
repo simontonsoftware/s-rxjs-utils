@@ -128,7 +128,8 @@
           "options": {
             "main": "projects/s-rxjs-utils/src/test.ts",
             "tsConfig": "projects/s-rxjs-utils/tsconfig.spec.json",
-            "karmaConfig": "projects/s-rxjs-utils/karma.conf.js"
+            "karmaConfig": "projects/s-rxjs-utils/karma.conf.js",
+            "codeCoverageExclude": ["projects/s-rxjs-utils/src/test-helpers.ts"]
           }
         },
         "lint": {
