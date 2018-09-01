@@ -121,6 +121,46 @@
           }
         }
       }
+    },
+    "s-rxjs-utils": {
+      "root": "projects/s-rxjs-utils",
+      "sourceRoot": "projects/s-rxjs-utils/src",
+      "projectType": "library",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/s-rxjs-utils/tsconfig.lib.json",
+            "project": "projects/s-rxjs-utils/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "project": "projects/s-rxjs-utils/ng-package.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/s-rxjs-utils/src/test.ts",
+            "tsConfig": "projects/s-rxjs-utils/tsconfig.spec.json",
+            "karmaConfig": "projects/s-rxjs-utils/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/s-rxjs-utils/tsconfig.lib.json",
+              "projects/s-rxjs-utils/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
     }
   },
   "defaultProject": "s-rxjs-utils-platform"
