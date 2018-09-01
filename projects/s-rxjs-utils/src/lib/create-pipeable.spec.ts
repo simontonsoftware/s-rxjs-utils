@@ -13,15 +13,16 @@ describe('createPipeable()', () => {
         downstream: Subscriber<string>,
         subscriptionManager: SubscriptionManager
       ) => {
-        subscriptionManager.subscribeTo(upstream, value =>
-          downstream.next(value.toString())
-        );
+        subscriptionManager.subscribeTo(upstream, value => {
+          downstream.next(value.toString());
+        });
       }
     );
 
-    // the real test is just that this does not give a type error
     const source: Observable<number> = of(1);
     const stream: Observable<string> = source.pipe(toString);
+
+    // the real test is just that the above does not give a type error
     expect().nothing();
   });
 });
