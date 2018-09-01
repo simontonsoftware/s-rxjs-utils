@@ -1,5 +1,5 @@
 import { Observable, of, Subscriber } from "rxjs";
-import { toArray } from "rxjs/operators";
+import { expectPipeResult } from "../test-helpers";
 import { createPipeable } from "./create-pipeable";
 import { SubscriptionManager } from "./subscription-manager";
 
@@ -47,21 +47,11 @@ describe("createPipeable()", () => {
       );
     }
 
-    expect(
-      await of(1, 2, 3)
-        .pipe(
-          map((i) => i + 1),
-          toArray(),
-        )
-        .toPromise(),
-    ).toEqual([2, 3, 4]);
-    expect(
-      await of(1, 2, 3)
-        .pipe(
-          map((i) => i.toString()),
-          toArray(),
-        )
-        .toPromise(),
-    ).toEqual(["1", "2", "3"]);
+    await expectPipeResult([1, 2, 3], map((i) => i + 1), [2, 3, 4]);
+    await expectPipeResult([1, 2, 3], map((i) => i.toString()), [
+      "1",
+      "2",
+      "3",
+    ]);
   });
 });

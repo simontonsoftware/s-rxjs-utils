@@ -10,7 +10,7 @@
     "out": "typedoc",
     "module": "commonjs",
     "target": "ES6",
-    "exclude": "**/*.spec.ts",
+    "exclude": ["**/*.spec.ts", "**/test-helpers.ts"],
     "excludePrivate": true,
     "theme": "typedoc-theme",
     "readme": "none",
