@@ -20,7 +20,7 @@ import { Observable, Subscription } from 'rxjs';
  * ```
  */
 export class SubscriptionManager {
-  private subscriptions: Subscription[] = [];
+  private subscriptions = new Subscription();
 
   subscribeTo<T>(
     observable: Observable<T>,
@@ -28,7 +28,7 @@ export class SubscriptionManager {
     error?: (error: any) => void,
     complete?: () => void
   ) {
-    this.subscriptions.push(
+    this.subscriptions.add(
       observable.subscribe(
         this.bind(next),
         this.bind(error),
@@ -38,10 +38,8 @@ export class SubscriptionManager {
   }
 
   unsubscribeFromAll() {
-    for (const subscription of this.subscriptions) {
-      subscription.unsubscribe();
-    }
-    this.subscriptions = [];
+    this.subscriptions.unsubscribe();
+    this.subscriptions = new Subscription();
   }
 
   private bind(fn?: (val: any) => void) {
