@@ -1,13 +1,13 @@
-import { async, TestBed } from '@angular/core/testing';
-import { AppComponent } from './app.component';
+import { async, TestBed } from "@angular/core/testing";
+import { AppComponent } from "./app.component";
 
-describe('AppComponent', () => {
+describe("AppComponent", () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [AppComponent]
+      declarations: [AppComponent],
     }).compileComponents();
   }));
-  it('should create the app', async(() => {
+  it("should create the app", async(() => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.debugElement.componentInstance;
     expect(app).toBeTruthy();
@@ -15,14 +15,14 @@ describe('AppComponent', () => {
   it(`should have as title 's-rxjs-utils-platform'`, async(() => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.debugElement.componentInstance;
-    expect(app.title).toEqual('s-rxjs-utils-platform');
+    expect(app.title).toEqual("s-rxjs-utils-platform");
   }));
-  it('should render title in a h1 tag', async(() => {
+  it("should render title in a h1 tag", async(() => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('h1').textContent).toContain(
-      'Welcome to s-rxjs-utils-platform!'
+    expect(compiled.querySelector("h1").textContent).toContain(
+      "Welcome to s-rxjs-utils-platform!",
     );
   }));
 });

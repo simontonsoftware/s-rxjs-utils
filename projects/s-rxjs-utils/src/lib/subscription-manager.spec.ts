@@ -1,7 +1,7 @@
-import { of, Subject, throwError } from 'rxjs';
-import { SubscriptionManager } from './subscription-manager';
+import { of, Subject, throwError } from "rxjs";
+import { SubscriptionManager } from "./subscription-manager";
 
-describe('SubscriptionManager', () => {
+describe("SubscriptionManager", () => {
   let next: jasmine.Spy;
   let error: jasmine.Spy;
   let complete: jasmine.Spy;
@@ -35,8 +35,8 @@ describe('SubscriptionManager', () => {
     complete.calls.reset();
   }
 
-  describe('.subscribeTo()', () => {
-    it('works with an observable that completes', () => {
+  describe(".subscribeTo()", () => {
+    it("works with an observable that completes", () => {
       runSequence([1, 6]);
 
       expect(next).toHaveBeenCalledTimes(2);
@@ -48,49 +48,49 @@ describe('SubscriptionManager', () => {
       expect(complete).toHaveBeenCalledTimes(1);
     });
 
-    it('works with an observable that errors', () => {
-      runSequence([1, 6], 'an error');
+    it("works with an observable that errors", () => {
+      runSequence([1, 6], "an error");
 
       expect(next).toHaveBeenCalledTimes(2);
       expect(next).toHaveBeenCalledWith(1);
       expect(next).toHaveBeenCalledWith(6);
 
       expect(error).toHaveBeenCalledTimes(1);
-      expect(error).toHaveBeenCalledWith('an error');
+      expect(error).toHaveBeenCalledWith("an error");
 
       expect(complete).not.toHaveBeenCalled();
     });
 
-    it('binds callbacks to `this`', () => {
+    it("binds callbacks to `this`", () => {
       runSequence([1]);
       expect(next.calls.mostRecent().object).toBe(manager);
       expect(complete.calls.mostRecent().object).toBe(manager);
 
-      runSequence([], 'errrr');
+      runSequence([], "errrr");
       expect(error.calls.mostRecent().object).toBe(manager);
     });
 
-    it('makes all callbacks optional', () => {
-      manager.subscribeTo(of('this just shows there is no typing error'));
+    it("makes all callbacks optional", () => {
+      manager.subscribeTo(of("this just shows there is no typing error"));
 
       resetSpies();
-      manager.subscribeTo(of('emit this'), next);
+      manager.subscribeTo(of("emit this"), next);
       expect(next).toHaveBeenCalledTimes(1);
-      expect(next).toHaveBeenCalledWith('emit this');
+      expect(next).toHaveBeenCalledWith("emit this");
 
       resetSpies();
-      manager.subscribeTo(of('emit this'), undefined, undefined, complete);
+      manager.subscribeTo(of("emit this"), undefined, undefined, complete);
       expect(complete).toHaveBeenCalledTimes(1);
 
       resetSpies();
-      manager.subscribeTo(throwError('throw this'), undefined, error);
+      manager.subscribeTo(throwError("throw this"), undefined, error);
       expect(error).toHaveBeenCalledTimes(1);
-      expect(error).toHaveBeenCalledWith('throw this');
+      expect(error).toHaveBeenCalledWith("throw this");
     });
   });
 
-  describe('.unsubscribe()', () => {
-    it('stop callbacks', () => {
+  describe(".unsubscribe()", () => {
+    it("stop callbacks", () => {
       const subject1 = new Subject();
       const subject2 = new Subject();
       manager.subscribeTo(subject1, next, error, complete);
@@ -102,7 +102,7 @@ describe('SubscriptionManager', () => {
       subject1.next(-1);
       subject2.next(-2);
       subject1.complete();
-      subject2.error('unseen');
+      subject2.error("unseen");
 
       expect(next).toHaveBeenCalledTimes(2);
       expect(next).toHaveBeenCalledWith(1);
@@ -111,7 +111,7 @@ describe('SubscriptionManager', () => {
       expect(complete).not.toHaveBeenCalled();
     });
 
-    it('does not prevent future subscriptions', () => {
+    it("does not prevent future subscriptions", () => {
       const subject1 = new Subject();
       manager.subscribeTo(subject1, next, error, complete);
       subject1.next(1);

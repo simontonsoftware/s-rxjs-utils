@@ -1,8 +1,8 @@
-import { Subject } from 'rxjs';
-import { skipAfter } from './skip-after';
+import { Subject } from "rxjs";
+import { skipAfter } from "./skip-after";
 
-describe('skipAfter()', () => {
-  it('causes the next emission to be skipped', () => {
+describe("skipAfter()", () => {
+  it("causes the next emission to be skipped", () => {
     const skip$ = new Subject();
     const source = new Subject();
     const next = jasmine.createSpy();
@@ -21,7 +21,7 @@ describe('skipAfter()', () => {
     expect(next).toHaveBeenCalledWith(3);
   });
 
-  it('only skips one emission even if called multiple times', () => {
+  it("only skips one emission even if called multiple times", () => {
     const skip$ = new Subject();
     const source = new Subject();
     const next = jasmine.createSpy();
@@ -41,7 +41,7 @@ describe('skipAfter()', () => {
     expect(next).toHaveBeenCalledWith(3);
   });
 
-  it('handles completions', () => {
+  it("handles completions", () => {
     const skip$ = new Subject();
     const upstream$ = new Subject();
     const complete = jasmine.createSpy();
@@ -58,7 +58,7 @@ describe('skipAfter()', () => {
     expect(complete).toHaveBeenCalledTimes(1);
   });
 
-  it('handles errors', () => {
+  it("handles errors", () => {
     const skip$ = new Subject();
     const upstream$ = new Subject();
     const error = jasmine.createSpy();
@@ -68,15 +68,15 @@ describe('skipAfter()', () => {
     expect(upstream$.observers.length).toBe(1);
     expect(error).not.toHaveBeenCalled();
 
-    upstream$.error('the error');
+    upstream$.error("the error");
 
     expect(skip$.observers.length).toBe(0);
     expect(upstream$.observers.length).toBe(0);
     expect(error).toHaveBeenCalledTimes(1);
-    expect(error).toHaveBeenCalledWith('the error');
+    expect(error).toHaveBeenCalledWith("the error");
   });
 
-  it('handles unsubscribes', () => {
+  it("handles unsubscribes", () => {
     const skip$ = new Subject();
     const upstream$ = new Subject();
 

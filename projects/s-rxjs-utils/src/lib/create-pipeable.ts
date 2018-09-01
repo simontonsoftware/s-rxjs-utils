@@ -1,5 +1,5 @@
-import { Observable, OperatorFunction, Subscriber } from 'rxjs';
-import { SubscriptionManager } from './subscription-manager';
+import { Observable, OperatorFunction, Subscriber } from "rxjs";
+import { SubscriptionManager } from "./subscription-manager";
 
 /**
  * Use this to create a complex pipeable operator. It is usually better style to compose existing operators than to create a brand new one, but when you need full control this can reduce some boilerplate.
@@ -30,11 +30,11 @@ export function createPipeable<UpstreamType, DownstreamType = UpstreamType>(
   subscribe: (
     upstream: Observable<UpstreamType>,
     downstream: Subscriber<DownstreamType>,
-    subscriptionManager: SubscriptionManager
-  ) => void
+    subscriptionManager: SubscriptionManager,
+  ) => void,
 ): OperatorFunction<UpstreamType, DownstreamType> {
   return (source: Observable<UpstreamType>) =>
-    new Observable<DownstreamType>(subscriber => {
+    new Observable<DownstreamType>((subscriber) => {
       const manager = new SubscriptionManager();
       subscribe(source, subscriber, manager);
       return manager;

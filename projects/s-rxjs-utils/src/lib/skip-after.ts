@@ -1,5 +1,5 @@
-import { Observable } from 'rxjs';
-import { createPipeable } from './create-pipeable';
+import { Observable } from "rxjs";
+import { createPipeable } from "./create-pipeable";
 
 /**
  * Causes the next value in the pipe to be skipped after `skip$` emits a value. For example:
@@ -35,7 +35,7 @@ export function skipAfter<T>(skip$: Observable<any>) {
     });
     manager.subscribeTo(
       upstream$,
-      value => {
+      (value) => {
         if (skipNext) {
           skipNext = false;
         } else {
@@ -43,7 +43,7 @@ export function skipAfter<T>(skip$: Observable<any>) {
         }
       },
       downstream.error.bind(downstream),
-      downstream.complete.bind(downstream)
+      downstream.complete.bind(downstream),
     );
   });
 }
