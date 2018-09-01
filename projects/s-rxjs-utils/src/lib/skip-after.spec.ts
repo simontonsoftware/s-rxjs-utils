@@ -41,13 +41,47 @@ describe('skipAfter()', () => {
     expect(next).toHaveBeenCalledWith(3);
   });
 
-  it('cleans up subscriptions to both `upstream$` and `skip$`', () => {
+  it('handles completions', () => {
     const skip$ = new Subject();
     const upstream$ = new Subject();
-    const next = jasmine.createSpy();
+    const complete = jasmine.createSpy();
+    upstream$.pipe(skipAfter(skip$)).subscribe(undefined, undefined, complete);
 
-    const subscription1 = upstream$.pipe(skipAfter(skip$)).subscribe(next);
-    const subscription2 = upstream$.pipe(skipAfter(skip$)).subscribe(next);
+    expect(skip$.observers.length).toBe(1);
+    expect(upstream$.observers.length).toBe(1);
+    expect(complete).not.toHaveBeenCalled();
+
+    upstream$.complete();
+
+    expect(skip$.observers.length).toBe(0);
+    expect(upstream$.observers.length).toBe(0);
+    expect(complete).toHaveBeenCalledTimes(1);
+  });
+
+  it('handles errors', () => {
+    const skip$ = new Subject();
+    const upstream$ = new Subject();
+    const error = jasmine.createSpy();
+    upstream$.pipe(skipAfter(skip$)).subscribe(undefined, error);
+
+    expect(skip$.observers.length).toBe(1);
+    expect(upstream$.observers.length).toBe(1);
+    expect(error).not.toHaveBeenCalled();
+
+    upstream$.error('the error');
+
+    expect(skip$.observers.length).toBe(0);
+    expect(upstream$.observers.length).toBe(0);
+    expect(error).toHaveBeenCalledTimes(1);
+    expect(error).toHaveBeenCalledWith('the error');
+  });
+
+  it('handles unsubscribes', () => {
+    const skip$ = new Subject();
+    const upstream$ = new Subject();
+
+    const subscription1 = upstream$.pipe(skipAfter(skip$)).subscribe();
+    const subscription2 = upstream$.pipe(skipAfter(skip$)).subscribe();
     expect(skip$.observers.length).toBe(2);
     expect(upstream$.observers.length).toBe(2);
 
