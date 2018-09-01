@@ -12,6 +12,6 @@ export function createPipeable<UpstreamType, DownstreamType = UpstreamType>(
     new Observable<DownstreamType>(subscriber => {
       const manager = new SubscriptionManager();
       subscribe(source, subscriber, manager);
-      return manager.unsubscribeFromAll.bind(manager);
+      return manager;
     });
 }

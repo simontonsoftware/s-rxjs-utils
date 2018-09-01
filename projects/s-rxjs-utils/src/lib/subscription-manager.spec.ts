@@ -89,7 +89,7 @@ describe('SubscriptionManager', () => {
     });
   });
 
-  describe('.unsubscribeFromAll()', () => {
+  describe('.unsubscribe()', () => {
     it('stop callbacks', () => {
       const subject1 = new Subject();
       const subject2 = new Subject();
@@ -98,7 +98,7 @@ describe('SubscriptionManager', () => {
 
       subject1.next(1);
       subject2.next(2);
-      manager.unsubscribeFromAll();
+      manager.unsubscribe();
       subject1.next(-1);
       subject2.next(-2);
       subject1.complete();
@@ -115,13 +115,13 @@ describe('SubscriptionManager', () => {
       const subject1 = new Subject();
       manager.subscribeTo(subject1, next, error, complete);
       subject1.next(1);
-      manager.unsubscribeFromAll();
+      manager.unsubscribe();
       subject1.next(-1);
 
       const subject2 = new Subject();
       manager.subscribeTo(subject2, next, error, complete);
       subject2.next(2);
-      manager.unsubscribeFromAll();
+      manager.unsubscribe();
       subject2.next(-2);
 
       expect(next).toHaveBeenCalledTimes(2);

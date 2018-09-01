@@ -1,4 +1,4 @@
-import { Observable, Subscription } from 'rxjs';
+import { Observable, Subscription, Unsubscribable } from 'rxjs';
 
 /**
  * Tracks all subscriptions to easily unsubscribe from them all during cleanup. Also binds callbacks to `this` for convenient use as a superclass, e.g.:
@@ -19,7 +19,7 @@ import { Observable, Subscription } from 'rxjs';
  * }
  * ```
  */
-export class SubscriptionManager {
+export class SubscriptionManager implements Unsubscribable {
   private subscriptions = new Subscription();
 
   subscribeTo<T>(
@@ -37,7 +37,7 @@ export class SubscriptionManager {
     );
   }
 
-  unsubscribeFromAll() {
+  unsubscribe() {
     this.subscriptions.unsubscribe();
     this.subscriptions = new Subscription();
   }
