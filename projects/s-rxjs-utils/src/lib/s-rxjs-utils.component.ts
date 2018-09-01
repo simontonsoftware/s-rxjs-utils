@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'lib-s-rxjs-utils',
@@ -10,10 +10,7 @@ import {Component, OnInit} from '@angular/core';
   styles: []
 })
 export class SRxjsUtilsComponent implements OnInit {
+  constructor() {}
 
-  constructor() { }
-
-  ngOnInit() {
-  }
-
+  ngOnInit() {}
 }

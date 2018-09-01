@@ -1,6 +1,6 @@
-import {inject, TestBed} from '@angular/core/testing';
+import { inject, TestBed } from '@angular/core/testing';
 
-import {SRxjsUtilsService} from './s-rxjs-utils.service';
+import { SRxjsUtilsService } from './s-rxjs-utils.service';
 
 describe('SRxjsUtilsService', () => {
   beforeEach(() => {
@@ -9,7 +9,10 @@ describe('SRxjsUtilsService', () => {
     });
   });
 
-  it('should be created', inject([SRxjsUtilsService], (service: SRxjsUtilsService) => {
-    expect(service).toBeTruthy();
-  }));
+  it('should be created', inject(
+    [SRxjsUtilsService],
+    (service: SRxjsUtilsService) => {
+      expect(service).toBeTruthy();
+    }
+  ));
 });

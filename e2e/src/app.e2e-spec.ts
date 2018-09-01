@@ -9,6 +9,8 @@ describe('workspace-project App', () => {
 
   it('should display welcome message', () => {
     page.navigateTo();
-    expect(page.getParagraphText()).toEqual('Welcome to s-rxjs-utils-platform!');
+    expect(page.getParagraphText()).toEqual(
+      'Welcome to s-rxjs-utils-platform!'
+    );
   });
 });

@@ -1,6 +1,6 @@
-import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import {SRxjsUtilsComponent} from './s-rxjs-utils.component';
+import { SRxjsUtilsComponent } from './s-rxjs-utils.component';
 
 describe('SRxjsUtilsComponent', () => {
   let component: SRxjsUtilsComponent;
@@ -8,9 +8,8 @@ describe('SRxjsUtilsComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SRxjsUtilsComponent ]
-    })
-    .compileComponents();
+      declarations: [SRxjsUtilsComponent]
+    }).compileComponents();
   }));
 
   beforeEach(() => {

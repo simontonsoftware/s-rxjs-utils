@@ -1,10 +1,9 @@
-import {NgModule} from '@angular/core';
-import {SRxjsUtilsComponent} from './s-rxjs-utils.component';
+import { NgModule } from '@angular/core';
+import { SRxjsUtilsComponent } from './s-rxjs-utils.component';
 
 @NgModule({
-  imports: [
-  ],
+  imports: [],
   declarations: [SRxjsUtilsComponent],
   exports: [SRxjsUtilsComponent]
 })
-export class SRxjsUtilsModule { }
+export class SRxjsUtilsModule {}
