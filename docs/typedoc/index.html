@@ -889,6 +889,9 @@ img { max-width: 100%; }
 		<li class=" tsd-kind-function tsd-has-type-parameter">
 			<a href="index.html#skipafter" class="tsd-kind-icon">skip<wbr>After</a>
 		</li>
+		<li class=" tsd-kind-function tsd-has-type-parameter">
+			<a href="index.html#withhistory" class="tsd-kind-icon">with<wbr>History</a>
+		</li>
 	</ul>
 </nav>
 <div class="container container-main">
@@ -915,6 +918,7 @@ img { max-width: 100%; }
 						<ul class="tsd-index-list">
 							<li class="tsd-kind-function tsd-has-type-parameter"><a href="index.html#createpipeable" class="tsd-kind-icon">create<wbr>Pipeable</a></li>
 							<li class="tsd-kind-function tsd-has-type-parameter"><a href="index.html#skipafter" class="tsd-kind-icon">skip<wbr>After</a></li>
+							<li class="tsd-kind-function tsd-has-type-parameter"><a href="index.html#withhistory" class="tsd-kind-icon">with<wbr>History</a></li>
 						</ul>
 					</section>
 				</div>
@@ -1019,6 +1023,30 @@ skip$.next();
 skip$.next();
 source.next(<span class="hljs-number">4</span>); <span class="hljs-comment">// result does not emit</span>
 source.next(<span class="hljs-number">5</span>); <span class="hljs-comment">// result emits `5`</span></code></pre>
+						</div>
+					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-function tsd-has-type-parameter">
+				<a name="withhistory" class="tsd-anchor"></a>
+				<h3>with<wbr>History</h3>
+				<ul class="tsd-signatures tsd-kind-function tsd-has-type-parameter">
+					<li class="tsd-signature tsd-kind-icon">with<wbr>History&lt;T&gt;<span class="tsd-signature-symbol">(</span>count<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">OperatorFunction</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></li>
+				</ul>
+				<ul class="tsd-descriptions">
+					<li class="tsd-description">
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in <a href="https://github.com/simontonsoftware/s-rxjs-utils/blob/master/projects/s-rxjs-utils/src/lib/with-history.ts#L12">lib/with-history.ts:12</a></li>
+							</ul>
+						</aside>
+						<div class="tsd-comment tsd-typography">
+							<div class="lead">
+								<p>Emits the upstream value as the first element in an array, followed by the last <code>count</code> values in reverse chronological order.</p>
+							</div>
+							<pre><code><span class="hljs-comment">source:</span>         <span class="hljs-literal">-</span><span class="hljs-comment">1</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-comment">2</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-comment">3</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-comment">4</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-comment">5</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-comment">|</span>
+<span class="hljs-comment">withHistory(2):</span> <span class="hljs-literal">-</span><span class="hljs-title">[</span><span class="hljs-comment">1</span><span class="hljs-title">]</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-title">[</span><span class="hljs-comment">2</span><span class="hljs-string">,</span><span class="hljs-comment">1</span><span class="hljs-title">]</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-title">[</span><span class="hljs-comment">3</span><span class="hljs-string">,</span><span class="hljs-comment">2</span><span class="hljs-string">,</span><span class="hljs-comment">1</span><span class="hljs-title">]</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-title">[</span><span class="hljs-comment">4</span><span class="hljs-string">,</span><span class="hljs-comment">3</span><span class="hljs-string">,</span><span class="hljs-comment">2</span><span class="hljs-title">]</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-title">[</span><span class="hljs-comment">5</span><span class="hljs-string">,</span><span class="hljs-comment">4</span><span class="hljs-string">,</span><span class="hljs-comment">3</span><span class="hljs-title">]</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-comment">|</span>
+<span class="hljs-comment">withHistory(0):</span> <span class="hljs-literal">-</span><span class="hljs-title">[</span><span class="hljs-comment">1</span><span class="hljs-title">]</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-title">[</span><span class="hljs-comment">2</span><span class="hljs-title">]</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-title">[</span><span class="hljs-comment">3</span><span class="hljs-title">]</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-title">[</span><span class="hljs-comment">4</span><span class="hljs-title">]</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-title">[</span><span class="hljs-comment">5</span><span class="hljs-title">]</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-comment">|</span></code></pre>
 						</div>
 					</li>
 				</ul>
