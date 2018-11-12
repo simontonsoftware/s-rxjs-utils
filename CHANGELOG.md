@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.0.0"></a>
+
+# [1.0.0](https://github.com/simontonsoftware/s-rxjs-utils/compare/v0.2.0...v1.0.0) (2018-11-12)
+
+### Chores
+
+- upgrade dependencies ([7983212](https://github.com/simontonsoftware/s-rxjs-utils/commit/7983212))
+
+### BREAKING CHANGES
+
+- uses Typescript 3 (up from Typescript 2)
+- requires micro-dash 5 (up from micro-dash 4)
+
 <a name="0.2.0"></a>
 
 # [0.2.0](https://github.com/simontonsoftware/s-rxjs-utils/compare/v0.1.0...v0.2.0) (2018-09-03)

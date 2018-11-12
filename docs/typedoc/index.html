@@ -932,7 +932,7 @@ img { max-width: 100%; }
 				<div class="tsd-signature tsd-kind-icon">context<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">any</span><span class="tsd-signature-symbol"> =&nbsp;require.context(&quot;./&quot;, true, /\.spec\.ts$/)</span></div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in <a href="https://github.com/simontonsoftware/s-rxjs-utils/blob/master/projects/s-rxjs-utils/src/test.ts#L17">test.ts:17</a></li>
+						<li>Defined in <a href="https://github.com/simontonsoftware/s-rxjs-utils/blob/master/projects/s-rxjs-utils/src/test.ts#L20">test.ts:20</a></li>
 					</ul>
 				</aside>
 			</section>
@@ -942,7 +942,7 @@ img { max-width: 100%; }
 				<div class="tsd-signature tsd-kind-icon">require<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">any</span></div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in <a href="https://github.com/simontonsoftware/s-rxjs-utils/blob/master/projects/s-rxjs-utils/src/test.ts#L9">test.ts:9</a></li>
+						<li>Defined in <a href="https://github.com/simontonsoftware/s-rxjs-utils/blob/master/projects/s-rxjs-utils/src/test.ts#L12">test.ts:12</a></li>
 					</ul>
 				</aside>
 			</section>
@@ -967,8 +967,8 @@ img { max-width: 100%; }
 								<p>Use this to create a complex pipeable operator. It is usually better style to compose existing operators than to create a brand new one, but when you need full control this can reduce some boilerplate.</p>
 							</div>
 							<p>A simple example, recreating the &quot;map&quot; operator:</p>
-							<pre><code class="language-ts">function map&lt;I, O&gt;(fn: (input: I) =&gt; O) {
-  return createPipeable(
+							<pre><code class="language-ts"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">map</span>&lt;<span class="hljs-title">I</span>, <span class="hljs-title">O</span>&gt;(<span class="hljs-params">fn: (input: I) =&gt; O</span>) </span>{
+  <span class="hljs-keyword">return</span> createPipeable(
     (
       upstream: Observable&lt;I&gt;,
       downstream: Subscriber&lt;O&gt;,
@@ -976,7 +976,7 @@ img { max-width: 100%; }
     ) =&gt; {
       subscriptionManager.subscribeTo(
         upstream,
-        value =&gt; {
+        <span class="hljs-function"><span class="hljs-params">value</span> =&gt;</span> {
           downstream.next(fn(value));
         },
         downstream.error.bind(downstream),
@@ -1006,10 +1006,10 @@ img { max-width: 100%; }
 							<div class="lead">
 								<p>Causes the next value in the pipe to be skipped after <code>skip$</code> emits a value. For example:</p>
 							</div>
-							<pre><code>source: <span class="hljs-string">-1</span>----<span class="hljs-string">-2</span>----<span class="hljs-string">-3</span>----<span class="hljs-string">-4</span>----<span class="hljs-string">-5</span>-|
-skip$:  ---<span class="hljs-string">-0</span>---------<span class="hljs-string">-0</span><span class="hljs-string">-0</span>----------
+							<pre><code>source: <span class="hljs-number">-1</span>----<span class="hljs-number">-2</span>----<span class="hljs-number">-3</span>----<span class="hljs-number">-4</span>----<span class="hljs-number">-5</span>-|
+skip$:  ---<span class="hljs-number">-0</span>---------<span class="hljs-number">-0</span><span class="hljs-number">-0</span>----------
 
-result: <span class="hljs-string">-1</span>----------<span class="hljs-string">-3</span>----------<span class="hljs-string">-5</span>-|</code></pre><pre><code class="language-ts"><span class="hljs-keyword">const</span> source = <span class="hljs-keyword">new</span> Subject();
+result: <span class="hljs-number">-1</span>----------<span class="hljs-number">-3</span>----------<span class="hljs-number">-5</span>-|</code></pre><pre><code class="language-ts"><span class="hljs-keyword">const</span> source = <span class="hljs-keyword">new</span> Subject();
 <span class="hljs-keyword">const</span> skip$ = <span class="hljs-keyword">new</span> Subject();
 <span class="hljs-keyword">const</span> result = source.pipe(skipAfter(skip$));
 
@@ -1044,9 +1044,9 @@ source.next(<span class="hljs-number">5</span>); <span class="hljs-comment">// r
 							<div class="lead">
 								<p>Emits the upstream value as the first element in an array, followed by the last <code>count</code> values in reverse chronological order.</p>
 							</div>
-							<pre><code><span class="hljs-comment">source:</span>         <span class="hljs-literal">-</span><span class="hljs-comment">1</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-comment">2</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-comment">3</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-comment">4</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-comment">5</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-comment">|</span>
-<span class="hljs-comment">withHistory(2):</span> <span class="hljs-literal">-</span><span class="hljs-title">[</span><span class="hljs-comment">1</span><span class="hljs-title">]</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-title">[</span><span class="hljs-comment">2</span><span class="hljs-string">,</span><span class="hljs-comment">1</span><span class="hljs-title">]</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-title">[</span><span class="hljs-comment">3</span><span class="hljs-string">,</span><span class="hljs-comment">2</span><span class="hljs-string">,</span><span class="hljs-comment">1</span><span class="hljs-title">]</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-title">[</span><span class="hljs-comment">4</span><span class="hljs-string">,</span><span class="hljs-comment">3</span><span class="hljs-string">,</span><span class="hljs-comment">2</span><span class="hljs-title">]</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-title">[</span><span class="hljs-comment">5</span><span class="hljs-string">,</span><span class="hljs-comment">4</span><span class="hljs-string">,</span><span class="hljs-comment">3</span><span class="hljs-title">]</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-comment">|</span>
-<span class="hljs-comment">withHistory(0):</span> <span class="hljs-literal">-</span><span class="hljs-title">[</span><span class="hljs-comment">1</span><span class="hljs-title">]</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-title">[</span><span class="hljs-comment">2</span><span class="hljs-title">]</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-title">[</span><span class="hljs-comment">3</span><span class="hljs-title">]</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-title">[</span><span class="hljs-comment">4</span><span class="hljs-title">]</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-title">[</span><span class="hljs-comment">5</span><span class="hljs-title">]</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-comment">|</span></code></pre>
+							<pre><code>source:         <span class="hljs-number">-1</span>---<span class="hljs-number">-2</span>-----<span class="hljs-number">-3</span>-------<span class="hljs-number">-4</span>-------<span class="hljs-number">-5</span>--------|
+withHistory(<span class="hljs-number">2</span>): -[<span class="hljs-number">1</span>]--[<span class="hljs-number">2</span>,<span class="hljs-number">1</span>]--[<span class="hljs-number">3</span>,<span class="hljs-number">2</span>,<span class="hljs-number">1</span>]--[<span class="hljs-number">4</span>,<span class="hljs-number">3</span>,<span class="hljs-number">2</span>]--[<span class="hljs-number">5</span>,<span class="hljs-number">4</span>,<span class="hljs-number">3</span>]--|
+withHistory(<span class="hljs-number">0</span>): -[<span class="hljs-number">1</span>]--[<span class="hljs-number">2</span>]----[<span class="hljs-number">3</span>]------[<span class="hljs-number">4</span>]------[<span class="hljs-number">5</span>]------|</code></pre>
 						</div>
 					</li>
 				</ul>
