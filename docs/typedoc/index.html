@@ -884,6 +884,9 @@ img { max-width: 100%; }
 			<a href="index.html#require" class="tsd-kind-icon">require</a>
 		</li>
 		<li class=" tsd-kind-function tsd-has-type-parameter">
+			<a href="index.html#cache" class="tsd-kind-icon">cache</a>
+		</li>
+		<li class=" tsd-kind-function tsd-has-type-parameter">
 			<a href="index.html#createpipeable" class="tsd-kind-icon">create<wbr>Pipeable</a>
 		</li>
 		<li class=" tsd-kind-function tsd-has-type-parameter">
@@ -916,6 +919,7 @@ img { max-width: 100%; }
 					<section class="tsd-index-section ">
 						<h3>Functions</h3>
 						<ul class="tsd-index-list">
+							<li class="tsd-kind-function tsd-has-type-parameter"><a href="index.html#cache" class="tsd-kind-icon">cache</a></li>
 							<li class="tsd-kind-function tsd-has-type-parameter"><a href="index.html#createpipeable" class="tsd-kind-icon">create<wbr>Pipeable</a></li>
 							<li class="tsd-kind-function tsd-has-type-parameter"><a href="index.html#skipafter" class="tsd-kind-icon">skip<wbr>After</a></li>
 							<li class="tsd-kind-function tsd-has-type-parameter"><a href="index.html#withhistory" class="tsd-kind-icon">with<wbr>History</a></li>
@@ -950,6 +954,36 @@ img { max-width: 100%; }
 		<section class="tsd-panel-group tsd-member-group ">
 			<h2>Functions</h2>
 			<section class="tsd-panel tsd-member tsd-kind-function tsd-has-type-parameter">
+				<a name="cache" class="tsd-anchor"></a>
+				<h3>cache</h3>
+				<ul class="tsd-signatures tsd-kind-function tsd-has-type-parameter">
+					<li class="tsd-signature tsd-kind-icon">cache&lt;T&gt;<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">MonoTypeOperatorFunction</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></li>
+				</ul>
+				<ul class="tsd-descriptions">
+					<li class="tsd-description">
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in <a href="https://github.com/simontonsoftware/s-rxjs-utils/blob/master/projects/s-rxjs-utils/src/lib/cache.ts#L22">lib/cache.ts:22</a></li>
+							</ul>
+						</aside>
+						<div class="tsd-comment tsd-typography">
+							<div class="lead">
+								<ol>
+									<li>Caches the last value emitted to give to new subscribers (without running any upstream pipe operators)</li>
+									<li>Manages all subscribers directly, without passing subscriptions up the stream.</li>
+								</ol>
+							</div>
+							<p>This is very similar to <code>shareReplay(1)</code>, except that once all subscribers unsubscribe this also unsubscribes from the upstream observable.</p>
+							<pre><code class="language-ts"><span class="hljs-keyword">const</span> source = <span class="hljs-keyword">new</span> BehaviorSubject(<span class="hljs-number">1000</span>);
+<span class="hljs-keyword">const</span> result = source.pipe(expensiveComputation(), cache());
+source.subscribe(); <span class="hljs-comment">// expensiveComputation(1000) runs</span>
+source.subscribe(); <span class="hljs-comment">// the cached result is used</span>
+source.next(<span class="hljs-number">2000</span>); <span class="hljs-comment">// expensiveComputation(2000) runs once, emitted to both subscribers</span></code></pre>
+						</div>
+					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-function tsd-has-type-parameter">
 				<a name="createpipeable" class="tsd-anchor"></a>
 				<h3>create<wbr>Pipeable</h3>
 				<ul class="tsd-signatures tsd-kind-function tsd-has-type-parameter">
@@ -959,7 +993,7 @@ img { max-width: 100%; }
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/simontonsoftware/s-rxjs-utils/blob/master/projects/s-rxjs-utils/src/lib/create-pipeable.ts#L29">lib/create-pipeable.ts:29</a></li>
+								<li>Defined in <a href="https://github.com/simontonsoftware/s-rxjs-utils/blob/master/projects/s-rxjs-utils/src/lib/create-pipeable.ts#L25">lib/create-pipeable.ts:25</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
@@ -968,12 +1002,8 @@ img { max-width: 100%; }
 							</div>
 							<p>A simple example, recreating the &quot;map&quot; operator:</p>
 							<pre><code class="language-ts"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">map</span>&lt;<span class="hljs-title">I</span>, <span class="hljs-title">O</span>&gt;(<span class="hljs-params">fn: (input: I) =&gt; O</span>) </span>{
-  <span class="hljs-keyword">return</span> createPipeable(
-    (
-      upstream: Observable&lt;I&gt;,
-      downstream: Subscriber&lt;O&gt;,
-      subscriptionManager: SubscriptionManager
-    ) =&gt; {
+  <span class="hljs-keyword">return</span> createPipeable&lt;I, O&gt;(
+    <span class="hljs-function">(<span class="hljs-params">upstream, downstream, subscriptionManager</span>) =&gt;</span> {
       subscriptionManager.subscribeTo(
         upstream,
         <span class="hljs-function"><span class="hljs-params">value</span> =&gt;</span> {
