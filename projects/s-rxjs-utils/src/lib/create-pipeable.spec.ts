@@ -1,19 +1,14 @@
-import { Observable, of, Subscriber } from "rxjs";
+import { Observable, of } from "rxjs";
 import { expectPipeResult } from "../test-helpers";
 import { createPipeable } from "./create-pipeable";
-import { SubscriptionManager } from "./subscription-manager";
 
 describe("createPipeable()", () => {
   // tested by skipAfter()
   // it('cleans up subscriptions made through the manager');
 
   it("correctly changes the type of a stream", () => {
-    const toString = createPipeable(
-      (
-        upstream: Observable<any>,
-        downstream: Subscriber<string>,
-        subscriptionManager: SubscriptionManager,
-      ) => {
+    const toString = createPipeable<any, string>(
+      (upstream, downstream, subscriptionManager) => {
         subscriptionManager.subscribeTo(upstream, (value) => {
           downstream.next(value.toString());
         });
@@ -29,12 +24,8 @@ describe("createPipeable()", () => {
 
   it("works for the example in the documentation", async () => {
     function map<I, O>(fn: (input: I) => O) {
-      return createPipeable(
-        (
-          upstream: Observable<I>,
-          downstream: Subscriber<O>,
-          subscriptionManager: SubscriptionManager,
-        ) => {
+      return createPipeable<I, O>(
+        (upstream, downstream, subscriptionManager) => {
           subscriptionManager.subscribeTo(
             upstream,
             (value) => {

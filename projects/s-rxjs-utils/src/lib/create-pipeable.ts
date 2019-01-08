@@ -7,12 +7,8 @@ import { SubscriptionManager } from "./subscription-manager";
  * A simple example, recreating the "map" operator:
  * ```ts
  * function map<I, O>(fn: (input: I) => O) {
- *   return createPipeable(
- *     (
- *       upstream: Observable<I>,
- *       downstream: Subscriber<O>,
- *       subscriptionManager: SubscriptionManager
- *     ) => {
+ *   return createPipeable<I, O>(
+ *     (upstream, downstream, subscriptionManager) => {
  *       subscriptionManager.subscribeTo(
  *         upstream,
  *         value => {
