@@ -5,6 +5,7 @@ import {
   cache,
   createOperatorFunction,
   createPipeable,
+  filterBehavior,
   mapAndCacheElements,
   skipAfter,
   SubscriptionManager,
@@ -26,7 +27,10 @@ export class AppComponent {
         cache(),
         createOperatorFunction(noop),
         createPipeable(noop),
+        filterBehavior(() => true),
         skipAfter(new Subject()),
+
+        // switch type to number[]
         withHistory(3),
         mapAndCacheElements(
           (item: number) => item.toString(),
