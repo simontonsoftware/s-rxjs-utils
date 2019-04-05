@@ -4,6 +4,7 @@ import { Subject } from "rxjs";
 import {
   cache,
   createPipeable,
+  mapAndCacheElements,
   skipAfter,
   SubscriptionManager,
   withHistory,
@@ -25,6 +26,10 @@ export class AppComponent {
         createPipeable(noop),
         skipAfter(new Subject()),
         withHistory(3),
+        mapAndCacheElements(
+          (item: number) => item.toString(),
+          (item: number) => item + 1,
+        ),
       ),
     );
 
