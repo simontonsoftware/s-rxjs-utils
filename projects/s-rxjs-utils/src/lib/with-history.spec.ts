@@ -1,5 +1,9 @@
-import { Subject } from "rxjs";
-import { expectPipeResult, expectSingleCallAndReset } from "../test-helpers";
+import {
+  expectPipeResult,
+  testCompletionPropagation,
+  testErrorPropagation,
+  testUnsubscribePropagation,
+} from "../test-helpers";
 import { withHistory } from "./with-history";
 
 describe("withHistory()", () => {
@@ -19,31 +23,15 @@ describe("withHistory()", () => {
     await expectPipeResult([1, 2, 3, 4], withHistory(0), [[1], [2], [3], [4]]);
   });
 
-  it("handles errors", () => {
-    const source$ = new Subject();
-    const error = jasmine.createSpy();
-    source$.pipe(withHistory(1)).subscribe(undefined, error);
-
-    expect(source$.observers.length).toBe(1);
-    expect(error).not.toHaveBeenCalled();
-
-    source$.error("the error");
-
-    expect(source$.observers.length).toBe(0);
-    expectSingleCallAndReset(error, "the error");
+  it("passes along unsubscribes", () => {
+    testUnsubscribePropagation(() => withHistory(1));
   });
 
-  it("handles unsubscribes", () => {
-    const source$ = new Subject();
+  it("passes along errors", () => {
+    testErrorPropagation(() => withHistory(1));
+  });
 
-    const subscription1 = source$.pipe(withHistory(1)).subscribe();
-    const subscription2 = source$.pipe(withHistory(2)).subscribe();
-    expect(source$.observers.length).toBe(2);
-
-    subscription1.unsubscribe();
-    expect(source$.observers.length).toBe(1);
-
-    subscription2.unsubscribe();
-    expect(source$.observers.length).toBe(0);
+  it("passes along completion", () => {
+    testCompletionPropagation(() => withHistory(1));
   });
 });

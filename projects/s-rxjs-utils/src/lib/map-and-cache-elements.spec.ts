@@ -1,5 +1,12 @@
+import { identity } from "micro-dash";
 import { Subject } from "rxjs";
-import { expectPipeResult, expectSingleCallAndReset } from "../test-helpers";
+import {
+  expectPipeResult,
+  expectSingleCallAndReset,
+  testCompletionPropagation,
+  testErrorPropagation,
+  testUnsubscribePropagation,
+} from "../test-helpers";
 import { mapAndCacheElements } from "./map-and-cache-elements";
 
 describe("mapAndCacheElements()", () => {
@@ -95,50 +102,21 @@ describe("mapAndCacheElements()", () => {
     }
   });
 
-  it("handles the upstream source completing", () => {
-    const source = new Subject<number[]>();
-    const complete = jasmine.createSpy();
-
-    source
-      .pipe(mapAndCacheElements((item) => item.toString(), (item) => item + 1))
-      .subscribe(undefined, undefined, complete);
-
-    source.complete();
-
-    expect(source.observers.length).toBe(0);
-    expect(complete).toHaveBeenCalledTimes(1);
+  it("passes along unsubscribes", () => {
+    testUnsubscribePropagation(() =>
+      mapAndCacheElements((item) => item.toString(), identity),
+    );
   });
 
-  it("handles errors", () => {
-    const source = new Subject<number[]>();
-    const error = jasmine.createSpy();
-
-    source
-      .pipe(mapAndCacheElements((item) => item.toString(), (item) => item + 1))
-      .subscribe(undefined, error);
-
-    source.error("fire!!");
-
-    expect(source.observers.length).toBe(0);
-    expect(error).toHaveBeenCalledTimes(1);
-    expect(error).toHaveBeenCalledWith("fire!!");
+  it("passes along errors", () => {
+    testErrorPropagation(() =>
+      mapAndCacheElements((item) => item.toString(), identity),
+    );
   });
 
-  it("handles unsubscribes", () => {
-    const source = new Subject<number[]>();
-
-    const subscription1 = source
-      .pipe(mapAndCacheElements((item) => item.toString(), (item) => item + 1))
-      .subscribe();
-    const subscription2 = source
-      .pipe(mapAndCacheElements((item) => item.toString(), (item) => item + 1))
-      .subscribe();
-    expect(source.observers.length).toBe(2);
-
-    subscription1.unsubscribe();
-    expect(source.observers.length).toBe(1);
-
-    subscription2.unsubscribe();
-    expect(source.observers.length).toBe(0);
+  it("passes along completion", () => {
+    testCompletionPropagation(() =>
+      mapAndCacheElements((item) => item.toString(), identity),
+    );
   });
 });

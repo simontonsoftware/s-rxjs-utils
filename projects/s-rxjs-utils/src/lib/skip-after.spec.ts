@@ -38,24 +38,25 @@ describe("skipAfter()", () => {
     expectSingleCallAndReset(next, 3);
   });
 
-  it("handles completions", () => {
+  it("passes along unsubscribes", () => {
     const skip$ = new Subject();
     const upstream$ = new Subject();
-    const complete = jasmine.createSpy();
-    upstream$.pipe(skipAfter(skip$)).subscribe(undefined, undefined, complete);
 
+    const subscription1 = upstream$.pipe(skipAfter(skip$)).subscribe();
+    const subscription2 = upstream$.pipe(skipAfter(skip$)).subscribe();
+    expect(skip$.observers.length).toBe(2);
+    expect(upstream$.observers.length).toBe(2);
+
+    subscription1.unsubscribe();
     expect(skip$.observers.length).toBe(1);
     expect(upstream$.observers.length).toBe(1);
-    expect(complete).not.toHaveBeenCalled();
 
-    upstream$.complete();
-
+    subscription2.unsubscribe();
     expect(skip$.observers.length).toBe(0);
     expect(upstream$.observers.length).toBe(0);
-    expect(complete).toHaveBeenCalledTimes(1);
   });
 
-  it("handles errors", () => {
+  it("passes along errors", () => {
     const skip$ = new Subject();
     const upstream$ = new Subject();
     const error = jasmine.createSpy();
@@ -72,21 +73,20 @@ describe("skipAfter()", () => {
     expectSingleCallAndReset(error, "the error");
   });
 
-  it("handles unsubscribes", () => {
+  it("passes along completion", () => {
     const skip$ = new Subject();
     const upstream$ = new Subject();
+    const complete = jasmine.createSpy();
+    upstream$.pipe(skipAfter(skip$)).subscribe(undefined, undefined, complete);
 
-    const subscription1 = upstream$.pipe(skipAfter(skip$)).subscribe();
-    const subscription2 = upstream$.pipe(skipAfter(skip$)).subscribe();
-    expect(skip$.observers.length).toBe(2);
-    expect(upstream$.observers.length).toBe(2);
-
-    subscription1.unsubscribe();
     expect(skip$.observers.length).toBe(1);
     expect(upstream$.observers.length).toBe(1);
+    expect(complete).not.toHaveBeenCalled();
 
-    subscription2.unsubscribe();
+    upstream$.complete();
+
     expect(skip$.observers.length).toBe(0);
     expect(upstream$.observers.length).toBe(0);
+    expect(complete).toHaveBeenCalledTimes(1);
   });
 });

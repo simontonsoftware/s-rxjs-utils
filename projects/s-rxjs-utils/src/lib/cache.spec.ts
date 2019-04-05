@@ -1,6 +1,10 @@
 import { BehaviorSubject, Subject } from "rxjs";
 import { tap } from "rxjs/operators";
-import { expectSingleCallAndReset } from "../test-helpers";
+import {
+  expectSingleCallAndReset,
+  testCompletionPropagation,
+  testErrorPropagation,
+} from "../test-helpers";
 import { cache } from "./cache";
 
 describe("cache()", () => {
@@ -87,31 +91,10 @@ describe("cache()", () => {
   });
 
   it("passes along errors", () => {
-    const source = new Subject();
-    const cached = source.pipe(cache());
-    const error1 = jasmine.createSpy();
-    const error2 = jasmine.createSpy();
-    const err = Symbol();
-
-    cached.subscribe(undefined, error1);
-    cached.subscribe(undefined, error2);
-    source.error(err);
-
-    expectSingleCallAndReset(error1, err);
-    expectSingleCallAndReset(error2, err);
+    testErrorPropagation(cache);
   });
 
   it("passes along completion", () => {
-    const source = new Subject();
-    const cached = source.pipe(cache());
-    const complete1 = jasmine.createSpy();
-    const complete2 = jasmine.createSpy();
-
-    cached.subscribe(undefined, undefined, complete1);
-    cached.subscribe(undefined, undefined, complete2);
-    source.complete();
-
-    expectSingleCallAndReset(complete1);
-    expectSingleCallAndReset(complete2);
+    testCompletionPropagation(cache);
   });
 });
