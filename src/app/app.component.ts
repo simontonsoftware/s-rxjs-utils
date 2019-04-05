@@ -4,6 +4,7 @@ import { Subject } from "rxjs";
 import {
   cache,
   createPipeable,
+  mapAndCacheElements,
   skipAfter,
   SubscriptionManager,
   withHistory,
@@ -20,11 +21,15 @@ export class AppComponent {
   constructor() {
     // just use each function once, to prove it can be imported
     new SubscriptionManager().subscribeTo(
-      new Subject().pipe(
+      new Subject<number>().pipe(
         cache(),
         createPipeable(noop),
         skipAfter(new Subject()),
         withHistory(3),
+        mapAndCacheElements(
+          (item: number) => item.toString(),
+          (item: number) => item + 1,
+        ),
       ),
     );
 
