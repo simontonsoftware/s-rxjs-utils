@@ -1,33 +1,19 @@
 import { Subject } from "rxjs";
+import { expectPipeResult, expectSingleCallAndReset } from "../test-helpers";
 import { mapAndCacheElements } from "./map-and-cache-elements";
 
 describe("mapAndCacheElements()", () => {
-  it("maps over the array using the given function", () => {
-    const source = new Subject<number[]>();
-    let lastEmittedThing: number[] = [];
-
-    source
-      .pipe(mapAndCacheElements((item) => item.toString(), (item) => item * 3))
-      .subscribe((value) => {
-        lastEmittedThing = value;
-      });
-
-    const array = [1, 2, 3, 4, 5, 6];
-    source.next(array);
-    expect(lastEmittedThing).toEqual([3, 6, 9, 12, 15, 18]);
-
-    array.splice(2, 2); // array = [1, 2, 5, 6]
-    source.next(array);
-    expect(lastEmittedThing).toEqual([3, 6, 15, 18]);
-
-    array.push(10); // array = [1, 2, 5, 6, 10]
-    source.next(array);
-    expect(lastEmittedThing).toEqual([3, 6, 15, 18, 30]);
+  it("maps over the array using the given function", async () => {
+    await expectPipeResult(
+      [[1, 2, 3, 4, 5, 6], [1, 2, 5, 6], [1, 2, 5, 6, 10]],
+      mapAndCacheElements((item) => item.toString(), (item) => item * 3),
+      [[3, 6, 9, 12, 15, 18], [3, 6, 15, 18], [3, 6, 15, 18, 30]],
+    );
   });
 
   it("emits the same object reference for items that have the same cache key", () => {
     const source = new Subject<Array<{ index: number }>>();
-    let lastEmittedThing: Array<{ index: number }> = [];
+    const next = jasmine.createSpy();
 
     source
       .pipe(
@@ -36,17 +22,18 @@ describe("mapAndCacheElements()", () => {
           (item) => ({ index: item.index + 1 }),
         ),
       )
-      .subscribe((value) => {
-        lastEmittedThing = value;
-      });
+      .subscribe(next);
 
     source.next([{ index: 1 }]);
-    expect(lastEmittedThing).toEqual([{ index: 2 }]);
-    const mappedItem1 = lastEmittedThing[0];
+    const emission1 = next.calls.mostRecent().args[0];
 
     source.next([{ index: 1 }, { index: 2 }]);
-    expect(lastEmittedThing).toEqual([{ index: 2 }, { index: 3 }]);
-    expect(lastEmittedThing[0]).toBe(mappedItem1);
+    const emission2 = next.calls.mostRecent().args[0];
+
+    expect(next).toHaveBeenCalledTimes(2);
+    expect(emission1).toEqual([{ index: 2 }]);
+    expect(emission2).toEqual([{ index: 2 }, { index: 3 }]);
+    expect(emission1[0]).toBe(emission2[0]);
   });
 
   it("does not call `buildDownstreamItem` if there is a match in the cache", () => {
@@ -58,12 +45,10 @@ describe("mapAndCacheElements()", () => {
       .subscribe();
 
     source.next([10]);
-    expect(buildDownstreamItem).toHaveBeenCalledTimes(1);
-    expect(buildDownstreamItem).toHaveBeenCalledWith(10);
+    expectSingleCallAndReset(buildDownstreamItem, 10);
 
     source.next([10, 15]);
-    expect(buildDownstreamItem).toHaveBeenCalledTimes(2);
-    expect(buildDownstreamItem).toHaveBeenCalledWith(15);
+    expectSingleCallAndReset(buildDownstreamItem, 15);
   });
 
   it("only calls `buildDownstreamItem` once for a given cache key", () => {
@@ -87,7 +72,7 @@ describe("mapAndCacheElements()", () => {
 
   it("always returns the same object reference for a given cache key", () => {
     const source = new Subject<Array<{ index: number }>>();
-    let lastEmittedThing: Array<{ index: number }> = [];
+    const next = jasmine.createSpy();
 
     source
       .pipe(
@@ -96,23 +81,18 @@ describe("mapAndCacheElements()", () => {
           (item) => ({ index: item.index + 1 }),
         ),
       )
-      .subscribe((value) => {
-        lastEmittedThing = value;
-      });
+      .subscribe(next);
 
     source.next([{ index: 1 }, { index: 1 }]);
-    expect(lastEmittedThing).toEqual([{ index: 2 }, { index: 2 }]);
-    const mappedItem1 = lastEmittedThing[0];
-
-    expect(mappedItem1).toBe(lastEmittedThing[1]);
+    const emission1 = next.calls.mostRecent().args[0];
 
     source.next([{ index: 1 }, { index: 1 }, { index: 1 }]);
-    expect(lastEmittedThing).toEqual([
-      { index: 2 },
-      { index: 2 },
-      { index: 2 },
-    ]);
-    expect(lastEmittedThing[2]).toBe(mappedItem1);
+    const emission2 = next.calls.mostRecent().args[0];
+
+    expect(next).toHaveBeenCalledTimes(2);
+    for (const value of [...emission1, ...emission2]) {
+      expect(value).toBe(emission1[0]);
+    }
   });
 
   it("handles the upstream source completing", () => {

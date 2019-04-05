@@ -1,4 +1,5 @@
 import { Subject } from "rxjs";
+import { expectSingleCallAndReset } from "../test-helpers";
 import { skipAfter } from "./skip-after";
 
 describe("skipAfter()", () => {
@@ -9,16 +10,14 @@ describe("skipAfter()", () => {
     source.pipe(skipAfter(skip$)).subscribe(next);
 
     source.next(1);
-    expect(next).toHaveBeenCalledTimes(1);
-    expect(next).toHaveBeenCalledWith(1);
+    expectSingleCallAndReset(next, 1);
 
     skip$.next();
     source.next(2);
-    expect(next).toHaveBeenCalledTimes(1);
+    expect(next).not.toHaveBeenCalled();
 
     source.next(3);
-    expect(next).toHaveBeenCalledTimes(2);
-    expect(next).toHaveBeenCalledWith(3);
+    expectSingleCallAndReset(next, 3);
   });
 
   it("only skips one emission even if called multiple times", () => {
@@ -28,17 +27,15 @@ describe("skipAfter()", () => {
     source.pipe(skipAfter(skip$)).subscribe(next);
 
     source.next(1);
-    expect(next).toHaveBeenCalledTimes(1);
-    expect(next).toHaveBeenCalledWith(1);
+    expectSingleCallAndReset(next, 1);
 
     skip$.next();
     skip$.next();
     source.next(2);
-    expect(next).toHaveBeenCalledTimes(1);
+    expect(next).not.toHaveBeenCalled();
 
     source.next(3);
-    expect(next).toHaveBeenCalledTimes(2);
-    expect(next).toHaveBeenCalledWith(3);
+    expectSingleCallAndReset(next, 3);
   });
 
   it("handles completions", () => {
@@ -72,8 +69,7 @@ describe("skipAfter()", () => {
 
     expect(skip$.observers.length).toBe(0);
     expect(upstream$.observers.length).toBe(0);
-    expect(error).toHaveBeenCalledTimes(1);
-    expect(error).toHaveBeenCalledWith("the error");
+    expectSingleCallAndReset(error, "the error");
   });
 
   it("handles unsubscribes", () => {

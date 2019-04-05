@@ -1,5 +1,5 @@
 import { Subject } from "rxjs";
-import { expectPipeResult } from "../test-helpers";
+import { expectPipeResult, expectSingleCallAndReset } from "../test-helpers";
 import { withHistory } from "./with-history";
 
 describe("withHistory()", () => {
@@ -30,8 +30,7 @@ describe("withHistory()", () => {
     source$.error("the error");
 
     expect(source$.observers.length).toBe(0);
-    expect(error).toHaveBeenCalledTimes(1);
-    expect(error).toHaveBeenCalledWith("the error");
+    expectSingleCallAndReset(error, "the error");
   });
 
   it("handles unsubscribes", () => {
