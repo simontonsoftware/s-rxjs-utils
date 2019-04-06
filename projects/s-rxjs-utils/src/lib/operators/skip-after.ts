@@ -1,5 +1,5 @@
 import { Observable } from "rxjs";
-import { createOperatorFunction } from "./create-operator-function";
+import { createOperatorFunction } from "../create-operator-function";
 
 /**
  * Causes the next value in the pipe to be skipped after `skip$` emits a value. For example:

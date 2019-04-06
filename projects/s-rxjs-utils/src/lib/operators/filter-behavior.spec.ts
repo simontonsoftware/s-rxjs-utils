@@ -4,7 +4,7 @@ import {
   testCompletionPropagation,
   testErrorPropagation,
   testUnsubscribePropagation,
-} from "../test-helpers";
+} from "../../test-helpers";
 import { filterBehavior } from "./filter-behavior";
 
 describe("filterBehavior()", () => {

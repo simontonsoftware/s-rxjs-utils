@@ -3,7 +3,7 @@ import {
   testCompletionPropagation,
   testErrorPropagation,
   testUnsubscribePropagation,
-} from "../test-helpers";
+} from "../../test-helpers";
 import { withHistory } from "./with-history";
 
 describe("withHistory()", () => {

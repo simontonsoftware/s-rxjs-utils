@@ -4,7 +4,7 @@ import {
   expectSingleCallAndReset,
   testCompletionPropagation,
   testErrorPropagation,
-} from "../test-helpers";
+} from "../../test-helpers";
 import { cache } from "./cache";
 
 describe("cache()", () => {
