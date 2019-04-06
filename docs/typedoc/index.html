@@ -877,6 +877,9 @@ img { max-width: 100%; }
 		<li class=" tsd-kind-class">
 			<a href="classes/subscriptionmanager.html" class="tsd-kind-icon">Subscription<wbr>Manager</a>
 		</li>
+		<li class=" tsd-kind-interface tsd-has-type-parameter tsd-is-not-exported">
+			<a href="interfaces/requiredsubscriber.html" class="tsd-kind-icon">Required<wbr>Subscriber</a>
+		</li>
 		<li class=" tsd-kind-variable tsd-is-not-exported">
 			<a href="index.html#context" class="tsd-kind-icon">context</a>
 		</li>
@@ -887,7 +890,16 @@ img { max-width: 100%; }
 			<a href="index.html#cache" class="tsd-kind-icon">cache</a>
 		</li>
 		<li class=" tsd-kind-function tsd-has-type-parameter">
+			<a href="index.html#createoperatorfunction" class="tsd-kind-icon">create<wbr>Operator<wbr>Function</a>
+		</li>
+		<li class=" tsd-kind-function tsd-has-type-parameter">
 			<a href="index.html#createpipeable" class="tsd-kind-icon">create<wbr>Pipeable</a>
+		</li>
+		<li class=" tsd-kind-function tsd-has-type-parameter">
+			<a href="index.html#filterbehavior" class="tsd-kind-icon">filter<wbr>Behavior</a>
+		</li>
+		<li class=" tsd-kind-function tsd-has-type-parameter">
+			<a href="index.html#mapandcacheelements" class="tsd-kind-icon">map<wbr>And<wbr>Cache<wbr>Elements</a>
 		</li>
 		<li class=" tsd-kind-function tsd-has-type-parameter">
 			<a href="index.html#skipafter" class="tsd-kind-icon">skip<wbr>After</a>
@@ -910,6 +922,12 @@ img { max-width: 100%; }
 						</ul>
 					</section>
 					<section class="tsd-index-section tsd-is-not-exported">
+						<h3>Interfaces</h3>
+						<ul class="tsd-index-list">
+							<li class="tsd-kind-interface tsd-has-type-parameter tsd-is-not-exported"><a href="interfaces/requiredsubscriber.html" class="tsd-kind-icon">Required<wbr>Subscriber</a></li>
+						</ul>
+					</section>
+					<section class="tsd-index-section tsd-is-not-exported">
 						<h3>Variables</h3>
 						<ul class="tsd-index-list">
 							<li class="tsd-kind-variable tsd-is-not-exported"><a href="index.html#context" class="tsd-kind-icon">context</a></li>
@@ -920,7 +938,10 @@ img { max-width: 100%; }
 						<h3>Functions</h3>
 						<ul class="tsd-index-list">
 							<li class="tsd-kind-function tsd-has-type-parameter"><a href="index.html#cache" class="tsd-kind-icon">cache</a></li>
+							<li class="tsd-kind-function tsd-has-type-parameter"><a href="index.html#createoperatorfunction" class="tsd-kind-icon">create<wbr>Operator<wbr>Function</a></li>
 							<li class="tsd-kind-function tsd-has-type-parameter"><a href="index.html#createpipeable" class="tsd-kind-icon">create<wbr>Pipeable</a></li>
+							<li class="tsd-kind-function tsd-has-type-parameter"><a href="index.html#filterbehavior" class="tsd-kind-icon">filter<wbr>Behavior</a></li>
+							<li class="tsd-kind-function tsd-has-type-parameter"><a href="index.html#mapandcacheelements" class="tsd-kind-icon">map<wbr>And<wbr>Cache<wbr>Elements</a></li>
 							<li class="tsd-kind-function tsd-has-type-parameter"><a href="index.html#skipafter" class="tsd-kind-icon">skip<wbr>After</a></li>
 							<li class="tsd-kind-function tsd-has-type-parameter"><a href="index.html#withhistory" class="tsd-kind-icon">with<wbr>History</a></li>
 						</ul>
@@ -963,7 +984,7 @@ img { max-width: 100%; }
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/simontonsoftware/s-rxjs-utils/blob/master/projects/s-rxjs-utils/src/lib/cache.ts#L22">lib/cache.ts:22</a></li>
+								<li>Defined in <a href="https://github.com/simontonsoftware/s-rxjs-utils/blob/master/projects/s-rxjs-utils/src/lib/operators/cache.ts#L22">lib/operators/cache.ts:22</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
@@ -984,6 +1005,39 @@ source.next(<span class="hljs-number">2000</span>); <span class="hljs-comment">/
 				</ul>
 			</section>
 			<section class="tsd-panel tsd-member tsd-kind-function tsd-has-type-parameter">
+				<a name="createoperatorfunction" class="tsd-anchor"></a>
+				<h3>create<wbr>Operator<wbr>Function</h3>
+				<ul class="tsd-signatures tsd-kind-function tsd-has-type-parameter">
+					<li class="tsd-signature tsd-kind-icon">create<wbr>Operator<wbr>Function&lt;SourceType, DestinationType&gt;<span class="tsd-signature-symbol">(</span>modifySubscriber<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">OperatorFunction</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">SourceType</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">DestinationType</span><span class="tsd-signature-symbol">&gt;</span></li>
+				</ul>
+				<ul class="tsd-descriptions">
+					<li class="tsd-description">
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in <a href="https://github.com/simontonsoftware/s-rxjs-utils/blob/master/projects/s-rxjs-utils/src/lib/create-operator-function.ts#L23">lib/create-operator-function.ts:23</a></li>
+							</ul>
+						</aside>
+						<div class="tsd-comment tsd-typography">
+							<div class="lead">
+								<p>Use this to create a complex pipeable operator. It is usually better style to compose existing operators than to create a brand new one, but when you need full control this can reduce some boilerplate.</p>
+							</div>
+							<p>The supplied <code>subscriber</code> will act as a simple pass-through of all values, errors, and completion to <code>destination</code>. Modify it for your needs.</p>
+							<p>A simple example, recreating the &quot;map&quot; operator:</p>
+							<pre><code class="language-ts"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">map</span>&lt;<span class="hljs-title">I</span>, <span class="hljs-title">O</span>&gt;(<span class="hljs-params">fn: (input: I) =&gt; O</span>) </span>{
+  <span class="hljs-keyword">return</span> createOperatorFunction&lt;I, O&gt;(
+    <span class="hljs-function">(<span class="hljs-params">subscriber, destination</span>) =&gt;</span> {
+      subscriber.next = <span class="hljs-function">(<span class="hljs-params">value</span>) =&gt;</span> {
+        destination.next(fn(value));
+      };
+    },
+  );
+}</code></pre>
+							<p>For a more complex example, check the source of <code>skipAfter</code>.</p>
+						</div>
+					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-function tsd-has-type-parameter">
 				<a name="createpipeable" class="tsd-anchor"></a>
 				<h3>create<wbr>Pipeable</h3>
 				<ul class="tsd-signatures tsd-kind-function tsd-has-type-parameter">
@@ -993,28 +1047,69 @@ source.next(<span class="hljs-number">2000</span>); <span class="hljs-comment">/
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/simontonsoftware/s-rxjs-utils/blob/master/projects/s-rxjs-utils/src/lib/create-pipeable.ts#L25">lib/create-pipeable.ts:25</a></li>
+								<li>Defined in <a href="https://github.com/simontonsoftware/s-rxjs-utils/blob/master/projects/s-rxjs-utils/src/lib/create-pipeable.ts#L7">lib/create-pipeable.ts:7</a></li>
+							</ul>
+						</aside>
+						<div class="tsd-comment tsd-typography">
+							<dl class="tsd-comment-tags">
+								<dt>deprecated</dt>
+								<dd><p>use <code>createOperatorFunction</code> instead</p>
+								</dd>
+							</dl>
+						</div>
+					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-function tsd-has-type-parameter">
+				<a name="filterbehavior" class="tsd-anchor"></a>
+				<h3>filter<wbr>Behavior</h3>
+				<ul class="tsd-signatures tsd-kind-function tsd-has-type-parameter">
+					<li class="tsd-signature tsd-kind-icon">filter<wbr>Behavior&lt;T&gt;<span class="tsd-signature-symbol">(</span>predicate<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Predicate</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">OperatorFunction</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></li>
+				</ul>
+				<ul class="tsd-descriptions">
+					<li class="tsd-description">
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in <a href="https://github.com/simontonsoftware/s-rxjs-utils/blob/master/projects/s-rxjs-utils/src/lib/operators/filter-behavior.ts#L14">lib/operators/filter-behavior.ts:14</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
 							<div class="lead">
-								<p>Use this to create a complex pipeable operator. It is usually better style to compose existing operators than to create a brand new one, but when you need full control this can reduce some boilerplate.</p>
+								<p>Works like <code>filter()</code>, but always lets through the first emission for each new subscriber. This makes it suitable for subscribers that expect the observable to behave like a <code>BehaviorSubject</code>, where the first emission is processed synchronously during the call to <code>subscribe()</code> (such as the <code>async</code> pipe in an Angular template).</p>
 							</div>
-							<p>A simple example, recreating the &quot;map&quot; operator:</p>
-							<pre><code class="language-ts"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">map</span>&lt;<span class="hljs-title">I</span>, <span class="hljs-title">O</span>&gt;(<span class="hljs-params">fn: (input: I) =&gt; O</span>) </span>{
-  <span class="hljs-keyword">return</span> createPipeable&lt;I, O&gt;(
-    <span class="hljs-function">(<span class="hljs-params">upstream, downstream, subscriptionManager</span>) =&gt;</span> {
-      subscriptionManager.subscribeTo(
-        upstream,
-        <span class="hljs-function"><span class="hljs-params">value</span> =&gt;</span> {
-          downstream.next(fn(value));
-        },
-        downstream.error.bind(downstream),
-        downstream.complete.bind(downstream)
-      );
-    }
-  );
-}</code></pre>
+							<pre><code>source:                   <span class="hljs-pattern-match">|-<span class="hljs-literal">false</span>--<span class="hljs-literal">true</span>--<span class="hljs-literal">false</span>--<span class="hljs-literal">true</span>--<span class="hljs-literal">false</span>--<span class="hljs-literal">true</span>-|
+filter<span class="hljs-constructor">Behavior(<span class="hljs-params">identity</span>)</span>: |-<span class="hljs-literal">false</span>--<span class="hljs-literal">true</span>---------<span class="hljs-literal">true</span>---------<span class="hljs-literal">true</span>-|
+filter<span class="hljs-constructor">Behavior(<span class="hljs-params">identity</span>)</span>:        |-<span class="hljs-literal">true</span>---------<span class="hljs-literal">true</span>---------<span class="hljs-literal">true</span>-|
+filter<span class="hljs-constructor">Behavior(<span class="hljs-params">identity</span>)</span>:              |-<span class="hljs-literal">false</span>--<span class="hljs-literal">true</span>---------<span class="hljs-literal">true</span>-|</span></code></pre>
+						</div>
+					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-function tsd-has-type-parameter">
+				<a name="mapandcacheelements" class="tsd-anchor"></a>
+				<h3>map<wbr>And<wbr>Cache<wbr>Elements</h3>
+				<ul class="tsd-signatures tsd-kind-function tsd-has-type-parameter">
+					<li class="tsd-signature tsd-kind-icon">map<wbr>And<wbr>Cache<wbr>Elements&lt;UpstreamType, DownstreamType&gt;<span class="tsd-signature-symbol">(</span>buildCacheKey<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span>, buildDownstreamItem<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">OperatorFunction</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">UpstreamType</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">DownstreamType</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></li>
+				</ul>
+				<ul class="tsd-descriptions">
+					<li class="tsd-description">
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in <a href="https://github.com/simontonsoftware/s-rxjs-utils/blob/master/projects/s-rxjs-utils/src/lib/operators/map-and-cache-elements.ts#L22">lib/operators/map-and-cache-elements.ts:22</a></li>
+							</ul>
+						</aside>
+						<div class="tsd-comment tsd-typography">
+							<div class="lead">
+								<p>Applies <code>buildDownstreamItem</code> to each item in the upstream array and emits the result. Each item is cached using the key generated by <code>buildCacheKey</code> so that the next emission contains references to the matching objects from the previous emission, without running <code>buildDownstreamItem</code> again. The cache is only held between successive emissions.</p>
+							</div>
+							<p>This is useful e.g. when using the result in an <code>*ngFor</code> expression of an angular template, to prevent angular from rebuilding the inner component and to allow <code>OnPush</code> optimizations in the inner component.</p>
+							<p>If multiple items in an upstream array have the same cache key, it will only call <code>buildDownstreamItem</code> once.</p>
+							<pre><code class="language-ts"><span class="hljs-keyword">const</span> mapWithCaching = mapAndCacheElements(
+  <span class="hljs-function">(<span class="hljs-params">item</span>) =&gt;</span> item.toString(),
+  <span class="hljs-function">(<span class="hljs-params">item</span>) =&gt;</span> item + <span class="hljs-number">1</span>
+)</code></pre>
+							<pre><code>source:         -[<span class="hljs-number">1</span>, <span class="hljs-number">2</span>]---[<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>]---[<span class="hljs-number">2</span>]--|
+mapWithCaching: -[<span class="hljs-number">2</span>, <span class="hljs-number">3</span>]---[<span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>]---[<span class="hljs-number">3</span>]--|</code></pre>
 						</div>
 					</li>
 				</ul>
@@ -1029,7 +1124,7 @@ source.next(<span class="hljs-number">2000</span>); <span class="hljs-comment">/
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/simontonsoftware/s-rxjs-utils/blob/master/projects/s-rxjs-utils/src/lib/skip-after.ts#L30">lib/skip-after.ts:30</a></li>
+								<li>Defined in <a href="https://github.com/simontonsoftware/s-rxjs-utils/blob/master/projects/s-rxjs-utils/src/lib/operators/skip-after.ts#L30">lib/operators/skip-after.ts:30</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
@@ -1067,7 +1162,7 @@ source.next(<span class="hljs-number">5</span>); <span class="hljs-comment">// r
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/simontonsoftware/s-rxjs-utils/blob/master/projects/s-rxjs-utils/src/lib/with-history.ts#L12">lib/with-history.ts:12</a></li>
+								<li>Defined in <a href="https://github.com/simontonsoftware/s-rxjs-utils/blob/master/projects/s-rxjs-utils/src/lib/operators/with-history.ts#L12">lib/operators/with-history.ts:12</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
