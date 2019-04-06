@@ -3,6 +3,7 @@ import { noop } from "micro-dash";
 import { Subject } from "rxjs";
 import {
   cache,
+  createOperatorFunction,
   createPipeable,
   mapAndCacheElements,
   skipAfter,
@@ -23,6 +24,7 @@ export class AppComponent {
     new SubscriptionManager().subscribeTo(
       new Subject<number>().pipe(
         cache(),
+        createOperatorFunction(noop),
         createPipeable(noop),
         skipAfter(new Subject()),
         withHistory(3),

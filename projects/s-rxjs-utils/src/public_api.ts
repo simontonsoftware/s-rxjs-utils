@@ -3,6 +3,7 @@
  */
 
 export { cache } from "./lib/cache";
+export { createOperatorFunction } from "./lib/create-operator-function";
 export { createPipeable } from "./lib/create-pipeable";
 export { skipAfter } from "./lib/skip-after";
 export { SubscriptionManager } from "./lib/subscription-manager";

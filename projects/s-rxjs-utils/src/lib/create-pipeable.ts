@@ -2,25 +2,7 @@ import { Observable, OperatorFunction, Subscriber } from "rxjs";
 import { SubscriptionManager } from "./subscription-manager";
 
 /**
- * Use this to create a complex pipeable operator. It is usually better style to compose existing operators than to create a brand new one, but when you need full control this can reduce some boilerplate.
- *
- * A simple example, recreating the "map" operator:
- * ```ts
- * function map<I, O>(fn: (input: I) => O) {
- *   return createPipeable<I, O>(
- *     (upstream, downstream, subscriptionManager) => {
- *       subscriptionManager.subscribeTo(
- *         upstream,
- *         value => {
- *           downstream.next(fn(value));
- *         },
- *         downstream.error.bind(downstream),
- *         downstream.complete.bind(downstream)
- *       );
- *     }
- *   );
- * }
- * ```
+ * @deprecated use `createOperatorFunction` instead
  */
 export function createPipeable<UpstreamType, DownstreamType = UpstreamType>(
   subscribe: (

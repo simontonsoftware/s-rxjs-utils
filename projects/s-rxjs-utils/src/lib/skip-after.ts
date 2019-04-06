@@ -1,5 +1,5 @@
 import { Observable } from "rxjs";
-import { createPipeable } from "./create-pipeable";
+import { createOperatorFunction } from "./create-operator-function";
 
 /**
  * Causes the next value in the pipe to be skipped after `skip$` emits a value. For example:
@@ -28,22 +28,19 @@ import { createPipeable } from "./create-pipeable";
  * ```
  */
 export function skipAfter<T>(skip$: Observable<any>) {
-  return createPipeable<T>((upstream$, downstream, manager) => {
+  return createOperatorFunction<T>((subscriber, destination) => {
     let skipNext = false;
-    manager.subscribeTo(skip$, () => {
-      skipNext = true;
-    });
-    manager.subscribeTo(
-      upstream$,
-      (value) => {
-        if (skipNext) {
-          skipNext = false;
-        } else {
-          downstream.next(value);
-        }
-      },
-      downstream.error.bind(downstream),
-      downstream.complete.bind(downstream),
+    subscriber.add(
+      skip$.subscribe(() => {
+        skipNext = true;
+      }),
     );
+    subscriber.next = (value) => {
+      if (skipNext) {
+        skipNext = false;
+      } else {
+        destination.next(value);
+      }
+    };
   });
 }
