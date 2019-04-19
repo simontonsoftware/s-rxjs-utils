@@ -8,7 +8,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "docs": "cd docs && typedoc ../projects/s-rxjs-utils/src",
+    "docs": "cd docs && typedoc ../projects/s-rxjs-utils/src/lib",
     "prettier-all": "prettier --write \"**/*.{html,js,json,md,scss,ts,yml}\"",
     "release": "yarn docs && git add docs/* && standard-version --commit-all && yarn build s-rxjs-utils --prod"
   },
@@ -50,6 +50,7 @@
     "ng-packagr": "^4.2.0",
     "prettier": "^1.14.2",
     "protractor": "~5.4.0",
+    "s-ng-test-utils": "^0.1.0",
     "standard-version": "^4.4.0",
     "ts-node": "~7.0.0",
     "tsickle": ">=0.29.0",

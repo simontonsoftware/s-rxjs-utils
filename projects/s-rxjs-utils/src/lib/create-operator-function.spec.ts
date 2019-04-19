@@ -1,7 +1,7 @@
 import { Subject } from "rxjs";
+import { expectSingleCallAndReset } from "s-ng-test-utils";
 import {
   expectPipeResult,
-  expectSingleCallAndReset,
   testCompletionPropagation,
   testErrorPropagation,
   testUnsubscribePropagation,

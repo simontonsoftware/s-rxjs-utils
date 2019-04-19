@@ -1,5 +1,6 @@
 import { of, OperatorFunction, Subject } from "rxjs";
 import { toArray } from "rxjs/operators";
+import { expectSingleCallAndReset } from "s-ng-test-utils";
 
 export async function expectPipeResult<I, O>(
   source: I[],
@@ -19,13 +20,6 @@ export function pipeAndCollect<I, O>(
       toArray(),
     )
     .toPromise();
-}
-
-// consider for s-js-utils
-export function expectSingleCallAndReset(spy: jasmine.Spy, ...params: any[]) {
-  expect(spy).toHaveBeenCalledTimes(1);
-  expect(spy).toHaveBeenCalledWith(...params);
-  spy.calls.reset();
 }
 
 export function testUnsubscribePropagation(

@@ -1,7 +1,7 @@
 import { BehaviorSubject, Subject } from "rxjs";
 import { tap } from "rxjs/operators";
+import { expectSingleCallAndReset } from "s-ng-test-utils";
 import {
-  expectSingleCallAndReset,
   testCompletionPropagation,
   testErrorPropagation,
 } from "../../test-helpers";

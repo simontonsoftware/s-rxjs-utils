@@ -1,5 +1,5 @@
 import { Subject } from "rxjs";
-import { expectSingleCallAndReset } from "../../test-helpers";
+import { expectSingleCallAndReset } from "s-ng-test-utils";
 import { skipAfter } from "./skip-after";
 
 describe("skipAfter()", () => {
