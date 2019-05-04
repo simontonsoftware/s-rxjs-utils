@@ -1,12 +1,13 @@
 import { Component } from "@angular/core";
-import { noop } from "micro-dash";
+import { noop, identity } from "micro-dash";
 import { Subject } from "rxjs";
 import {
   cache,
   createOperatorFunction,
   createPipeable,
   filterBehavior,
-  mapAndCacheElements,
+  mapAndCacheArrayElements,
+  mapAndCacheObjectElements,
   skipAfter,
   SubscriptionManager,
   withHistory,
@@ -32,10 +33,8 @@ export class AppComponent {
 
         // switch type to number[]
         withHistory(3),
-        mapAndCacheElements(
-          (item: number) => item.toString(),
-          (item: number) => item + 1,
-        ),
+        mapAndCacheArrayElements(identity, identity),
+        mapAndCacheObjectElements(identity, identity),
       ),
     );
 
