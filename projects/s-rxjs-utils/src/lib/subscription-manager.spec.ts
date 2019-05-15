@@ -19,8 +19,8 @@ describe("SubscriptionManager", () => {
 
     const subject = new Subject();
     manager.subscribeTo(subject, next, error, complete);
-    for (const number of sequence) {
-      subject.next(number);
+    for (const num of sequence) {
+      subject.next(num);
     }
     if (errorText) {
       subject.error(errorText);
