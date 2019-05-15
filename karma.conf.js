@@ -16,16 +16,17 @@ module.exports = function(config) {
       clearContext: false, // leave Jasmine Spec Runner output visible in browser
     },
     coverageIstanbulReporter: {
-      dir: require("path").join(__dirname, "../coverage"),
+      dir: require("path").join(__dirname, "./coverage/s-rxjs-utils-platform"),
       reports: ["html", "lcovonly"],
       fixWebpackSourcePaths: true,
     },
-    reporters: ["progress", "kjhtml"],
+    reporters: ["progress", "kjhtml", "text-summary"],
     port: 9876,
     colors: true,
     logLevel: config.LOG_INFO,
     autoWatch: true,
     browsers: ["Chrome"],
     singleRun: false,
+    restartOnFileChange: true,
   });
 };
