@@ -1,6 +1,6 @@
-import { identity, ObjectWith } from "micro-dash";
+import { identity } from "micro-dash";
 import { Subject } from "rxjs";
-import { expectSingleCallAndReset } from "s-ng-test-utils";
+import { expectSingleCallAndReset, ObjectWith } from "s-ng-dev-utils";
 import {
   expectPipeResult,
   testCompletionPropagation,
