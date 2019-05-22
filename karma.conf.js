@@ -17,10 +17,10 @@ module.exports = function(config) {
     },
     coverageIstanbulReporter: {
       dir: require("path").join(__dirname, "./coverage/s-rxjs-utils-platform"),
-      reports: ["html", "lcovonly"],
+      reports: ["html", "lcovonly", "text-summary"],
       fixWebpackSourcePaths: true,
     },
-    reporters: ["progress", "kjhtml", "text-summary"],
+    reporters: ["progress", "kjhtml"],
     port: 9876,
     colors: true,
     logLevel: config.LOG_INFO,

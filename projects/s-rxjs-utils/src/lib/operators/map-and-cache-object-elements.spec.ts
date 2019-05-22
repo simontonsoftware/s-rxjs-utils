@@ -25,7 +25,7 @@ describe("mapAndCacheObjectElements()", () => {
     source
       .pipe(
         mapAndCacheObjectElements(
-          (item, key) => key,
+          (_item, key) => key,
           (item) => ({ index: item.index + 1 }),
         ),
       )

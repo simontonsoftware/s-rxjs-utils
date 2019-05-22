@@ -4,7 +4,6 @@ import { Subject } from "rxjs";
 import {
   cache,
   createOperatorFunction,
-  createPipeable,
   filterBehavior,
   mapAndCacheArrayElements,
   mapAndCacheObjectElements,
@@ -27,7 +26,6 @@ export class AppComponent {
       new Subject<number>().pipe(
         cache(),
         createOperatorFunction(noop),
-        createPipeable(noop),
         filterBehavior(() => true),
         skipAfter(new Subject()),
 
