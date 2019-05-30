@@ -1,6 +1,21 @@
-# Change Log
+# Changelog
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
+
+## [2.0.0](https://github.com/simontonsoftware/s-rxjs-utils/compare/v1.2.0...v2.0.0) (2019-05-30)
+
+### Features
+
+- add `mapAndCacheObjectElements()` ([9769a34](https://github.com/simontonsoftware/s-rxjs-utils/commit/9769a34))
+- update dependencies ([3477bd6](https://github.com/simontonsoftware/s-rxjs-utils/commit/3477bd6))
+
+### BREAKING CHANGES
+
+- Uses Typescript 3.4 (up from 3.1)
+- Requires Rxjs 6.4 (up from 6.3)
+- Requires micro-dash 6.0 (up from 5.0)
+- The deprecated `createPipeable()` was removed. Use `createOperatorFunction()` instead.
+- `mapAndCacheElements()` is now `mapAndCacheArrayElements()`
 
 <a name="1.2.0"></a>
 

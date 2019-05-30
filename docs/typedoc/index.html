@@ -880,20 +880,23 @@ img { max-width: 100%; }
 		<li class=" tsd-kind-interface tsd-has-type-parameter tsd-is-not-exported">
 			<a href="interfaces/requiredsubscriber.html" class="tsd-kind-icon">Required<wbr>Subscriber</a>
 		</li>
-		<li class=" tsd-kind-variable tsd-is-not-exported">
-			<a href="index.html#context" class="tsd-kind-icon">context</a>
+		<li class=" tsd-kind-type-alias tsd-has-type-parameter tsd-is-not-exported">
+			<a href="index.html#arrayiteratee" class="tsd-kind-icon">Array<wbr>Iteratee</a>
 		</li>
-		<li class=" tsd-kind-variable tsd-is-not-exported">
-			<a href="index.html#require" class="tsd-kind-icon">require</a>
+		<li class=" tsd-kind-type-alias tsd-has-type-parameter tsd-is-not-exported">
+			<a href="index.html#objectiteratee" class="tsd-kind-icon">Object<wbr>Iteratee</a>
+		</li>
+		<li class=" tsd-kind-variable">
+			<a href="index.html#mapandcachearrayelements" class="tsd-kind-icon">map<wbr>And<wbr>Cache<wbr>Array<wbr>Elements</a>
+		</li>
+		<li class=" tsd-kind-variable">
+			<a href="index.html#mapandcacheobjectelements" class="tsd-kind-icon">map<wbr>And<wbr>Cache<wbr>Object<wbr>Elements</a>
 		</li>
 		<li class=" tsd-kind-function tsd-has-type-parameter">
 			<a href="index.html#cache" class="tsd-kind-icon">cache</a>
 		</li>
 		<li class=" tsd-kind-function tsd-has-type-parameter">
 			<a href="index.html#createoperatorfunction" class="tsd-kind-icon">create<wbr>Operator<wbr>Function</a>
-		</li>
-		<li class=" tsd-kind-function tsd-has-type-parameter">
-			<a href="index.html#createpipeable" class="tsd-kind-icon">create<wbr>Pipeable</a>
 		</li>
 		<li class=" tsd-kind-function tsd-has-type-parameter">
 			<a href="index.html#filterbehavior" class="tsd-kind-icon">filter<wbr>Behavior</a>
@@ -928,10 +931,17 @@ img { max-width: 100%; }
 						</ul>
 					</section>
 					<section class="tsd-index-section tsd-is-not-exported">
+						<h3>Type aliases</h3>
+						<ul class="tsd-index-list">
+							<li class="tsd-kind-type-alias tsd-has-type-parameter tsd-is-not-exported"><a href="index.html#arrayiteratee" class="tsd-kind-icon">Array<wbr>Iteratee</a></li>
+							<li class="tsd-kind-type-alias tsd-has-type-parameter tsd-is-not-exported"><a href="index.html#objectiteratee" class="tsd-kind-icon">Object<wbr>Iteratee</a></li>
+						</ul>
+					</section>
+					<section class="tsd-index-section ">
 						<h3>Variables</h3>
 						<ul class="tsd-index-list">
-							<li class="tsd-kind-variable tsd-is-not-exported"><a href="index.html#context" class="tsd-kind-icon">context</a></li>
-							<li class="tsd-kind-variable tsd-is-not-exported"><a href="index.html#require" class="tsd-kind-icon">require</a></li>
+							<li class="tsd-kind-variable"><a href="index.html#mapandcachearrayelements" class="tsd-kind-icon">map<wbr>And<wbr>Cache<wbr>Array<wbr>Elements</a></li>
+							<li class="tsd-kind-variable"><a href="index.html#mapandcacheobjectelements" class="tsd-kind-icon">map<wbr>And<wbr>Cache<wbr>Object<wbr>Elements</a></li>
 						</ul>
 					</section>
 					<section class="tsd-index-section ">
@@ -939,7 +949,6 @@ img { max-width: 100%; }
 						<ul class="tsd-index-list">
 							<li class="tsd-kind-function tsd-has-type-parameter"><a href="index.html#cache" class="tsd-kind-icon">cache</a></li>
 							<li class="tsd-kind-function tsd-has-type-parameter"><a href="index.html#createoperatorfunction" class="tsd-kind-icon">create<wbr>Operator<wbr>Function</a></li>
-							<li class="tsd-kind-function tsd-has-type-parameter"><a href="index.html#createpipeable" class="tsd-kind-icon">create<wbr>Pipeable</a></li>
 							<li class="tsd-kind-function tsd-has-type-parameter"><a href="index.html#filterbehavior" class="tsd-kind-icon">filter<wbr>Behavior</a></li>
 							<li class="tsd-kind-function tsd-has-type-parameter"><a href="index.html#mapandcacheelements" class="tsd-kind-icon">map<wbr>And<wbr>Cache<wbr>Elements</a></li>
 							<li class="tsd-kind-function tsd-has-type-parameter"><a href="index.html#skipafter" class="tsd-kind-icon">skip<wbr>After</a></li>
@@ -950,26 +959,75 @@ img { max-width: 100%; }
 			</section>
 		</section>
 		<section class="tsd-panel-group tsd-member-group tsd-is-not-exported">
-			<h2>Variables</h2>
-			<section class="tsd-panel tsd-member tsd-kind-variable tsd-is-not-exported">
-				<a name="context" class="tsd-anchor"></a>
-				<h3><span class="tsd-flag ts-flagConst">Const</span> context</h3>
-				<div class="tsd-signature tsd-kind-icon">context<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">any</span><span class="tsd-signature-symbol"> =&nbsp;require.context(&quot;./&quot;, true, /\.spec\.ts$/)</span></div>
+			<h2>Type aliases</h2>
+			<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-has-type-parameter tsd-is-not-exported">
+				<a name="arrayiteratee" class="tsd-anchor"></a>
+				<h3>Array<wbr>Iteratee</h3>
+				<div class="tsd-signature tsd-kind-icon">Array<wbr>Iteratee<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in <a href="https://github.com/simontonsoftware/s-rxjs-utils/blob/master/projects/s-rxjs-utils/src/test.ts#L20">test.ts:20</a></li>
+						<li>Defined in <a href="https://github.com/simontonsoftware/s-rxjs-utils/blob/master/projects/s-rxjs-utils/src/lib/operators/map-and-cache-array-elements.ts#L4">operators/map-and-cache-array-elements.ts:4</a></li>
 					</ul>
 				</aside>
 			</section>
-			<section class="tsd-panel tsd-member tsd-kind-variable tsd-is-not-exported">
-				<a name="require" class="tsd-anchor"></a>
-				<h3><span class="tsd-flag ts-flagConst">Const</span> require</h3>
-				<div class="tsd-signature tsd-kind-icon">require<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">any</span></div>
+			<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-has-type-parameter tsd-is-not-exported">
+				<a name="objectiteratee" class="tsd-anchor"></a>
+				<h3>Object<wbr>Iteratee</h3>
+				<div class="tsd-signature tsd-kind-icon">Object<wbr>Iteratee<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in <a href="https://github.com/simontonsoftware/s-rxjs-utils/blob/master/projects/s-rxjs-utils/src/test.ts#L12">test.ts:12</a></li>
+						<li>Defined in <a href="https://github.com/simontonsoftware/s-rxjs-utils/blob/master/projects/s-rxjs-utils/src/lib/operators/map-and-cache-object-elements.ts#L5">operators/map-and-cache-object-elements.ts:5</a></li>
 					</ul>
 				</aside>
+			</section>
+		</section>
+		<section class="tsd-panel-group tsd-member-group ">
+			<h2>Variables</h2>
+			<section class="tsd-panel tsd-member tsd-kind-variable">
+				<a name="mapandcachearrayelements" class="tsd-anchor"></a>
+				<h3><span class="tsd-flag ts-flagConst">Const</span> map<wbr>And<wbr>Cache<wbr>Array<wbr>Elements</h3>
+				<div class="tsd-signature tsd-kind-icon">map<wbr>And<wbr>Cache<wbr>Array<wbr>Elements<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span><span class="tsd-signature-symbol"> =&nbsp;mapAndCacheElements as &lt;UpstreamType,DownstreamType&gt;(buildCacheKey: ArrayIteratee&lt;UpstreamType, any&gt;,buildDownstreamItem: ArrayIteratee&lt;UpstreamType, DownstreamType&gt;,) &#x3D;&gt; OperatorFunction&lt;UpstreamType[], DownstreamType[]&gt;</span></div>
+				<aside class="tsd-sources">
+					<ul>
+						<li>Defined in <a href="https://github.com/simontonsoftware/s-rxjs-utils/blob/master/projects/s-rxjs-utils/src/lib/operators/map-and-cache-array-elements.ts#L24">operators/map-and-cache-array-elements.ts:24</a></li>
+					</ul>
+				</aside>
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>Applies <code>buildDownstreamItem</code> to each item in the upstream array and emits the result. Each downstream item is cached using the key generated by <code>buildCacheKey</code> so that the next emission contains references to the matching objects from the previous emission, without running <code>buildDownstreamItem</code> again. The cache is only held between successive emissions.</p>
+					</div>
+					<p>This is useful e.g. when using the result in an <code>*ngFor</code> expression of an angular template, to prevent angular from rebuilding the inner component and to allow <code>OnPush</code> optimizations in the inner component.</p>
+					<p>If multiple items in an upstream array have the same cache key, it will only call <code>buildDownstreamItem</code> once.</p>
+					<pre><code class="language-ts"><span class="hljs-keyword">const</span> mapWithCaching = mapAndCacheElements(
+  <span class="hljs-function">(<span class="hljs-params">item</span>) =&gt;</span> item,
+  <span class="hljs-function">(<span class="hljs-params">item</span>) =&gt;</span> item + <span class="hljs-number">1</span>
+)</code></pre>
+					<pre><code>source:         -[<span class="hljs-number">1</span>, <span class="hljs-number">2</span>]---[<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>]---[<span class="hljs-number">2</span>]--|
+mapWithCaching: -[<span class="hljs-number">2</span>, <span class="hljs-number">3</span>]---[<span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>]---[<span class="hljs-number">3</span>]--|</code></pre>
+				</div>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-variable">
+				<a name="mapandcacheobjectelements" class="tsd-anchor"></a>
+				<h3><span class="tsd-flag ts-flagConst">Const</span> map<wbr>And<wbr>Cache<wbr>Object<wbr>Elements</h3>
+				<div class="tsd-signature tsd-kind-icon">map<wbr>And<wbr>Cache<wbr>Object<wbr>Elements<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span><span class="tsd-signature-symbol"> =&nbsp;mapAndCacheElements as &lt;UpstreamType,DownstreamType &#x3D; UpstreamType[keyof UpstreamType]&gt;(buildCacheKey: ObjectIteratee&lt;UpstreamType, any&gt;,buildDownstreamItem: ObjectIteratee&lt;UpstreamType, DownstreamType&gt;,) &#x3D;&gt; OperatorFunction&lt;UpstreamType, DownstreamType[]&gt;</span></div>
+				<aside class="tsd-sources">
+					<ul>
+						<li>Defined in <a href="https://github.com/simontonsoftware/s-rxjs-utils/blob/master/projects/s-rxjs-utils/src/lib/operators/map-and-cache-object-elements.ts#L28">operators/map-and-cache-object-elements.ts:28</a></li>
+					</ul>
+				</aside>
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>Applies <code>buildDownstreamItem</code> to each item in the upstream object and emits an array containing the results. Each downstream item is cached using the key generated by <code>buildCacheKey</code> so that the next emission contains references to the matching objects from the previous emission, without running <code>buildDownstreamItem</code> again. The cache is only held between successive emissions.</p>
+					</div>
+					<p>This is useful e.g. when using the result in an <code>*ngFor</code> expression of an angular template, to prevent angular from rebuilding the inner component and to allow <code>OnPush</code> optimizations in the inner component.</p>
+					<p>If multiple items in an upstream object have the same cache key, it will only call <code>buildDownstreamItem</code> once.</p>
+					<pre><code class="language-ts"><span class="hljs-keyword">const</span> mapWithCaching = mapAndCacheElements(
+  <span class="hljs-function">(<span class="hljs-params">item, key</span>) =&gt;</span> key,
+  <span class="hljs-function">(<span class="hljs-params">item, key</span>) =&gt;</span> item + <span class="hljs-number">1</span>
+)</code></pre>
+					<pre><code>source:         -{ a: <span class="hljs-number">1</span>, b: <span class="hljs-number">2</span> }---{ a: <span class="hljs-number">1</span>, b: <span class="hljs-number">2</span>, c: <span class="hljs-number">3</span> }---{ b: <span class="hljs-number">2</span> }--|
+mapWithCaching: -[<span class="hljs-number">2</span>, <span class="hljs-number">3</span>]-----------[<span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>]--------------[<span class="hljs-number">3</span>]--|</code></pre>
+				</div>
 			</section>
 		</section>
 		<section class="tsd-panel-group tsd-member-group ">
@@ -984,7 +1042,7 @@ img { max-width: 100%; }
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/simontonsoftware/s-rxjs-utils/blob/master/projects/s-rxjs-utils/src/lib/operators/cache.ts#L22">lib/operators/cache.ts:22</a></li>
+								<li>Defined in <a href="https://github.com/simontonsoftware/s-rxjs-utils/blob/master/projects/s-rxjs-utils/src/lib/operators/cache.ts#L22">operators/cache.ts:22</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
@@ -1014,7 +1072,7 @@ source.next(<span class="hljs-number">2000</span>); <span class="hljs-comment">/
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/simontonsoftware/s-rxjs-utils/blob/master/projects/s-rxjs-utils/src/lib/create-operator-function.ts#L23">lib/create-operator-function.ts:23</a></li>
+								<li>Defined in <a href="https://github.com/simontonsoftware/s-rxjs-utils/blob/master/projects/s-rxjs-utils/src/lib/create-operator-function.ts#L23">create-operator-function.ts:23</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
@@ -1038,29 +1096,6 @@ source.next(<span class="hljs-number">2000</span>); <span class="hljs-comment">/
 				</ul>
 			</section>
 			<section class="tsd-panel tsd-member tsd-kind-function tsd-has-type-parameter">
-				<a name="createpipeable" class="tsd-anchor"></a>
-				<h3>create<wbr>Pipeable</h3>
-				<ul class="tsd-signatures tsd-kind-function tsd-has-type-parameter">
-					<li class="tsd-signature tsd-kind-icon">create<wbr>Pipeable&lt;UpstreamType, DownstreamType&gt;<span class="tsd-signature-symbol">(</span>subscribe<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">OperatorFunction</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">UpstreamType</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">DownstreamType</span><span class="tsd-signature-symbol">&gt;</span></li>
-				</ul>
-				<ul class="tsd-descriptions">
-					<li class="tsd-description">
-						<aside class="tsd-sources">
-							<ul>
-								<li>Defined in <a href="https://github.com/simontonsoftware/s-rxjs-utils/blob/master/projects/s-rxjs-utils/src/lib/create-pipeable.ts#L7">lib/create-pipeable.ts:7</a></li>
-							</ul>
-						</aside>
-						<div class="tsd-comment tsd-typography">
-							<dl class="tsd-comment-tags">
-								<dt>deprecated</dt>
-								<dd><p>use <code>createOperatorFunction</code> instead</p>
-								</dd>
-							</dl>
-						</div>
-					</li>
-				</ul>
-			</section>
-			<section class="tsd-panel tsd-member tsd-kind-function tsd-has-type-parameter">
 				<a name="filterbehavior" class="tsd-anchor"></a>
 				<h3>filter<wbr>Behavior</h3>
 				<ul class="tsd-signatures tsd-kind-function tsd-has-type-parameter">
@@ -1070,7 +1105,7 @@ source.next(<span class="hljs-number">2000</span>); <span class="hljs-comment">/
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/simontonsoftware/s-rxjs-utils/blob/master/projects/s-rxjs-utils/src/lib/operators/filter-behavior.ts#L14">lib/operators/filter-behavior.ts:14</a></li>
+								<li>Defined in <a href="https://github.com/simontonsoftware/s-rxjs-utils/blob/master/projects/s-rxjs-utils/src/lib/operators/filter-behavior.ts#L14">operators/filter-behavior.ts:14</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
@@ -1089,28 +1124,15 @@ filter<span class="hljs-constructor">Behavior(<span class="hljs-params">identity
 				<a name="mapandcacheelements" class="tsd-anchor"></a>
 				<h3>map<wbr>And<wbr>Cache<wbr>Elements</h3>
 				<ul class="tsd-signatures tsd-kind-function tsd-has-type-parameter">
-					<li class="tsd-signature tsd-kind-icon">map<wbr>And<wbr>Cache<wbr>Elements&lt;UpstreamType, DownstreamType&gt;<span class="tsd-signature-symbol">(</span>buildCacheKey<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span>, buildDownstreamItem<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">OperatorFunction</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">UpstreamType</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">DownstreamType</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></li>
+					<li class="tsd-signature tsd-kind-icon">map<wbr>And<wbr>Cache<wbr>Elements&lt;UpstreamType, DownstreamType&gt;<span class="tsd-signature-symbol">(</span>buildCacheKey<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span>, buildDownstreamItem<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">OperatorFunction</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">DownstreamType</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></li>
 				</ul>
 				<ul class="tsd-descriptions">
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/simontonsoftware/s-rxjs-utils/blob/master/projects/s-rxjs-utils/src/lib/operators/map-and-cache-elements.ts#L22">lib/operators/map-and-cache-elements.ts:22</a></li>
+								<li>Defined in <a href="https://github.com/simontonsoftware/s-rxjs-utils/blob/master/projects/s-rxjs-utils/src/lib/operators/map-and-cache-elements.ts#L4">operators/map-and-cache-elements.ts:4</a></li>
 							</ul>
 						</aside>
-						<div class="tsd-comment tsd-typography">
-							<div class="lead">
-								<p>Applies <code>buildDownstreamItem</code> to each item in the upstream array and emits the result. Each item is cached using the key generated by <code>buildCacheKey</code> so that the next emission contains references to the matching objects from the previous emission, without running <code>buildDownstreamItem</code> again. The cache is only held between successive emissions.</p>
-							</div>
-							<p>This is useful e.g. when using the result in an <code>*ngFor</code> expression of an angular template, to prevent angular from rebuilding the inner component and to allow <code>OnPush</code> optimizations in the inner component.</p>
-							<p>If multiple items in an upstream array have the same cache key, it will only call <code>buildDownstreamItem</code> once.</p>
-							<pre><code class="language-ts"><span class="hljs-keyword">const</span> mapWithCaching = mapAndCacheElements(
-  <span class="hljs-function">(<span class="hljs-params">item</span>) =&gt;</span> item.toString(),
-  <span class="hljs-function">(<span class="hljs-params">item</span>) =&gt;</span> item + <span class="hljs-number">1</span>
-)</code></pre>
-							<pre><code>source:         -[<span class="hljs-number">1</span>, <span class="hljs-number">2</span>]---[<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>]---[<span class="hljs-number">2</span>]--|
-mapWithCaching: -[<span class="hljs-number">2</span>, <span class="hljs-number">3</span>]---[<span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>]---[<span class="hljs-number">3</span>]--|</code></pre>
-						</div>
 					</li>
 				</ul>
 			</section>
@@ -1124,7 +1146,7 @@ mapWithCaching: -[<span class="hljs-number">2</span>, <span class="hljs-number">
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/simontonsoftware/s-rxjs-utils/blob/master/projects/s-rxjs-utils/src/lib/operators/skip-after.ts#L30">lib/operators/skip-after.ts:30</a></li>
+								<li>Defined in <a href="https://github.com/simontonsoftware/s-rxjs-utils/blob/master/projects/s-rxjs-utils/src/lib/operators/skip-after.ts#L30">operators/skip-after.ts:30</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
@@ -1162,7 +1184,7 @@ source.next(<span class="hljs-number">5</span>); <span class="hljs-comment">// r
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/simontonsoftware/s-rxjs-utils/blob/master/projects/s-rxjs-utils/src/lib/operators/with-history.ts#L12">lib/operators/with-history.ts:12</a></li>
+								<li>Defined in <a href="https://github.com/simontonsoftware/s-rxjs-utils/blob/master/projects/s-rxjs-utils/src/lib/operators/with-history.ts#L12">operators/with-history.ts:12</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">

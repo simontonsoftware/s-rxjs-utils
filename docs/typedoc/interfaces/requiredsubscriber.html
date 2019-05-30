@@ -945,20 +945,23 @@ img { max-width: 100%; }
 				</li>
 			</ul>
 		</li>
-		<li class=" tsd-kind-variable tsd-is-not-exported">
-			<a href="../index.html#context" class="tsd-kind-icon">context</a>
+		<li class=" tsd-kind-type-alias tsd-has-type-parameter tsd-is-not-exported">
+			<a href="../index.html#arrayiteratee" class="tsd-kind-icon">Array<wbr>Iteratee</a>
 		</li>
-		<li class=" tsd-kind-variable tsd-is-not-exported">
-			<a href="../index.html#require" class="tsd-kind-icon">require</a>
+		<li class=" tsd-kind-type-alias tsd-has-type-parameter tsd-is-not-exported">
+			<a href="../index.html#objectiteratee" class="tsd-kind-icon">Object<wbr>Iteratee</a>
+		</li>
+		<li class=" tsd-kind-variable">
+			<a href="../index.html#mapandcachearrayelements" class="tsd-kind-icon">map<wbr>And<wbr>Cache<wbr>Array<wbr>Elements</a>
+		</li>
+		<li class=" tsd-kind-variable">
+			<a href="../index.html#mapandcacheobjectelements" class="tsd-kind-icon">map<wbr>And<wbr>Cache<wbr>Object<wbr>Elements</a>
 		</li>
 		<li class=" tsd-kind-function tsd-has-type-parameter">
 			<a href="../index.html#cache" class="tsd-kind-icon">cache</a>
 		</li>
 		<li class=" tsd-kind-function tsd-has-type-parameter">
 			<a href="../index.html#createoperatorfunction" class="tsd-kind-icon">create<wbr>Operator<wbr>Function</a>
-		</li>
-		<li class=" tsd-kind-function tsd-has-type-parameter">
-			<a href="../index.html#createpipeable" class="tsd-kind-icon">create<wbr>Pipeable</a>
 		</li>
 		<li class=" tsd-kind-function tsd-has-type-parameter">
 			<a href="../index.html#filterbehavior" class="tsd-kind-icon">filter<wbr>Behavior</a>
@@ -1061,7 +1064,7 @@ img { max-width: 100%; }
 							<p>Inherited from Subscriber.__constructor</p>
 							<p>Overrides Subscription.__constructor</p>
 							<ul>
-								<li>Defined in C:/Users/xemno/IdeaProjects/s-rxjs-utils/node_modules/rxjs/internal/Subscriber.d.ts:32</li>
+								<li>Defined in C:/Users/xemno/IdeaProjects/s-rxjs-utils/node_modules/rxjs/internal/Subscriber.d.ts:31</li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
@@ -1231,7 +1234,7 @@ img { max-width: 100%; }
 						<aside class="tsd-sources">
 							<p>Inherited from Subscriber._complete</p>
 							<ul>
-								<li>Defined in C:/Users/xemno/IdeaProjects/s-rxjs-utils/node_modules/rxjs/internal/Subscriber.d.ts:68</li>
+								<li>Defined in C:/Users/xemno/IdeaProjects/s-rxjs-utils/node_modules/rxjs/internal/Subscriber.d.ts:67</li>
 							</ul>
 						</aside>
 					</li>
@@ -1248,7 +1251,7 @@ img { max-width: 100%; }
 						<aside class="tsd-sources">
 							<p>Inherited from Subscriber._error</p>
 							<ul>
-								<li>Defined in C:/Users/xemno/IdeaProjects/s-rxjs-utils/node_modules/rxjs/internal/Subscriber.d.ts:67</li>
+								<li>Defined in C:/Users/xemno/IdeaProjects/s-rxjs-utils/node_modules/rxjs/internal/Subscriber.d.ts:66</li>
 							</ul>
 						</aside>
 					</li>
@@ -1265,7 +1268,7 @@ img { max-width: 100%; }
 						<aside class="tsd-sources">
 							<p>Inherited from Subscriber._next</p>
 							<ul>
-								<li>Defined in C:/Users/xemno/IdeaProjects/s-rxjs-utils/node_modules/rxjs/internal/Subscriber.d.ts:66</li>
+								<li>Defined in C:/Users/xemno/IdeaProjects/s-rxjs-utils/node_modules/rxjs/internal/Subscriber.d.ts:65</li>
 							</ul>
 						</aside>
 					</li>
@@ -1282,7 +1285,7 @@ img { max-width: 100%; }
 						<aside class="tsd-sources">
 							<p>Inherited from Subscriber._unsubscribeAndRecycle</p>
 							<ul>
-								<li>Defined in C:/Users/xemno/IdeaProjects/s-rxjs-utils/node_modules/rxjs/internal/Subscriber.d.ts:70</li>
+								<li>Defined in C:/Users/xemno/IdeaProjects/s-rxjs-utils/node_modules/rxjs/internal/Subscriber.d.ts:69</li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
@@ -1306,19 +1309,20 @@ img { max-width: 100%; }
 						<aside class="tsd-sources">
 							<p>Inherited from Subscription.add</p>
 							<ul>
-								<li>Defined in C:/Users/xemno/IdeaProjects/s-rxjs-utils/node_modules/rxjs/internal/Subscription.d.ts:58</li>
+								<li>Defined in C:/Users/xemno/IdeaProjects/s-rxjs-utils/node_modules/rxjs/internal/Subscription.d.ts:60</li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
 							<div class="lead">
 								<p>Adds a tear down to be called during the unsubscribe() of this
-								Subscription.</p>
+								Subscription. Can also be used to add a child subscription.</p>
 							</div>
 							<p>If the tear down being added is a subscription that is already
 								unsubscribed, is the same reference <code>add</code> is being called on, or is
 							<code>Subscription.EMPTY</code>, it will not be added.</p>
 							<p>If this subscription is already in an <code>closed</code> state, the passed
 							tear down logic will be executed immediately.</p>
+							<p>When a parent subscription is unsubscribed, any child subscriptions that were added to it are also unsubscribed.</p>
 						</div>
 					</li>
 				</ul>
@@ -1334,7 +1338,7 @@ img { max-width: 100%; }
 						<aside class="tsd-sources">
 							<p>Inherited from Subscriber.complete</p>
 							<ul>
-								<li>Defined in C:/Users/xemno/IdeaProjects/s-rxjs-utils/node_modules/rxjs/internal/Subscriber.d.ts:64</li>
+								<li>Defined in C:/Users/xemno/IdeaProjects/s-rxjs-utils/node_modules/rxjs/internal/Subscriber.d.ts:63</li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
@@ -1358,7 +1362,7 @@ img { max-width: 100%; }
 						<aside class="tsd-sources">
 							<p>Inherited from Subscriber.error</p>
 							<ul>
-								<li>Defined in C:/Users/xemno/IdeaProjects/s-rxjs-utils/node_modules/rxjs/internal/Subscriber.d.ts:57</li>
+								<li>Defined in C:/Users/xemno/IdeaProjects/s-rxjs-utils/node_modules/rxjs/internal/Subscriber.d.ts:56</li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
@@ -1382,7 +1386,7 @@ img { max-width: 100%; }
 						<aside class="tsd-sources">
 							<p>Overrides Subscriber.next</p>
 							<ul>
-								<li>Defined in <a href="https://github.com/simontonsoftware/s-rxjs-utils/blob/master/projects/s-rxjs-utils/src/lib/create-operator-function.ts#L44">lib/create-operator-function.ts:44</a></li>
+								<li>Defined in <a href="https://github.com/simontonsoftware/s-rxjs-utils/blob/master/projects/s-rxjs-utils/src/lib/create-operator-function.ts#L44">create-operator-function.ts:44</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
@@ -1404,7 +1408,7 @@ img { max-width: 100%; }
 						<aside class="tsd-sources">
 							<p>Inherited from Subscription.remove</p>
 							<ul>
-								<li>Defined in C:/Users/xemno/IdeaProjects/s-rxjs-utils/node_modules/rxjs/internal/Subscription.d.ts:65</li>
+								<li>Defined in C:/Users/xemno/IdeaProjects/s-rxjs-utils/node_modules/rxjs/internal/Subscription.d.ts:67</li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
@@ -1428,7 +1432,7 @@ img { max-width: 100%; }
 							<p>Inherited from Subscriber.unsubscribe</p>
 							<p>Overrides Subscription.unsubscribe</p>
 							<ul>
-								<li>Defined in C:/Users/xemno/IdeaProjects/s-rxjs-utils/node_modules/rxjs/internal/Subscriber.d.ts:65</li>
+								<li>Defined in C:/Users/xemno/IdeaProjects/s-rxjs-utils/node_modules/rxjs/internal/Subscriber.d.ts:64</li>
 							</ul>
 						</aside>
 					</li>
