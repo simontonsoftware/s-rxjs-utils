@@ -1,6 +1,6 @@
 import { of, OperatorFunction, Subject } from "rxjs";
 import { toArray } from "rxjs/operators";
-import { expectSingleCallAndReset } from "s-ng-test-utils";
+import { expectSingleCallAndReset } from "s-ng-dev-utils";
 
 export async function expectPipeResult<I, O>(
   source: I[],

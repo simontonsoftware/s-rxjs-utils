@@ -42,7 +42,7 @@ export class SubscriptionManager implements Unsubscribable {
     this.subscriptions = new Subscription();
   }
 
-  private bind(fn?: (val: any) => void) {
+  private bind(fn?: (val?: any) => void) {
     return fn && fn.bind(this);
   }
 }
