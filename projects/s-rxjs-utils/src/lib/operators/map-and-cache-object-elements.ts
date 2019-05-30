@@ -1,5 +1,5 @@
-import { NumberKeyedObject } from "micro-dash";
 import { OperatorFunction } from "rxjs";
+import { NumberKeyedObject } from "s-ng-dev-utils";
 import { mapAndCacheElements } from "./map-and-cache-elements";
 
 type ObjectIteratee<T, O> = <K extends keyof T>(
