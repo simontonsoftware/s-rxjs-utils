@@ -1,11 +1,11 @@
 import { Subject } from "rxjs";
-import { expectSingleCallAndReset } from "s-ng-dev-utils";
 import {
   expectPipeResult,
+  subscribeWithStubs,
   testCompletionPropagation,
   testErrorPropagation,
   testUnsubscribePropagation,
-} from "../test-helpers";
+} from "../test-helpers/misc-helpers";
 import { createOperatorFunction } from "./create-operator-function";
 
 /**
@@ -26,10 +26,8 @@ function noop() {
 describe("createOperatorFunction()", () => {
   it("allows modifying values and errors", async () => {
     const source = new Subject<number>();
-    const next = jasmine.createSpy();
-    const error = jasmine.createSpy();
-    source
-      .pipe(
+    const sub = subscribeWithStubs(
+      source.pipe(
         createOperatorFunction<number>((subscriber, destination) => {
           subscriber.next = (value) => {
             destination.next(value + 1);
@@ -38,38 +36,33 @@ describe("createOperatorFunction()", () => {
             destination.error(value - 1);
           };
         }),
-      )
-      .subscribe(next, error);
+      ),
+    );
 
     source.next(10);
-    source.error(10);
+    sub.expectReceivedOnlyValue(11);
 
-    expectSingleCallAndReset(next, 11);
-    expectSingleCallAndReset(error, 9);
+    source.error(10);
+    sub.expectReceivedOnlyError(9);
   });
 
   it("allows preventing values, error and completion", () => {
     const source = new Subject<number>();
-    const next = jasmine.createSpy();
-    const error = jasmine.createSpy();
-    const complete = jasmine.createSpy();
-    source
-      .pipe(
+    const sub = subscribeWithStubs(
+      source.pipe(
         createOperatorFunction<number>((subscriber) => {
           subscriber.next = () => {};
           subscriber.error = () => {};
           subscriber.complete = () => {};
         }),
-      )
-      .subscribe(next, error, complete);
+      ),
+    );
 
     source.next(10);
     source.error(10);
     source.complete();
 
-    expect(next).not.toHaveBeenCalled();
-    expect(error).not.toHaveBeenCalled();
-    expect(complete).not.toHaveBeenCalled();
+    sub.expectNoCalls();
   });
 
   it("works for the example in the documentation", async () => {

@@ -6,7 +6,7 @@ import {
   testCompletionPropagation,
   testErrorPropagation,
   testUnsubscribePropagation,
-} from "../../test-helpers";
+} from "../../test-helpers/misc-helpers";
 import { mapAndCacheArrayElements } from "./map-and-cache-array-elements";
 
 describe("mapAndCacheArrayElements()", () => {

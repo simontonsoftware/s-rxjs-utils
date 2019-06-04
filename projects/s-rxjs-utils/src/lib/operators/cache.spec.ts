@@ -4,7 +4,7 @@ import { expectSingleCallAndReset } from "s-ng-dev-utils";
 import {
   testCompletionPropagation,
   testErrorPropagation,
-} from "../../test-helpers";
+} from "../../test-helpers/misc-helpers";
 import { cache } from "./cache";
 
 describe("cache()", () => {

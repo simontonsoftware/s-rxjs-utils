@@ -1,36 +1,35 @@
 import { Subject } from "rxjs";
-import { expectSingleCallAndReset } from "s-ng-dev-utils";
 import {
+  subscribeWithStubs,
   testCompletionPropagation,
   testErrorPropagation,
   testUnsubscribePropagation,
-} from "../../test-helpers";
+} from "../../test-helpers/misc-helpers";
 import { filterBehavior } from "./filter-behavior";
 
 describe("filterBehavior()", () => {
   it("filters items based on the supplied predicate", () => {
     const source = new Subject();
     const predicate = jasmine.createSpy();
-    const next = jasmine.createSpy();
-    source.pipe(filterBehavior(predicate)).subscribe(next);
+    const sub = subscribeWithStubs(source.pipe(filterBehavior(predicate)));
 
     source.next(1);
-    expectSingleCallAndReset(next, 1);
+    sub.expectReceivedOnlyValue(1);
 
     predicate.and.returnValue(true);
     source.next(2);
-    expectSingleCallAndReset(next, 2);
+    sub.expectReceivedOnlyValue(2);
     source.next(3);
-    expectSingleCallAndReset(next, 3);
+    sub.expectReceivedOnlyValue(3);
 
     predicate.and.returnValue(false);
     source.next(4);
     source.next(5);
-    expect(next).not.toHaveBeenCalled();
+    sub.expectNoCalls();
 
     predicate.and.returnValue(true);
     source.next(6);
-    expectSingleCallAndReset(next, 6);
+    sub.expectReceivedOnlyValue(6);
   });
 
   it("emits the first value unconditionally for each subscriber", () => {
@@ -38,27 +37,24 @@ describe("filterBehavior()", () => {
     const predicate = jasmine.createSpy().and.returnValue(false);
     const filtered$ = source.pipe(filterBehavior(predicate));
 
-    const next1 = jasmine.createSpy();
-    filtered$.subscribe(next1);
+    const sub1 = subscribeWithStubs(filtered$);
     source.next(1);
     source.next(2);
     source.next(3);
 
-    const next2 = jasmine.createSpy();
-    filtered$.subscribe(next2);
+    const sub2 = subscribeWithStubs(filtered$);
     source.next(4);
     source.next(5);
     source.next(6);
 
-    const next3 = jasmine.createSpy();
-    filtered$.subscribe(next3);
+    const sub3 = subscribeWithStubs(filtered$);
     source.next(7);
     source.next(8);
     source.next(9);
 
-    expectSingleCallAndReset(next1, 1);
-    expectSingleCallAndReset(next2, 4);
-    expectSingleCallAndReset(next3, 7);
+    sub1.expectReceivedOnlyValue(1);
+    sub2.expectReceivedOnlyValue(4);
+    sub3.expectReceivedOnlyValue(7);
   });
 
   it("passes along unsubscribes", () => {

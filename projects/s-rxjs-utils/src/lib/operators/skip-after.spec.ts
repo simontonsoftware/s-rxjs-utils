@@ -1,5 +1,6 @@
 import { Subject } from "rxjs";
 import { expectSingleCallAndReset } from "s-ng-dev-utils";
+import { subscribeWithStubs } from "../../test-helpers/misc-helpers";
 import { skipAfter } from "./skip-after";
 
 describe("skipAfter()", () => {
@@ -23,19 +24,18 @@ describe("skipAfter()", () => {
   it("only skips one emission even if called multiple times", () => {
     const skip$ = new Subject();
     const source = new Subject();
-    const next = jasmine.createSpy();
-    source.pipe(skipAfter(skip$)).subscribe(next);
+    const sub = subscribeWithStubs(source.pipe(skipAfter(skip$)));
 
     source.next(1);
-    expectSingleCallAndReset(next, 1);
+    sub.expectReceivedOnlyValue(1);
 
     skip$.next();
     skip$.next();
     source.next(2);
-    expect(next).not.toHaveBeenCalled();
+    sub.expectNoCalls();
 
     source.next(3);
-    expectSingleCallAndReset(next, 3);
+    sub.expectReceivedOnlyValue(3);
   });
 
   it("passes along unsubscribes", () => {
@@ -59,34 +59,32 @@ describe("skipAfter()", () => {
   it("passes along errors", () => {
     const skip$ = new Subject();
     const upstream$ = new Subject();
-    const error = jasmine.createSpy();
-    upstream$.pipe(skipAfter(skip$)).subscribe(undefined, error);
+    const sub = subscribeWithStubs(upstream$.pipe(skipAfter(skip$)));
 
     expect(skip$.observers.length).toBe(1);
     expect(upstream$.observers.length).toBe(1);
-    expect(error).not.toHaveBeenCalled();
+    sub.expectNoCalls();
 
     upstream$.error("the error");
 
     expect(skip$.observers.length).toBe(0);
     expect(upstream$.observers.length).toBe(0);
-    expectSingleCallAndReset(error, "the error");
+    sub.expectReceivedOnlyError("the error");
   });
 
   it("passes along completion", () => {
     const skip$ = new Subject();
     const upstream$ = new Subject();
-    const complete = jasmine.createSpy();
-    upstream$.pipe(skipAfter(skip$)).subscribe(undefined, undefined, complete);
+    const sub = subscribeWithStubs(upstream$.pipe(skipAfter(skip$)));
 
     expect(skip$.observers.length).toBe(1);
     expect(upstream$.observers.length).toBe(1);
-    expect(complete).not.toHaveBeenCalled();
+    sub.expectNoCalls();
 
     upstream$.complete();
 
     expect(skip$.observers.length).toBe(0);
     expect(upstream$.observers.length).toBe(0);
-    expect(complete).toHaveBeenCalledTimes(1);
+    sub.expectReceivedOnlyCompletion();
   });
 });
