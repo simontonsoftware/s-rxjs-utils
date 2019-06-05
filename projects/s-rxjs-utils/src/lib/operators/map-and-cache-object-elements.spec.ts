@@ -6,7 +6,9 @@ import {
   testCompletionPropagation,
   testErrorPropagation,
   testUnsubscribePropagation,
+  testUserFunctionError,
 } from "../../test-helpers/misc-helpers";
+import { mapAndCacheArrayElements } from "./map-and-cache-array-elements";
 import { mapAndCacheObjectElements } from "./map-and-cache-object-elements";
 
 describe("mapAndCacheObjectElements()", () => {
@@ -100,6 +102,20 @@ describe("mapAndCacheObjectElements()", () => {
     for (const value of [...emission1, ...emission2]) {
       expect(value).toBe(emission1[0]);
     }
+  });
+
+  it("handles `buildCacheKey` throwing an error", () => {
+    testUserFunctionError(
+      (thrower) => mapAndCacheArrayElements(thrower, identity),
+      { a: 1 },
+    );
+  });
+
+  it("handles `buildDownstreamType` throwing an error", () => {
+    testUserFunctionError(
+      (thrower) => mapAndCacheArrayElements(identity, thrower),
+      { a: 1 },
+    );
   });
 
   it("passes along unsubscribes", () => {

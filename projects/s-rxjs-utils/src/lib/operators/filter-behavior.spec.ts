@@ -1,4 +1,5 @@
-import { Subject } from "rxjs";
+import { BehaviorSubject, Subject } from "rxjs";
+import { catchError } from "rxjs/operators";
 import {
   subscribeWithStubs,
   testCompletionPropagation,
@@ -55,6 +56,38 @@ describe("filterBehavior()", () => {
     sub1.expectReceivedOnlyValue(1);
     sub2.expectReceivedOnlyValue(4);
     sub3.expectReceivedOnlyValue(7);
+  });
+
+  it("handles the predicate throwing an error", () => {
+    const ex = new Error();
+    const thrower = () => {
+      throw ex;
+    };
+    const source = new Subject();
+    const sub1 = subscribeWithStubs(source.pipe(filterBehavior(thrower)));
+    const sub2 = subscribeWithStubs(source.pipe(filterBehavior(thrower)));
+    const sub3 = subscribeWithStubs(
+      source.pipe(
+        filterBehavior(thrower),
+        catchError(() => new BehaviorSubject(-1)),
+      ),
+    );
+
+    expect(source.observers.length).toBe(3);
+    sub1.expectNoCalls();
+    sub2.expectNoCalls();
+    sub3.expectNoCalls();
+
+    source.next(1);
+    sub1.expectReceivedOnlyValue(1);
+    sub2.expectReceivedOnlyValue(1);
+    sub3.expectReceivedOnlyValue(1);
+
+    source.next(2);
+    expect(source.observers.length).toBe(0);
+    sub1.expectReceivedOnlyError(ex);
+    sub2.expectReceivedOnlyError(ex);
+    sub3.expectReceivedOnlyValue(-1);
   });
 
   it("passes along unsubscribes", () => {

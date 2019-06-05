@@ -15,9 +15,18 @@ export function filterBehavior<T>(predicate: Predicate<T>) {
   return createOperatorFunction<T>((subscriber, destination) => {
     let firstValue = true;
     subscriber.next = (value) => {
-      if (firstValue || predicate(value)) {
+      if (firstValue) {
         destination.next(value);
         firstValue = false;
+        return;
+      }
+
+      try {
+        if (predicate(value)) {
+          destination.next(value);
+        }
+      } catch (ex) {
+        destination.error(ex);
       }
     };
   });

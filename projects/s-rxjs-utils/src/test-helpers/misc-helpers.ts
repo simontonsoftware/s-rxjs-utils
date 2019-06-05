@@ -1,5 +1,11 @@
-import { Observable, of, OperatorFunction, Subject } from "rxjs";
-import { toArray } from "rxjs/operators";
+import {
+  BehaviorSubject,
+  Observable,
+  of,
+  OperatorFunction,
+  Subject,
+} from "rxjs";
+import { catchError, toArray } from "rxjs/operators";
 import { StubbedSubscriber } from "./stubbed-subscriber";
 
 export async function expectPipeResult<I, O>(
@@ -22,47 +28,36 @@ export function pipeAndCollect<I, O>(
     .toPromise();
 }
 
-// export function testUserFunctionError(
-//   buildOperator: (userFn: () => never) => OperatorFunction<any, any>,
-// ) {
-//   const ex = new Error();
-//   const thrower = () => {
-//     throw ex;
-//   };
-//   const source = new Subject();
-//   const next1 = jasmine.createSpy();
-//   const next2 = jasmine.createSpy();
-//   const next3 = jasmine.createSpy();
-//   const error1 = jasmine.createSpy();
-//   const error2 = jasmine.createSpy();
-//   const error3 = jasmine.createSpy();
-//   source.pipe(buildOperator(thrower)).subscribe(next1, error1);
-//   source.pipe(buildOperator(thrower)).subscribe(next2, error2);
-//   source
-//     .pipe(
-//       buildOperator(thrower),
-//       catchError(() => of(1)),
-//     )
-//     .subscribe(next3, error3);
-//
-//   expect(source.observers.length).toBe(3);
-//   expect(next1).not.toHaveBeenCalled();
-//   expect(next2).not.toHaveBeenCalled();
-//   expect(next3).not.toHaveBeenCalled();
-//   expect(error1).not.toHaveBeenCalled();
-//   expect(error2).not.toHaveBeenCalled();
-//   expect(error3).not.toHaveBeenCalled();
-//
-//   source.next(1);
-//
-//   expect(source.observers.length).toBe(0);
-//   expect(next1).not.toHaveBeenCalled();
-//   expect(next2).not.toHaveBeenCalled();
-//   expectSingleCallAndReset(next3, 1);
-//   expectSingleCallAndReset(error1, ex);
-//   expectSingleCallAndReset(error2, ex);
-//   expect(error3).not.toHaveBeenCalled();
-// }
+export function testUserFunctionError(
+  buildOperator: (thrower: () => never) => OperatorFunction<any, any>,
+  upstreamValue: any = 1,
+) {
+  const ex = new Error();
+  const thrower = () => {
+    throw ex;
+  };
+  const source = new Subject();
+  const sub1 = subscribeWithStubs(source.pipe(buildOperator(thrower)));
+  const sub2 = subscribeWithStubs(source.pipe(buildOperator(thrower)));
+  const sub3 = subscribeWithStubs(
+    source.pipe(
+      buildOperator(thrower),
+      catchError(() => new BehaviorSubject(-1)),
+    ),
+  );
+
+  expect(source.observers.length).toBe(3);
+  sub1.expectNoCalls();
+  sub2.expectNoCalls();
+  sub3.expectNoCalls();
+
+  source.next(upstreamValue);
+
+  expect(source.observers.length).toBe(0);
+  sub1.expectReceivedOnlyError(ex);
+  sub2.expectReceivedOnlyError(ex);
+  sub3.expectReceivedOnlyValue(-1);
+}
 
 export function testUnsubscribePropagation(
   buildOperator: () => OperatorFunction<any, any>,
