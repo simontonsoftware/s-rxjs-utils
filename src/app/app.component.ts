@@ -4,6 +4,7 @@ import { Subject } from "rxjs";
 import {
   cache,
   createOperatorFunction,
+  distinctUntilKeysChanged,
   filterBehavior,
   mapAndCacheArrayElements,
   mapAndCacheObjectElements,
@@ -33,6 +34,7 @@ export class AppComponent {
         withHistory(3),
         mapAndCacheArrayElements(identity, identity),
         mapAndCacheObjectElements(identity, identity),
+        distinctUntilKeysChanged(),
       ),
     );
 
