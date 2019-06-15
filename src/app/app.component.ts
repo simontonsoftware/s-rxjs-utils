@@ -6,6 +6,7 @@ import {
   createOperatorFunction,
   distinctUntilKeysChanged,
   filterBehavior,
+  logValues,
   mapAndCacheArrayElements,
   mapAndCacheObjectElements,
   skipAfter,
@@ -28,6 +29,7 @@ export class AppComponent {
         cache(),
         createOperatorFunction(noop),
         filterBehavior(() => true),
+        logValues(),
         skipAfter(new Subject()),
 
         // switch type to number[]
