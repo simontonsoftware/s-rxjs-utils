@@ -1,11 +1,11 @@
 import { noop } from "micro-dash";
 import { of, throwError } from "rxjs";
+import { expectCallsAndReset } from "s-ng-dev-utils";
 import {
   testCompletionPropagation,
   testErrorPropagation,
   testUnsubscribePropagation,
 } from "../../test-helpers/misc-helpers";
-import { expectCallsAndReset } from "../../to-replace/expect-calls-and-reset";
 import { logValues } from "./log-values";
 
 describe("logValue()", () => {

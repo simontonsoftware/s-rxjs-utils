@@ -1,10 +1,10 @@
 import { NEVER } from "rxjs";
+import { marbleTest } from "s-ng-dev-utils";
 import {
   testCompletionPropagation,
   testErrorPropagation,
   testUnsubscribePropagation,
 } from "../../test-helpers/misc-helpers";
-import { marbleTest } from "../../to-replace/marble-test";
 import { mapToLatestFrom } from "./map-to-latest-from";
 
 describe("mapToLatestFrom()", () => {

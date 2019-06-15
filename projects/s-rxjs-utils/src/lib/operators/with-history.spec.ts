@@ -1,9 +1,9 @@
+import { marbleTest } from "s-ng-dev-utils";
 import {
   testCompletionPropagation,
   testErrorPropagation,
   testUnsubscribePropagation,
 } from "../../test-helpers/misc-helpers";
-import { marbleTest } from "../../to-replace/marble-test";
 import { withHistory } from "./with-history";
 
 describe("withHistory()", () => {
