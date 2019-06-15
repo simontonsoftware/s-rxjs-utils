@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.2.0](https://github.com/simontonsoftware/s-rxjs-utils/compare/v2.1.0...v2.2.0) (2019-06-15)
+
+### Features
+
+- add `distinctUntilKeysChanged()` ([b5fc14b](https://github.com/simontonsoftware/s-rxjs-utils/commit/b5fc14b))
+- add `logValues()` ([d4a2eee](https://github.com/simontonsoftware/s-rxjs-utils/commit/d4a2eee))
+- add `mapToLatestFrom()` ([4ccd6aa](https://github.com/simontonsoftware/s-rxjs-utils/commit/4ccd6aa))
+
 ## [2.1.0](https://github.com/simontonsoftware/s-rxjs-utils/compare/v2.0.0...v2.1.0) (2019-06-05)
 
 ### Features
