@@ -21,10 +21,11 @@ import {
  */
 export function cache<T>(): MonoTypeOperatorFunction<T> {
   return (source: Observable<T>) => {
-    const middleMan = new ReplaySubject<T>(1);
+    let middleMan: ReplaySubject<T> | undefined;
     let upstreamSubscription: Subscription;
     return new Observable<T>((subscriber) => {
-      if (middleMan.observers.length === 0) {
+      if (!middleMan) {
+        middleMan = new ReplaySubject<T>(1);
         upstreamSubscription = source.subscribe(middleMan);
       }
 
@@ -33,8 +34,9 @@ export function cache<T>(): MonoTypeOperatorFunction<T> {
       // teardown logic
       return () => {
         subscription.unsubscribe();
-        if (middleMan.observers.length === 0) {
+        if (middleMan && middleMan.observers.length === 0) {
           upstreamSubscription.unsubscribe();
+          middleMan = undefined;
         }
       };
     });

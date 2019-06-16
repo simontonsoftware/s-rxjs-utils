@@ -1,6 +1,6 @@
 import { BehaviorSubject, Subject } from "rxjs";
 import { tap } from "rxjs/operators";
-import { expectSingleCallAndReset } from "s-ng-dev-utils";
+import { expectSingleCallAndReset, marbleTest } from "s-ng-dev-utils";
 import {
   testCompletionPropagation,
   testErrorPropagation,
@@ -8,22 +8,22 @@ import {
 import { cache } from "./cache";
 
 describe("cache()", () => {
-  it("caches the last value emitted to give to new subscribers", () => {
-    const value = Symbol();
-    const source = new Subject();
-    const cached = source.pipe(cache());
-    const next1 = jasmine.createSpy();
-    const next2 = jasmine.createSpy();
+  it(
+    "caches the last value emitted to give to new subscribers",
+    marbleTest(({ hot, expectObservable }) => {
+      const cached = hot("-a-----").pipe(cache());
+      const sub1 = "      ^------";
+      const expect1 = "   -a-----";
+      const sub2 = "      ---^---";
+      const expect2 = "   ---a---";
+      const sub3 = "      -----^-";
+      const expect3 = "   -----a-";
 
-    cached.subscribe();
-    source.next(value);
-
-    cached.subscribe(next1);
-    cached.subscribe(next2);
-
-    expectSingleCallAndReset(next1, value);
-    expectSingleCallAndReset(next2, value);
-  });
+      expectObservable(cached, sub1).toBe(expect1);
+      expectObservable(cached, sub2).toBe(expect2);
+      expectObservable(cached, sub3).toBe(expect3);
+    }),
+  );
 
   it("does not run upstream pipe operators for new subscribers", () => {
     const upstream = jasmine.createSpy();
@@ -53,42 +53,36 @@ describe("cache()", () => {
     expectSingleCallAndReset(upstream, 1);
   });
 
-  it("unsubscribes from the upstream observable", () => {
-    const source = new Subject();
-    const cached$ = source.pipe(cache());
+  it(
+    "unsubscribes from the upstream observable",
+    marbleTest(({ hot, expectObservable, expectSubscriptions }) => {
+      const source = hot("------");
+      const sub1 = "      ^---! ";
+      const sub2 = "      --^---!";
+      const sourceSub = " ^-----!";
 
-    const sub1 = cached$.subscribe();
-    const sub2 = cached$.subscribe();
-    expect(source.observers.length).toBe(1);
+      const cached = source.pipe(cache());
+      expectObservable(cached, sub1).toBe("-");
+      expectObservable(cached, sub2).toBe("-");
+      expectSubscriptions(source.subscriptions).toBe(sourceSub);
+    }),
+  );
 
-    sub1.unsubscribe();
-    expect(source.observers.length).toBe(1);
+  it(
+    "can resubscribe after unsubscribing",
+    marbleTest(({ hot, expectObservable, expectSubscriptions }) => {
+      const source = hot("--a-----b-c-");
+      const sub1 = "      ^---!       ";
+      const expect1 = "   --a--       ";
+      const sub2 = "      ------^-----";
+      const expect2 = "   --------b-c-";
 
-    sub2.unsubscribe();
-    expect(source.observers.length).toBe(0);
-  });
-
-  it("can resubscribe after unsubscribing", () => {
-    const source = new BehaviorSubject(1);
-    const cached = source.pipe(cache());
-    const next1 = jasmine.createSpy();
-    const next2 = jasmine.createSpy();
-
-    const sub = cached.subscribe(next1);
-    expectSingleCallAndReset(next1, 1);
-    sub.unsubscribe();
-
-    expect(source.observers.length).toBe(0);
-    source.next(2);
-
-    cached.subscribe(next2);
-    expect(next1).not.toHaveBeenCalled();
-    expectSingleCallAndReset(next2, 2);
-
-    source.next(3);
-    expect(next1).not.toHaveBeenCalled();
-    expectSingleCallAndReset(next2, 3);
-  });
+      const cached = source.pipe(cache());
+      expectObservable(cached, sub1).toBe(expect1);
+      expectObservable(cached, sub2).toBe(expect2);
+      expectSubscriptions(source.subscriptions).toBe([sub1, sub2]);
+    }),
+  );
 
   it("passes along errors", () => {
     testErrorPropagation(cache);
