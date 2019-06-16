@@ -1,3 +1,4 @@
+import { bindKey } from "micro-dash";
 import { Observable } from "rxjs";
 import { createOperatorFunction } from "../create-operator-function";
 
@@ -33,7 +34,7 @@ export function skipAfter<T>(skip$: Observable<any>) {
     subscriber.add(
       skip$.subscribe(() => {
         skipNext = true;
-      }),
+      }, bindKey(destination, "error")),
     );
     subscriber.next = (value) => {
       if (skipNext) {
