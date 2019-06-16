@@ -84,11 +84,7 @@ describe("cache()", () => {
     }),
   );
 
-  it("passes along errors", () => {
-    testErrorPropagation(cache);
-  });
+  it("passes along errors", testErrorPropagation(cache));
 
-  it("passes along completion", () => {
-    testCompletionPropagation(cache);
-  });
+  it("passes along completion", testCompletionPropagation(cache));
 });

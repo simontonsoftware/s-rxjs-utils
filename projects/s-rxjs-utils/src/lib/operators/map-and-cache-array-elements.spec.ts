@@ -103,33 +103,38 @@ describe("mapAndCacheArrayElements()", () => {
     }
   });
 
-  it("handles `buildCacheKey` throwing an error", () => {
+  it(
+    "handles `buildCacheKey` throwing an error",
     testUserFunctionError(
       (thrower) => mapAndCacheArrayElements(thrower, identity),
       [1],
-    );
-  });
+    ),
+  );
 
-  it("handles `buildDownstreamType` throwing an error", () => {
+  it(
+    "handles `buildDownstreamType` throwing an error",
     testUserFunctionError(
       (thrower) => mapAndCacheArrayElements(identity, thrower),
       [1],
-    );
-  });
+    ),
+  );
 
-  it("passes along unsubscribes", () => {
+  it(
+    "passes along unsubscribes",
     testUnsubscribePropagation(() =>
       mapAndCacheArrayElements(identity, identity),
-    );
-  });
+    ),
+  );
 
-  it("passes along errors", () => {
-    testErrorPropagation(() => mapAndCacheArrayElements(identity, identity));
-  });
+  it(
+    "passes along errors",
+    testErrorPropagation(() => mapAndCacheArrayElements(identity, identity)),
+  );
 
-  it("passes along completion", () => {
+  it(
+    "passes along completion",
     testCompletionPropagation(() =>
       mapAndCacheArrayElements(identity, identity),
-    );
-  });
+    ),
+  );
 });

@@ -1,4 +1,5 @@
 import { Subject } from "rxjs";
+import { marbleTest } from "s-ng-dev-utils";
 import {
   expectPipeResult,
   subscribeWithStubs,
@@ -24,7 +25,7 @@ function noop() {
 }
 
 describe("createOperatorFunction()", () => {
-  it("allows modifying values and errors", async () => {
+  it("allows modifying values and errors", () => {
     const source = new Subject<number>();
     const sub = subscribeWithStubs(
       source.pipe(
@@ -46,24 +47,23 @@ describe("createOperatorFunction()", () => {
     sub.expectReceivedOnlyError(9);
   });
 
-  it("allows preventing values, error and completion", () => {
-    const source = new Subject<number>();
-    const sub = subscribeWithStubs(
-      source.pipe(
-        createOperatorFunction<number>((subscriber) => {
-          subscriber.next = () => {};
-          subscriber.error = () => {};
-          subscriber.complete = () => {};
-        }),
-      ),
-    );
+  it(
+    "allows preventing values, error and completion",
+    marbleTest(({ hot, expectObservable }) => {
+      const operatorFunction = createOperatorFunction<string>((subscriber) => {
+        subscriber.next = () => {};
+        subscriber.error = () => {};
+        subscriber.complete = () => {};
+      });
 
-    source.next(10);
-    source.error(10);
-    source.complete();
+      const source1 = hot("-a-|").pipe(operatorFunction);
+      const source2 = hot("-#  ").pipe(operatorFunction);
+      const expected = "   ----";
 
-    sub.expectNoCalls();
-  });
+      expectObservable(source1).toBe(expected);
+      expectObservable(source2).toBe(expected);
+    }),
+  );
 
   it("works for the example in the documentation", async () => {
     await expectPipeResult([1, 2, 3], map((i) => i + 1), [2, 3, 4]);
@@ -78,15 +78,9 @@ describe("createOperatorFunction()", () => {
     await expectPipeResult([1, 2, 3], noop(), [1, 2, 3]);
   });
 
-  it("passes along unsubscribes by default", () => {
-    testUnsubscribePropagation(noop);
-  });
+  it("passes along unsubscribes by default", testUnsubscribePropagation(noop));
 
-  it("passes along errors by default", () => {
-    testErrorPropagation(noop);
-  });
+  it("passes along errors by default", testErrorPropagation(noop));
 
-  it("passes along completion by default", () => {
-    testCompletionPropagation(noop);
-  });
+  it("passes along completion by default", testCompletionPropagation(noop));
 });

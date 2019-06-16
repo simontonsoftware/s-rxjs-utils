@@ -36,15 +36,15 @@ describe("withHistory()", () => {
     }),
   );
 
-  it("passes along unsubscribes", () => {
-    testUnsubscribePropagation(() => withHistory(1));
-  });
+  it(
+    "passes along unsubscribes",
+    testUnsubscribePropagation(() => withHistory(1)),
+  );
 
-  it("passes along errors", () => {
-    testErrorPropagation(() => withHistory(1));
-  });
+  it("passes along errors", testErrorPropagation(() => withHistory(1)));
 
-  it("passes along completion", () => {
-    testCompletionPropagation(() => withHistory(1));
-  });
+  it(
+    "passes along completion",
+    testCompletionPropagation(() => withHistory(1)),
+  );
 });

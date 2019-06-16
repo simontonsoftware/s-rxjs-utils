@@ -61,15 +61,12 @@ describe("logValue()", () => {
     expectCallsAndReset(consoleSpy.debug, ["[error]", "an error"]);
   });
 
-  it("passes along unsubscribes", () => {
-    testUnsubscribePropagation(() => logValues());
-  });
+  it(
+    "passes along unsubscribes",
+    testUnsubscribePropagation(() => logValues()),
+  );
 
-  it("passes along errors", () => {
-    testErrorPropagation(() => logValues());
-  });
+  it("passes along errors", testErrorPropagation(() => logValues()));
 
-  it("passes along completion", () => {
-    testCompletionPropagation(() => logValues());
-  });
+  it("passes along completion", testCompletionPropagation(() => logValues()));
 });

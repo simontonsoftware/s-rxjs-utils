@@ -32,15 +32,18 @@ describe("distinctUntilKeysChanged()", () => {
     sub.expectNoCalls();
   });
 
-  it("passes along unsubscribes", () => {
-    testUnsubscribePropagation(() => distinctUntilKeysChanged());
-  });
+  it(
+    "passes along unsubscribes",
+    testUnsubscribePropagation(() => distinctUntilKeysChanged()),
+  );
 
-  it("passes along errors", () => {
-    testErrorPropagation(() => distinctUntilKeysChanged());
-  });
+  it(
+    "passes along errors",
+    testErrorPropagation(() => distinctUntilKeysChanged()),
+  );
 
-  it("passes along completion", () => {
-    testCompletionPropagation(() => distinctUntilKeysChanged());
-  });
+  it(
+    "passes along completion",
+    testCompletionPropagation(() => distinctUntilKeysChanged()),
+  );
 });

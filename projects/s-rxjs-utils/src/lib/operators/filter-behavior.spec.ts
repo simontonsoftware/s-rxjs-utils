@@ -90,15 +90,18 @@ describe("filterBehavior()", () => {
     sub3.expectReceivedOnlyValue(-1);
   });
 
-  it("passes along unsubscribes", () => {
-    testUnsubscribePropagation(() => filterBehavior(() => true));
-  });
+  it(
+    "passes along unsubscribes",
+    testUnsubscribePropagation(() => filterBehavior(() => true)),
+  );
 
-  it("passes along errors", () => {
-    testErrorPropagation(() => filterBehavior(() => true));
-  });
+  it(
+    "passes along errors",
+    testErrorPropagation(() => filterBehavior(() => true)),
+  );
 
-  it("passes along completion", () => {
-    testCompletionPropagation(() => filterBehavior(() => true));
-  });
+  it(
+    "passes along completion",
+    testCompletionPropagation(() => filterBehavior(() => true)),
+  );
 });

@@ -47,15 +47,15 @@ describe("mapToLatestFrom()", () => {
     }),
   );
 
-  it("passes along unsubscribes", () => {
-    testUnsubscribePropagation(() => mapToLatestFrom(NEVER));
-  });
+  it(
+    "passes along unsubscribes",
+    testUnsubscribePropagation(() => mapToLatestFrom(NEVER)),
+  );
 
-  it("passes along errors", () => {
-    testErrorPropagation(() => mapToLatestFrom(NEVER));
-  });
+  it("passes along errors", testErrorPropagation(() => mapToLatestFrom(NEVER)));
 
-  it("passes along completion", () => {
-    testCompletionPropagation(() => mapToLatestFrom(NEVER));
-  });
+  it(
+    "passes along completion",
+    testCompletionPropagation(() => mapToLatestFrom(NEVER)),
+  );
 });

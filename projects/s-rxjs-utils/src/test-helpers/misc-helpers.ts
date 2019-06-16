@@ -1,11 +1,6 @@
-import {
-  BehaviorSubject,
-  Observable,
-  of,
-  OperatorFunction,
-  Subject,
-} from "rxjs";
+import { BehaviorSubject, Observable, of, OperatorFunction } from "rxjs";
 import { catchError, toArray } from "rxjs/operators";
+import { marbleTest } from "s-ng-dev-utils";
 import { StubbedSubscriber } from "./stubbed-subscriber";
 
 export async function expectPipeResult<I, O>(
@@ -32,82 +27,72 @@ export function testUserFunctionError(
   buildOperator: (thrower: () => never) => OperatorFunction<any, any>,
   upstreamValue: any = 1,
 ) {
-  const ex = new Error();
-  const thrower = () => {
-    throw ex;
-  };
-  const source = new Subject();
-  const sub1 = subscribeWithStubs(source.pipe(buildOperator(thrower)));
-  const sub2 = subscribeWithStubs(source.pipe(buildOperator(thrower)));
-  const sub3 = subscribeWithStubs(
-    source.pipe(
-      buildOperator(thrower),
-      catchError(() => new BehaviorSubject(-1)),
-    ),
-  );
+  return marbleTest(({ hot, expectObservable, expectSubscriptions }) => {
+    const thrower = () => {
+      // this is the error TestScheduler expects when it sees "#"
+      // tslint:disable-next-line:no-string-throw
+      throw "error";
+    };
+    const source = hot("-1-", { 1: upstreamValue });
+    const expect1 = "   -# ";
+    const expect2 = "   -a-";
+    const allSubs = "   ^! ";
 
-  expect(source.observers.length).toBe(3);
-  sub1.expectNoCalls();
-  sub2.expectNoCalls();
-  sub3.expectNoCalls();
-
-  source.next(upstreamValue);
-
-  expect(source.observers.length).toBe(0);
-  sub1.expectReceivedOnlyError(ex);
-  sub2.expectReceivedOnlyError(ex);
-  sub3.expectReceivedOnlyValue(-1);
+    expectObservable(source.pipe(buildOperator(thrower))).toBe(expect1);
+    expectObservable(source.pipe(buildOperator(thrower))).toBe(expect1);
+    expectObservable(
+      source.pipe(
+        buildOperator(thrower),
+        catchError(() => new BehaviorSubject("a")),
+      ),
+    ).toBe(expect2);
+    expectSubscriptions(source.subscriptions).toBe([allSubs, allSubs, allSubs]);
+  });
 }
 
 export function testUnsubscribePropagation(
   buildOperator: () => OperatorFunction<any, any>,
 ) {
-  const source = new Subject();
-  const subscription1 = source.pipe(buildOperator()).subscribe();
-  const subscription2 = source.pipe(buildOperator()).subscribe();
-  expect(source.observers.length).toBe(2);
+  return marbleTest(({ hot, expectObservable, expectSubscriptions }) => {
+    const source = hot("-");
+    const sub1 = "-^---!  ";
+    const sub2 = "---^---!";
 
-  subscription1.unsubscribe();
-  expect(source.observers.length).toBe(1);
-
-  subscription2.unsubscribe();
-  expect(source.observers.length).toBe(0);
+    expectObservable(source.pipe(buildOperator()), sub1).toBe("-");
+    expectObservable(source.pipe(buildOperator()), sub2).toBe("-");
+    expectSubscriptions(source.subscriptions).toBe([sub1, sub2]);
+  });
 }
 
 export function testErrorPropagation(
   buildOperator: () => OperatorFunction<any, any>,
 ) {
-  const source = new Subject();
-  const sub1 = subscribeWithStubs(source.pipe(buildOperator()));
-  const sub2 = subscribeWithStubs(source.pipe(buildOperator()));
+  return marbleTest(({ hot, expectObservable, expectSubscriptions }) => {
+    const source = hot("-#");
+    const subs = "      ^!";
+    const expected = "  -#";
 
-  expect(source.observers.length).toBe(2);
-  sub1.expectNoCalls();
-  sub2.expectNoCalls();
-
-  source.error("the error");
-
-  expect(source.observers.length).toBe(0);
-  sub1.expectReceivedOnlyError("the error");
-  sub2.expectReceivedOnlyError("the error");
+    expectObservable(source.pipe(buildOperator())).toBe(expected);
+    expectObservable(source.pipe(buildOperator())).toBe(expected);
+    expectSubscriptions(source.subscriptions).toBe([subs, subs]);
+  });
 }
 
 export function testCompletionPropagation(
   buildOperator: () => OperatorFunction<any, any>,
 ) {
-  const source = new Subject();
-  const sub1 = subscribeWithStubs(source.pipe(buildOperator()));
-  const sub2 = subscribeWithStubs(source.pipe(buildOperator()));
+  return marbleTest(({ hot, expectObservable, expectSubscriptions }) => {
+    const source = hot("----|");
+    const sub1 = "      ^----";
+    const sourceSub1 = "^---!";
+    const sub2 = "      --^--";
+    const sourceSub2 = "--^-!";
+    const expected = "  ----|";
 
-  expect(source.observers.length).toBe(2);
-  sub1.expectNoCalls();
-  sub2.expectNoCalls();
-
-  source.complete();
-
-  expect(source.observers.length).toBe(0);
-  sub1.expectReceivedOnlyCompletion();
-  sub2.expectReceivedOnlyCompletion();
+    expectObservable(source.pipe(buildOperator()), sub1).toBe(expected);
+    expectObservable(source.pipe(buildOperator()), sub2).toBe(expected);
+    expectSubscriptions(source.subscriptions).toBe([sourceSub1, sourceSub2]);
+  });
 }
 
 export function subscribeWithStubs(observable: Observable<any>) {
