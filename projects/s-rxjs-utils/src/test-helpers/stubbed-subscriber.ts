@@ -22,10 +22,4 @@ export class StubbedSubscriber {
     expectSingleCallAndReset(this.error, ex);
     expect(this.complete).not.toHaveBeenCalled();
   }
-
-  expectReceivedOnlyCompletion() {
-    expect(this.next).not.toHaveBeenCalled();
-    expect(this.error).not.toHaveBeenCalled();
-    expectSingleCallAndReset(this.complete);
-  }
 }

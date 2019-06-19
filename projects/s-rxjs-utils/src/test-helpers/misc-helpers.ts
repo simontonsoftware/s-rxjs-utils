@@ -25,7 +25,7 @@ export function pipeAndCollect<I, O>(
 
 export function testUserFunctionError(
   buildOperator: (thrower: () => never) => OperatorFunction<any, any>,
-  upstreamValue: any = 1,
+  upstreamValue: any,
 ) {
   return marbleTest(({ hot, expectObservable, expectSubscriptions }) => {
     const thrower = () => {
