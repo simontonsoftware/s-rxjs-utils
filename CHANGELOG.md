@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.2.2](https://github.com/simontonsoftware/s-rxjs-utils/compare/v2.2.1...v2.2.2) (2019-06-26)
+
+### Bug Fixes
+
+- remove accidental dependency on `s-ng-dev-utils` ([659833c](https://github.com/simontonsoftware/s-rxjs-utils/commit/659833c))
+
 ### [2.2.1](https://github.com/simontonsoftware/s-rxjs-utils/compare/v2.2.0...v2.2.1) (2019-06-16)
 
 ### Bug Fixes
