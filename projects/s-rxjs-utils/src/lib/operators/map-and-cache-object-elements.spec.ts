@@ -1,6 +1,6 @@
 import { identity } from "micro-dash";
 import { Subject } from "rxjs";
-import { expectSingleCallAndReset, ObjectWith } from "s-ng-dev-utils";
+import { expectSingleCallAndReset } from "s-ng-dev-utils";
 import {
   expectPipeResult,
   testCompletionPropagation,
@@ -10,6 +10,8 @@ import {
 } from "../../test-helpers/misc-helpers";
 import { mapAndCacheArrayElements } from "./map-and-cache-array-elements";
 import { mapAndCacheObjectElements } from "./map-and-cache-object-elements";
+
+type ObjectWith<T> = Record<string, T>;
 
 describe("mapAndCacheObjectElements()", () => {
   it("maps over the object using the given function", async () => {

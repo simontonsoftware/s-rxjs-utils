@@ -1,5 +1,4 @@
 import { Subject } from "rxjs";
-import { ObjectWith } from "s-ng-dev-utils";
 import {
   subscribeWithStubs,
   testCompletionPropagation,
@@ -10,7 +9,7 @@ import { distinctUntilKeysChanged } from "./distinct-until-keys-changed";
 
 describe("distinctUntilKeysChanged()", () => {
   it("only emits when the keys of the object change", () => {
-    const source = new Subject<ObjectWith<number>>();
+    const source = new Subject<Record<string, number>>();
     const sub = subscribeWithStubs(source.pipe(distinctUntilKeysChanged()));
 
     source.next({ a: 1, b: 2 });

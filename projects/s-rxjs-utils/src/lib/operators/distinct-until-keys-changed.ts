@@ -14,7 +14,7 @@ import { isSetEqual } from "../../to-replace/is-set-equal";
 export function distinctUntilKeysChanged<
   T extends object
 >(): MonoTypeOperatorFunction<T> {
-  let lastKeySet: Set<string> | undefined;
+  let lastKeySet: Set<string | keyof T> | undefined;
   return filter((value) => {
     const keySet = new Set(keys(value));
     if (lastKeySet && isSetEqual(keySet, lastKeySet)) {
