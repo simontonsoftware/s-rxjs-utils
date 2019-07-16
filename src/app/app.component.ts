@@ -4,6 +4,7 @@ import { Subject } from "rxjs";
 import {
   cache,
   createOperatorFunction,
+  delayOnMicrotaskQueue,
   distinctUntilKeysChanged,
   filterBehavior,
   logValues,
@@ -28,6 +29,7 @@ export class AppComponent {
       new Subject<number>().pipe(
         cache(),
         createOperatorFunction(noop),
+        delayOnMicrotaskQueue(),
         filterBehavior(() => true),
         logValues(),
         skipAfter(new Subject()),
