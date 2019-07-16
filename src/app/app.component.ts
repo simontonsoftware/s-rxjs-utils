@@ -1,6 +1,6 @@
 import { Component } from "@angular/core";
 import { noop, identity } from "micro-dash";
-import { Subject } from "rxjs";
+import { of, Subject } from "rxjs";
 import {
   cache,
   createOperatorFunction,
@@ -10,6 +10,7 @@ import {
   logValues,
   mapAndCacheArrayElements,
   mapAndCacheObjectElements,
+  mapToLatestFrom,
   skipAfter,
   SubscriptionManager,
   withHistory,
@@ -32,6 +33,7 @@ export class AppComponent {
         delayOnMicrotaskQueue(),
         filterBehavior(() => true),
         logValues(),
+        mapToLatestFrom(of(1)),
         skipAfter(new Subject()),
 
         // switch type to number[]

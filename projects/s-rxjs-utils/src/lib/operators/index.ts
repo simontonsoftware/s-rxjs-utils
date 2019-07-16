@@ -5,5 +5,6 @@ export { filterBehavior } from "./filter-behavior";
 export { logValues } from "./log-values";
 export { mapAndCacheArrayElements } from "./map-and-cache-array-elements";
 export { mapAndCacheObjectElements } from "./map-and-cache-object-elements";
+export { mapToLatestFrom } from "./map-to-latest-from";
 export { skipAfter } from "./skip-after";
 export { withHistory } from "./with-history";
