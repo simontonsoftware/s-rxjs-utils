@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.3.0](https://github.com/simontonsoftware/s-rxjs-utils/compare/v2.2.2...v2.3.0) (2019-07-17)
+
+### Bug Fixes
+
+- expose `mapToLatestFrom` over the public API ([89dec5a](https://github.com/simontonsoftware/s-rxjs-utils/commit/89dec5a))
+
+### Features
+
+- add `delayOnMicrotaskQueue()` ([45171c3](https://github.com/simontonsoftware/s-rxjs-utils/commit/45171c3))
+
 ### [2.2.2](https://github.com/simontonsoftware/s-rxjs-utils/compare/v2.2.1...v2.2.2) (2019-06-26)
 
 ### Bug Fixes
