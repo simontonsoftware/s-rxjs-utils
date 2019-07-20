@@ -1,0 +1,3 @@
+{
+  "extends": ["dtslint/dtslint.json", "s-ng-dev-utils/tslint.dtslint.json"]
+}
