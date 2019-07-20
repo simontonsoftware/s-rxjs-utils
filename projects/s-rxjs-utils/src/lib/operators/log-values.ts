@@ -21,11 +21,11 @@ import { tap } from "rxjs/operators";
  * // [error] pipe says boo
  * ```
  */
-export function logValues(
+export function logValues<T>(
   prefix?: string,
   level: "debug" | "trace" | "info" | "log" | "warn" | "error" = "log",
 ) {
-  return tap(
+  return tap<T>(
     makeLogFn("[value]"),
     makeLogFn("[error]"),
     makeLogFn("[complete]"),
