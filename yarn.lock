@@ -2615,6 +2615,19 @@ dtslint@^0.9.0:
     tslint "5.14.0"
     typescript next
 
+dtslint@^0.9.3:
+  version "0.9.3"
+  resolved "https://registry.yarnpkg.com/dtslint/-/dtslint-0.9.3.tgz#42ab9a8743ecf57b278d31b086af91b407ff0a08"
+  integrity sha512-nk71dlxXhvx4U7zIBQt+7UoJKotKT/dv8pQljFevl2RZvpbwmQ5czw/MArf+DjLQEt6QgeUXUa/RNpLcv8s+yA==
+  dependencies:
+    definitelytyped-header-parser "1.2.0"
+    dts-critic "^2.0.0"
+    fs-extra "^6.0.1"
+    request "^2.88.0"
+    strip-json-comments "^2.0.1"
+    tslint "5.14.0"
+    typescript next
+
 duplexer3@^0.1.4:
   version "0.1.4"
   resolved "https://registry.yarnpkg.com/duplexer3/-/duplexer3-0.1.4.tgz#ee01dd1cac0ed3cbc7fdbea37dc0a8f1ce002ce2"
