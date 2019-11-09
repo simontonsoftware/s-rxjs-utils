@@ -148,5 +148,8 @@
       }
     }
   },
-  "defaultProject": "s-rxjs-utils-platform"
+  "defaultProject": "s-rxjs-utils-platform",
+  "cli": {
+    "analytics": "ca2b8e76-c2a2-403c-ad04-32bc6f342f58"
+  }
 }

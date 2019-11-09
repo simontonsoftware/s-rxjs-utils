@@ -19,8 +19,10 @@ export function mapAndCacheElements<UpstreamType, DownstreamType>(
 
       let downstreamItem: DownstreamType;
       if (cache.has(cacheKey)) {
+        // tslint:disable-next-line:no-non-null-assertion
         downstreamItem = cache.get(cacheKey)!;
       } else if (nextCache.has(cacheKey)) {
+        // tslint:disable-next-line:no-non-null-assertion
         downstreamItem = nextCache.get(cacheKey)!;
       } else {
         downstreamItem = buildDownstreamItem(upstreamItem, key);
