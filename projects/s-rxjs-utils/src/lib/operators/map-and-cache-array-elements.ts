@@ -11,7 +11,7 @@ type ArrayIteratee<I, O> = (item: I, index: number) => O;
  * If multiple items in an upstream array have the same cache key, it will only call `buildDownstreamItem` once.
  *
  * ```ts
- * const mapWithCaching = mapAndCacheElements(
+ * const mapWithCaching = mapAndCacheArrayElements(
  *   (item) => item,
  *   (item) => item + 1
  * )

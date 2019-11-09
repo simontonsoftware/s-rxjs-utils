@@ -14,7 +14,7 @@ type ObjectIteratee<T, O> = <K extends keyof T>(
  * If multiple items in an upstream object have the same cache key, it will only call `buildDownstreamItem` once.
  *
  * ```ts
- * const mapWithCaching = mapAndCacheElements(
+ * const mapWithCaching = mapAndCacheObjectElements(
  *   (item, key) => key,
  *   (item, key) => item + 1
  * )
