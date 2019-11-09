@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.3.1](https://github.com/simontonsoftware/s-rxjs-utils/compare/v2.3.0...v2.3.1) (2019-11-09)
+
+### Bug Fixes
+
+- preserve typing for `logValues` and `delayOnMicrotaskQueue` ([d685b2a](https://github.com/simontonsoftware/s-rxjs-utils/commit/d685b2a))
+
 ## [2.3.0](https://github.com/simontonsoftware/s-rxjs-utils/compare/v2.2.2...v2.3.0) (2019-07-17)
 
 ### Bug Fixes
