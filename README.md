@@ -1,6 +1,6 @@
 [![Build Status](https://travis-ci.org/simontonsoftware/s-rxjs-utils.svg?branch=master)](https://travis-ci.org/simontonsoftware/s-rxjs-utils) [![Coverage Status](https://coveralls.io/repos/github/simontonsoftware/s-rxjs-utils/badge.svg?branch=master)](https://coveralls.io/github/simontonsoftware/s-rxjs-utils?branch=master)
 
-## Simonton Software Typescript Utils
+## Simonton Software Typescript Libraries
 
 `s-rxjs-utils` is one library in a suite that is available from Simonton Software. Each one builds on the last, organized by their dependencies:
 
@@ -16,13 +16,12 @@ To quickly see what is available, see the [api documentation](https://simontonso
 
 ## Installation
 
-Install from npm, along with its peer dependencies:
+Install along with its peer dependencies using:
 
-```
+```shell script
 npm install --save s-rxjs-utils s-js-utils micro-dash
 
 # OR
 
 yarn add s-rxjs-utils s-js-utils micro-dash
-
 ```
