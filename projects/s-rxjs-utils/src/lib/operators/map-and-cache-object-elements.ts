@@ -1,6 +1,7 @@
 import { OperatorFunction } from "rxjs";
 import { mapAndCacheElements } from "./map-and-cache-elements";
 
+/** @hidden */
 type ObjectIteratee<T, O> = <K extends keyof T>(
   item: T[K],
   key: number extends keyof T ? string : K,
