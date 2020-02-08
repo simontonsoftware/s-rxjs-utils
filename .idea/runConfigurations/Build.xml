@@ -5,7 +5,7 @@
     <scripts>
       <script value="build" />
     </scripts>
-    <arguments value="s-rxjs-utils" />
+    <arguments value="--prod s-rxjs-utils" />
     <node-interpreter value="project" />
     <envs />
     <method v="2" />

@@ -5,7 +5,7 @@
   "repository": "simontonsoftware/s-rxjs-utils",
   "license": "MIT",
   "peerDependencies": {
-    "micro-dash": ">=6.3.0 <7.0.0",
+    "micro-dash": ">=7.0.0 <8.0.0",
     "rxjs": ">=6.5.0 <7.0.0",
     "tslib": "^1.10.0"
   }
