@@ -13,3 +13,16 @@
 ## API Documentation
 
 To quickly see what is available, see the [api documentation](https://simontonsoftware.github.io/s-rxjs-utils/typedoc).
+
+## Installation
+
+Install from npm, along with its peer dependencies:
+
+```
+npm install --save s-rxjs-utils s-js-utils micro-dash
+
+# OR
+
+yarn add s-rxjs-utils s-js-utils micro-dash
+
+```

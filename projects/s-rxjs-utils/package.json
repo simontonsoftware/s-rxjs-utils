@@ -7,6 +7,7 @@
   "peerDependencies": {
     "micro-dash": ">=7.0.0 <8.0.0",
     "rxjs": ">=6.5.0 <7.0.0",
+    "s-js-utils": ">=6.0.0 <7.0.0",
     "tslib": "^1.10.0"
   }
 }

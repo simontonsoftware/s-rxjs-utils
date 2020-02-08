@@ -8266,6 +8266,11 @@ rxjs@^6.4.0, rxjs@^6.5.0, rxjs@~6.5.4:
   dependencies:
     tslib "^1.9.0"
 
+s-js-utils@^6.0.0:
+  version "6.0.0"
+  resolved "https://registry.yarnpkg.com/s-js-utils/-/s-js-utils-6.0.0.tgz#ce5a664d9552ff7512a141bd20d7c7528402fc50"
+  integrity sha512-78zpwF5ZWmKPNnVJAntlgfsB0FY8R1FHGSlNXcuv3uP7iZv4MSOG3Gqs/58QJzyjK3ocOUiB3Z1+EnFJk5wQUA==
+
 s-ng-dev-utils@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/s-ng-dev-utils/-/s-ng-dev-utils-1.0.0.tgz#7c5ccc3d7bdbf655fb8784559a17883d07a5cab1"
