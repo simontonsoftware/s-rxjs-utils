@@ -1,4 +1,5 @@
 import { map as _map } from 'micro-dash';
+import { OperatorFunction } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 /** @hidden */
@@ -8,7 +9,7 @@ export function mapAndCacheElements<UpstreamType, DownstreamType>(
     upstreamItem: UpstreamType,
     key: keyof any,
   ) => DownstreamType,
-) {
+): OperatorFunction<UpstreamType, DownstreamType[]> {
   let cache: Map<any, DownstreamType> = new Map();
 
   return map((upstreamItems: any) => {

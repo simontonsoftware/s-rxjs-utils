@@ -27,7 +27,7 @@ export class SubscriptionManager implements Unsubscribable {
     next?: (value: T) => void,
     error?: (error: any) => void,
     complete?: () => void,
-  ) {
+  ): void {
     this.subscriptions.add(
       observable.subscribe(
         this.bind(next),
@@ -37,12 +37,12 @@ export class SubscriptionManager implements Unsubscribable {
     );
   }
 
-  unsubscribe() {
+  unsubscribe(): void {
     this.subscriptions.unsubscribe();
     this.subscriptions = new Subscription();
   }
 
-  private bind(fn?: (val?: any) => void) {
+  private bind<T extends (val?: any) => void>(fn?: T): T | undefined {
     return fn?.bind(this);
   }
 }

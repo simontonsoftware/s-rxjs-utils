@@ -1,4 +1,5 @@
 import { Predicate } from '@angular/core';
+import { MonoTypeOperatorFunction } from 'rxjs';
 import { createOperatorFunction } from '../create-operator-function';
 
 /**
@@ -11,7 +12,9 @@ import { createOperatorFunction } from '../create-operator-function';
  * filterBehavior(identity):              |-false--true---------true-|
  * ```
  */
-export function filterBehavior<T>(predicate: Predicate<T>) {
+export function filterBehavior<T>(
+  predicate: Predicate<T>,
+): MonoTypeOperatorFunction<T> {
   return createOperatorFunction<T>((subscriber, destination) => {
     let firstValue = true;
     subscriber.next = (value) => {

@@ -1,4 +1,4 @@
-import { Subject } from 'rxjs';
+import { OperatorFunction, Subject } from 'rxjs';
 import { marbleTest } from 's-ng-dev-utils';
 import {
   expectPipeResult,
@@ -12,7 +12,7 @@ import { createOperatorFunction } from './create-operator-function';
 /**
  * This is the example from the documentation. Keep it in sync.
  */
-function map<I, O>(fn: (input: I) => O) {
+function map<I, O>(fn: (input: I) => O): OperatorFunction<I, O> {
   return createOperatorFunction<I, O>((subscriber, destination) => {
     subscriber.next = (value) => {
       destination.next(fn(value));
@@ -20,7 +20,7 @@ function map<I, O>(fn: (input: I) => O) {
   });
 }
 
-function noop() {
+function noop(): OperatorFunction<any, undefined> {
   return createOperatorFunction(() => {});
 }
 

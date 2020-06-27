@@ -1,3 +1,4 @@
+import { OperatorFunction } from 'rxjs';
 import { scan } from 'rxjs/operators';
 
 /**
@@ -9,6 +10,6 @@ import { scan } from 'rxjs/operators';
  * withHistory(0): -[1]--[2]----[3]------[4]------[5]------|
  * ```
  */
-export function withHistory<T>(count: number) {
+export function withHistory<T>(count: number): OperatorFunction<T, T[]> {
   return scan<T, T[]>((buf, value) => [value, ...buf.slice(0, count)], []);
 }

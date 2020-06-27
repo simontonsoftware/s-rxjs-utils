@@ -7,7 +7,7 @@ export async function expectPipeResult<I, O>(
   source: I[],
   operator: OperatorFunction<I, O>,
   result: O[],
-) {
+): Promise<void> {
   expect(await pipeAndCollect(source, operator)).toEqual(result);
 }
 
@@ -23,7 +23,7 @@ export function pipeAndCollect<I, O>(
 export function testUserFunctionError(
   buildOperator: (thrower: () => never) => OperatorFunction<any, any>,
   upstreamValue: any,
-) {
+): () => void {
   return marbleTest(({ hot, expectObservable, expectSubscriptions }) => {
     const thrower = () => {
       // this is the error TestScheduler expects when it sees "#"
@@ -49,7 +49,7 @@ export function testUserFunctionError(
 
 export function testUnsubscribePropagation(
   buildOperator: () => OperatorFunction<any, any>,
-) {
+): () => void {
   return marbleTest(({ hot, expectObservable, expectSubscriptions }) => {
     const source = hot('-');
     const sub1 = '-^---!  ';
@@ -63,7 +63,7 @@ export function testUnsubscribePropagation(
 
 export function testErrorPropagation(
   buildOperator: () => OperatorFunction<any, any>,
-) {
+): () => void {
   return marbleTest(({ hot, expectObservable, expectSubscriptions }) => {
     const source = hot('-#');
     const subs = '      ^!';
@@ -77,7 +77,7 @@ export function testErrorPropagation(
 
 export function testCompletionPropagation(
   buildOperator: () => OperatorFunction<any, any>,
-) {
+): () => void {
   return marbleTest(({ hot, expectObservable, expectSubscriptions }) => {
     const source = hot('----|');
     const sub1 = '      ^----';
@@ -92,7 +92,9 @@ export function testCompletionPropagation(
   });
 }
 
-export function subscribeWithStubs(observable: Observable<any>) {
+export function subscribeWithStubs(
+  observable: Observable<any>,
+): StubbedSubscriber {
   const subscriber = new StubbedSubscriber();
   observable.subscribe(subscriber);
   return subscriber;

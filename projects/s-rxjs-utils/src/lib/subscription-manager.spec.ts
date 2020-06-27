@@ -14,7 +14,7 @@ describe('SubscriptionManager', () => {
     manager = new SubscriptionManager();
   });
 
-  function runSequence(sequence: any[], errorText?: string) {
+  function runSequence(sequence: any[], errorText?: string): void {
     resetSpies();
 
     const subject = new Subject();
@@ -29,7 +29,7 @@ describe('SubscriptionManager', () => {
     }
   }
 
-  function resetSpies() {
+  function resetSpies(): void {
     next.calls.reset();
     error.calls.reset();
     complete.calls.reset();

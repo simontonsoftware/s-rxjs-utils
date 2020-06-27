@@ -1,3 +1,4 @@
+import { MonoTypeOperatorFunction } from 'rxjs';
 import { tap } from 'rxjs/operators';
 
 /**
@@ -24,14 +25,14 @@ import { tap } from 'rxjs/operators';
 export function logValues<T>(
   prefix?: string,
   level: 'debug' | 'trace' | 'info' | 'log' | 'warn' | 'error' = 'log',
-) {
+): MonoTypeOperatorFunction<T> {
   return tap<T>(
     makeLogFn('[value]'),
     makeLogFn('[error]'),
     makeLogFn('[complete]'),
   );
 
-  function makeLogFn(...prefixes: string[]) {
+  function makeLogFn(...prefixes: string[]): (value?: any) => void {
     if (prefix !== undefined) {
       prefixes.push(prefix);
     }

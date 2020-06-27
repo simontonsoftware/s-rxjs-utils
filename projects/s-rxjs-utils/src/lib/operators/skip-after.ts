@@ -1,5 +1,5 @@
 import { bindKey } from 'micro-dash';
-import { Observable } from 'rxjs';
+import { MonoTypeOperatorFunction, Observable } from 'rxjs';
 import { createOperatorFunction } from '../create-operator-function';
 
 /**
@@ -28,7 +28,9 @@ import { createOperatorFunction } from '../create-operator-function';
  * source.next(5); // result emits `5`
  * ```
  */
-export function skipAfter<T>(skip$: Observable<any>) {
+export function skipAfter<T>(
+  skip$: Observable<any>,
+): MonoTypeOperatorFunction<T> {
   return createOperatorFunction<T>((subscriber, destination) => {
     let skipNext = false;
     subscriber.add(
