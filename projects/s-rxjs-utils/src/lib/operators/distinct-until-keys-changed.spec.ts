@@ -1,14 +1,14 @@
-import { Subject } from "rxjs";
+import { Subject } from 'rxjs';
 import {
   subscribeWithStubs,
   testCompletionPropagation,
   testErrorPropagation,
   testUnsubscribePropagation,
-} from "../../test-helpers/misc-helpers";
-import { distinctUntilKeysChanged } from "./distinct-until-keys-changed";
+} from '../../test-helpers/misc-helpers';
+import { distinctUntilKeysChanged } from './distinct-until-keys-changed';
 
-describe("distinctUntilKeysChanged()", () => {
-  it("only emits when the keys of the object change", () => {
+describe('distinctUntilKeysChanged()', () => {
+  it('only emits when the keys of the object change', () => {
     const source = new Subject<Record<string, number>>();
     const sub = subscribeWithStubs(source.pipe(distinctUntilKeysChanged()));
 
@@ -32,17 +32,17 @@ describe("distinctUntilKeysChanged()", () => {
   });
 
   it(
-    "passes along unsubscribes",
+    'passes along unsubscribes',
     testUnsubscribePropagation(() => distinctUntilKeysChanged()),
   );
 
   it(
-    "passes along errors",
+    'passes along errors',
     testErrorPropagation(() => distinctUntilKeysChanged()),
   );
 
   it(
-    "passes along completion",
+    'passes along completion',
     testCompletionPropagation(() => distinctUntilKeysChanged()),
   );
 });

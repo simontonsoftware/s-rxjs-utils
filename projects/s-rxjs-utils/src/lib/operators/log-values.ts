@@ -1,4 +1,4 @@
-import { tap } from "rxjs/operators";
+import { tap } from 'rxjs/operators';
 
 /**
  * Logs values, errors and completion to the console, and passes them all along unchanged.
@@ -23,12 +23,12 @@ import { tap } from "rxjs/operators";
  */
 export function logValues<T>(
   prefix?: string,
-  level: "debug" | "trace" | "info" | "log" | "warn" | "error" = "log",
+  level: 'debug' | 'trace' | 'info' | 'log' | 'warn' | 'error' = 'log',
 ) {
   return tap<T>(
-    makeLogFn("[value]"),
-    makeLogFn("[error]"),
-    makeLogFn("[complete]"),
+    makeLogFn('[value]'),
+    makeLogFn('[error]'),
+    makeLogFn('[complete]'),
   );
 
   function makeLogFn(...prefixes: string[]) {

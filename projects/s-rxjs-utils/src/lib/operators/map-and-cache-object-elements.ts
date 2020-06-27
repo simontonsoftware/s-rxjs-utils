@@ -1,5 +1,5 @@
-import { OperatorFunction } from "rxjs";
-import { mapAndCacheElements } from "./map-and-cache-elements";
+import { OperatorFunction } from 'rxjs';
+import { mapAndCacheElements } from './map-and-cache-elements';
 
 /** @hidden */
 type ObjectIteratee<T, O> = <K extends keyof T>(

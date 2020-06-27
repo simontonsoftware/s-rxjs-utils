@@ -1,28 +1,36 @@
-import { identity } from "micro-dash";
-import { Subject } from "rxjs";
-import { expectSingleCallAndReset } from "s-ng-dev-utils";
+import { identity } from 'micro-dash';
+import { Subject } from 'rxjs';
+import { expectSingleCallAndReset } from 's-ng-dev-utils';
 import {
   expectPipeResult,
   testCompletionPropagation,
   testErrorPropagation,
   testUnsubscribePropagation,
   testUserFunctionError,
-} from "../../test-helpers/misc-helpers";
-import { mapAndCacheArrayElements } from "./map-and-cache-array-elements";
-import { mapAndCacheObjectElements } from "./map-and-cache-object-elements";
+} from '../../test-helpers/misc-helpers';
+import { mapAndCacheArrayElements } from './map-and-cache-array-elements';
+import { mapAndCacheObjectElements } from './map-and-cache-object-elements';
 
 type ObjectWith<T> = Record<string, T>;
 
-describe("mapAndCacheObjectElements()", () => {
-  it("maps over the object using the given function", async () => {
+describe('mapAndCacheObjectElements()', () => {
+  it('maps over the object using the given function', async () => {
     await expectPipeResult<ObjectWith<number>, number[]>(
-      [{ a: 1, b: 2, c: 3 }, { a: 1, b: 2, e: 5 }, { a: 1, e: 5, f: 6 }],
+      [
+        { a: 1, b: 2, c: 3 },
+        { a: 1, b: 2, e: 5 },
+        { a: 1, e: 5, f: 6 },
+      ],
       mapAndCacheObjectElements(identity, (item) => item * 3),
-      [[3, 6, 9], [3, 6, 15], [3, 15, 18]],
+      [
+        [3, 6, 9],
+        [3, 6, 15],
+        [3, 15, 18],
+      ],
     );
   });
 
-  it("emits the same object reference for items that have the same cache key", () => {
+  it('emits the same object reference for items that have the same cache key', () => {
     const source = new Subject<ObjectWith<{ index: number }>>();
     const next = jasmine.createSpy();
 
@@ -47,7 +55,7 @@ describe("mapAndCacheObjectElements()", () => {
     expect(emission1[0]).toBe(emission2[0]);
   });
 
-  it("does not call `buildDownstreamItem` if there is a match in the cache", () => {
+  it('does not call `buildDownstreamItem` if there is a match in the cache', () => {
     const source = new Subject<ObjectWith<number>>();
     const buildDownstreamItem = jasmine.createSpy();
 
@@ -56,13 +64,13 @@ describe("mapAndCacheObjectElements()", () => {
       .subscribe();
 
     source.next({ a: 10 });
-    expectSingleCallAndReset(buildDownstreamItem, 10, "a");
+    expectSingleCallAndReset(buildDownstreamItem, 10, 'a');
 
     source.next({ a: 10, b: 15 });
-    expectSingleCallAndReset(buildDownstreamItem, 15, "b");
+    expectSingleCallAndReset(buildDownstreamItem, 15, 'b');
   });
 
-  it("only calls `buildDownstreamItem` once for a given cache key", () => {
+  it('only calls `buildDownstreamItem` once for a given cache key', () => {
     const source = new Subject<ObjectWith<number>>();
     const buildDownstreamItem = jasmine.createSpy();
 
@@ -72,16 +80,16 @@ describe("mapAndCacheObjectElements()", () => {
 
     source.next({ a: 5, b: 5, c: 5, d: 20 });
     expect(buildDownstreamItem).toHaveBeenCalledTimes(2);
-    expect(buildDownstreamItem).toHaveBeenCalledWith(5, "a");
-    expect(buildDownstreamItem).toHaveBeenCalledWith(20, "d");
+    expect(buildDownstreamItem).toHaveBeenCalledWith(5, 'a');
+    expect(buildDownstreamItem).toHaveBeenCalledWith(20, 'd');
 
     buildDownstreamItem.calls.reset();
     source.next({ a: 5, b: 5, c: 5, d: 20, e: 25, f: 25 });
     expect(buildDownstreamItem).toHaveBeenCalledTimes(1);
-    expect(buildDownstreamItem).toHaveBeenCalledWith(25, "e");
+    expect(buildDownstreamItem).toHaveBeenCalledWith(25, 'e');
   });
 
-  it("always returns the same object reference for a given cache key", () => {
+  it('always returns the same object reference for a given cache key', () => {
     const source = new Subject<ObjectWith<{ index: number }>>();
     const next = jasmine.createSpy();
 
@@ -107,7 +115,7 @@ describe("mapAndCacheObjectElements()", () => {
   });
 
   it(
-    "handles `buildCacheKey` throwing an error",
+    'handles `buildCacheKey` throwing an error',
     testUserFunctionError(
       (thrower) => mapAndCacheArrayElements(thrower, identity),
       { a: 1 },
@@ -115,7 +123,7 @@ describe("mapAndCacheObjectElements()", () => {
   );
 
   it(
-    "handles `buildDownstreamType` throwing an error",
+    'handles `buildDownstreamType` throwing an error',
     testUserFunctionError(
       (thrower) => mapAndCacheArrayElements(identity, thrower),
       { a: 1 },
@@ -123,19 +131,19 @@ describe("mapAndCacheObjectElements()", () => {
   );
 
   it(
-    "passes along unsubscribes",
+    'passes along unsubscribes',
     testUnsubscribePropagation(() =>
       mapAndCacheObjectElements(identity, identity),
     ),
   );
 
   it(
-    "passes along errors",
+    'passes along errors',
     testErrorPropagation(() => mapAndCacheObjectElements(identity, identity)),
   );
 
   it(
-    "passes along completion",
+    'passes along completion',
     testCompletionPropagation(() =>
       mapAndCacheObjectElements(identity, identity),
     ),

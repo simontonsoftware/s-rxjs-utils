@@ -1,6 +1,6 @@
-import { flow } from "micro-dash";
-import { Observable, OperatorFunction } from "rxjs";
-import { map, withLatestFrom } from "rxjs/operators";
+import { flow } from 'micro-dash';
+import { Observable, OperatorFunction } from 'rxjs';
+import { map, withLatestFrom } from 'rxjs/operators';
 
 /**
  * Emits the latest value of the given Observable every time the source Observable emits a value.

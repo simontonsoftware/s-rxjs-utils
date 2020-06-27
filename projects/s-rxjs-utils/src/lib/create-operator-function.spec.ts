@@ -1,13 +1,13 @@
-import { Subject } from "rxjs";
-import { marbleTest } from "s-ng-dev-utils";
+import { Subject } from 'rxjs';
+import { marbleTest } from 's-ng-dev-utils';
 import {
   expectPipeResult,
   subscribeWithStubs,
   testCompletionPropagation,
   testErrorPropagation,
   testUnsubscribePropagation,
-} from "../test-helpers/misc-helpers";
-import { createOperatorFunction } from "./create-operator-function";
+} from '../test-helpers/misc-helpers';
+import { createOperatorFunction } from './create-operator-function';
 
 /**
  * This is the example from the documentation. Keep it in sync.
@@ -24,8 +24,8 @@ function noop() {
   return createOperatorFunction(() => {});
 }
 
-describe("createOperatorFunction()", () => {
-  it("allows modifying values and errors", () => {
+describe('createOperatorFunction()', () => {
+  it('allows modifying values and errors', () => {
     const source = new Subject<number>();
     const sub = subscribeWithStubs(
       source.pipe(
@@ -48,7 +48,7 @@ describe("createOperatorFunction()", () => {
   });
 
   it(
-    "allows preventing values, error and completion",
+    'allows preventing values, error and completion',
     marbleTest(({ hot, expectObservable }) => {
       const operatorFunction = createOperatorFunction<string>((subscriber) => {
         subscriber.next = () => {};
@@ -56,31 +56,35 @@ describe("createOperatorFunction()", () => {
         subscriber.complete = () => {};
       });
 
-      const source1 = hot("-a-|").pipe(operatorFunction);
-      const source2 = hot("-#  ").pipe(operatorFunction);
-      const expected = "   ----";
+      const source1 = hot('-a-|').pipe(operatorFunction);
+      const source2 = hot('-#  ').pipe(operatorFunction);
+      const expected = '   ----';
 
       expectObservable(source1).toBe(expected);
       expectObservable(source2).toBe(expected);
     }),
   );
 
-  it("works for the example in the documentation", async () => {
-    await expectPipeResult([1, 2, 3], map((i) => i + 1), [2, 3, 4]);
-    await expectPipeResult([1, 2, 3], map((i) => i.toString()), [
-      "1",
-      "2",
-      "3",
-    ]);
+  it('works for the example in the documentation', async () => {
+    await expectPipeResult(
+      [1, 2, 3],
+      map((i) => i + 1),
+      [2, 3, 4],
+    );
+    await expectPipeResult(
+      [1, 2, 3],
+      map((i) => i.toString()),
+      ['1', '2', '3'],
+    );
   });
 
-  it("passes along values by default", async () => {
+  it('passes along values by default', async () => {
     await expectPipeResult([1, 2, 3], noop(), [1, 2, 3]);
   });
 
-  it("passes along unsubscribes by default", testUnsubscribePropagation(noop));
+  it('passes along unsubscribes by default', testUnsubscribePropagation(noop));
 
-  it("passes along errors by default", testErrorPropagation(noop));
+  it('passes along errors by default', testErrorPropagation(noop));
 
-  it("passes along completion by default", testCompletionPropagation(noop));
+  it('passes along completion by default', testCompletionPropagation(noop));
 });

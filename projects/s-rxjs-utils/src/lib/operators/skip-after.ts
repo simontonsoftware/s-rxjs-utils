@@ -1,6 +1,6 @@
-import { bindKey } from "micro-dash";
-import { Observable } from "rxjs";
-import { createOperatorFunction } from "../create-operator-function";
+import { bindKey } from 'micro-dash';
+import { Observable } from 'rxjs';
+import { createOperatorFunction } from '../create-operator-function';
 
 /**
  * Causes the next value in the pipe to be skipped after `skip$` emits a value. For example:
@@ -34,7 +34,7 @@ export function skipAfter<T>(skip$: Observable<any>) {
     subscriber.add(
       skip$.subscribe(() => {
         skipNext = true;
-      }, bindKey(destination, "error")),
+      }, bindKey(destination, 'error')),
     );
     subscriber.next = (value) => {
       if (skipNext) {

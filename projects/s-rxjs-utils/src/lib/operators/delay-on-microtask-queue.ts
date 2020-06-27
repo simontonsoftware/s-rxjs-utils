@@ -1,5 +1,5 @@
-import { asapScheduler } from "rxjs";
-import { delay } from "rxjs/operators";
+import { asapScheduler } from 'rxjs';
+import { delay } from 'rxjs/operators';
 
 /**
  * Delays the emission of items from the source Observable using the microtask queue.

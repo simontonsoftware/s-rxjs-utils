@@ -1,15 +1,15 @@
-import { fakeAsync, flushMicrotasks } from "@angular/core/testing";
-import { Subject } from "rxjs";
-import { expectSingleCallAndReset } from "s-ng-dev-utils";
+import { fakeAsync, flushMicrotasks } from '@angular/core/testing';
+import { Subject } from 'rxjs';
+import { expectSingleCallAndReset } from 's-ng-dev-utils';
 import {
   testCompletionPropagation,
   testErrorPropagation,
   testUnsubscribePropagation,
-} from "../../test-helpers/misc-helpers";
-import { delayOnMicrotaskQueue } from "./delay-on-microtask-queue";
+} from '../../test-helpers/misc-helpers';
+import { delayOnMicrotaskQueue } from './delay-on-microtask-queue';
 
-describe("delayOnMicrotaskQueue()", () => {
-  it("passes along values asynchronously", fakeAsync(() => {
+describe('delayOnMicrotaskQueue()', () => {
+  it('passes along values asynchronously', fakeAsync(() => {
     const source = new Subject<number>();
     const spy = jasmine.createSpy();
     source.pipe(delayOnMicrotaskQueue()).subscribe(spy);
@@ -26,17 +26,17 @@ describe("delayOnMicrotaskQueue()", () => {
   }));
 
   it(
-    "passes along unsubscribes synchronously",
+    'passes along unsubscribes synchronously',
     testUnsubscribePropagation(delayOnMicrotaskQueue),
   );
 
   it(
-    "passes along errors synchronously",
+    'passes along errors synchronously',
     testErrorPropagation(delayOnMicrotaskQueue),
   );
 
   it(
-    "passes along completion synchronously",
+    'passes along completion synchronously',
     testCompletionPropagation(delayOnMicrotaskQueue),
   );
 });

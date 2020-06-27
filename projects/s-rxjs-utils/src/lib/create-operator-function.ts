@@ -1,4 +1,4 @@
-import { Observable, Observer, OperatorFunction, Subscriber } from "rxjs";
+import { Observable, Observer, OperatorFunction, Subscriber } from 'rxjs';
 
 /**
  * Use this to create a complex pipeable operator. It is usually better style to compose existing operators than to create a brand new one, but when you need full control this can reduce some boilerplate.

@@ -1,5 +1,5 @@
-import { map as _map } from "micro-dash";
-import { map } from "rxjs/operators";
+import { map as _map } from 'micro-dash';
+import { map } from 'rxjs/operators';
 
 /** @hidden */
 export function mapAndCacheElements<UpstreamType, DownstreamType>(

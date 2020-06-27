@@ -1,4 +1,4 @@
-import { Observable, Subscription, Unsubscribable } from "rxjs";
+import { Observable, Subscription, Unsubscribable } from 'rxjs';
 
 /**
  * Tracks all subscriptions to easily unsubscribe from them all during cleanup. Also binds callbacks to `this` for convenient use as a superclass, e.g.:

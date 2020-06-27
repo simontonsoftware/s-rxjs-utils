@@ -1,5 +1,5 @@
-import { Predicate } from "@angular/core";
-import { createOperatorFunction } from "../create-operator-function";
+import { Predicate } from '@angular/core';
+import { createOperatorFunction } from '../create-operator-function';
 
 /**
  * Works like `filter()`, but always lets through the first emission for each new subscriber. This makes it suitable for subscribers that expect the observable to behave like a `BehaviorSubject`, where the first emission is processed synchronously during the call to `subscribe()` (such as the `async` pipe in an Angular template).

@@ -3,7 +3,7 @@ import {
   Observable,
   ReplaySubject,
   Subscription,
-} from "rxjs";
+} from 'rxjs';
 
 /**
  * 1. Caches the last value emitted to give to new subscribers (without running any upstream pipe operators)

@@ -1,4 +1,4 @@
-import { scan } from "rxjs/operators";
+import { scan } from 'rxjs/operators';
 
 /**
  * Emits the upstream value as the first element in an array, followed by the last `count` values in reverse chronological order.

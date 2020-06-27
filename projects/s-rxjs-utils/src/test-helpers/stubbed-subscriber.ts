@@ -1,4 +1,4 @@
-import { expectSingleCallAndReset } from "s-ng-dev-utils";
+import { expectSingleCallAndReset } from 's-ng-dev-utils';
 
 export class StubbedSubscriber {
   next = jasmine.createSpy();

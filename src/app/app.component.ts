@@ -1,6 +1,6 @@
-import { Component } from "@angular/core";
-import { noop, identity } from "micro-dash";
-import { of, Subject } from "rxjs";
+import { Component } from '@angular/core';
+import { noop, identity } from 'micro-dash';
+import { of, Subject } from 'rxjs';
 import {
   cache,
   createOperatorFunction,
@@ -14,15 +14,15 @@ import {
   skipAfter,
   SubscriptionManager,
   withHistory,
-} from "s-rxjs-utils";
+} from 's-rxjs-utils';
 
 @Component({
-  selector: "app-root",
-  templateUrl: "./app.component.html",
-  styleUrls: ["./app.component.css"],
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-  title = "failure";
+  title = 'failure';
 
   constructor() {
     // just use each function once, to prove it can be imported
@@ -44,6 +44,6 @@ export class AppComponent {
       ),
     );
 
-    this.title = "s-rxjs-utils-platform";
+    this.title = 's-rxjs-utils-platform';
   }
 }

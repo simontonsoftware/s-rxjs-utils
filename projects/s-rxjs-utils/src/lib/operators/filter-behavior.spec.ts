@@ -1,15 +1,15 @@
-import { BehaviorSubject, Subject } from "rxjs";
-import { catchError } from "rxjs/operators";
+import { BehaviorSubject, Subject } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 import {
   subscribeWithStubs,
   testCompletionPropagation,
   testErrorPropagation,
   testUnsubscribePropagation,
-} from "../../test-helpers/misc-helpers";
-import { filterBehavior } from "./filter-behavior";
+} from '../../test-helpers/misc-helpers';
+import { filterBehavior } from './filter-behavior';
 
-describe("filterBehavior()", () => {
-  it("filters items based on the supplied predicate", () => {
+describe('filterBehavior()', () => {
+  it('filters items based on the supplied predicate', () => {
     const source = new Subject();
     const predicate = jasmine.createSpy();
     const sub = subscribeWithStubs(source.pipe(filterBehavior(predicate)));
@@ -33,7 +33,7 @@ describe("filterBehavior()", () => {
     sub.expectReceivedOnlyValue(6);
   });
 
-  it("emits the first value unconditionally for each subscriber", () => {
+  it('emits the first value unconditionally for each subscriber', () => {
     const source = new Subject();
     const predicate = jasmine.createSpy().and.returnValue(false);
     const filtered$ = source.pipe(filterBehavior(predicate));
@@ -58,7 +58,7 @@ describe("filterBehavior()", () => {
     sub3.expectReceivedOnlyValue(7);
   });
 
-  it("handles the predicate throwing an error", () => {
+  it('handles the predicate throwing an error', () => {
     const ex = new Error();
     const thrower = () => {
       throw ex;
@@ -91,17 +91,17 @@ describe("filterBehavior()", () => {
   });
 
   it(
-    "passes along unsubscribes",
+    'passes along unsubscribes',
     testUnsubscribePropagation(() => filterBehavior(() => true)),
   );
 
   it(
-    "passes along errors",
+    'passes along errors',
     testErrorPropagation(() => filterBehavior(() => true)),
   );
 
   it(
-    "passes along completion",
+    'passes along completion',
     testCompletionPropagation(() => filterBehavior(() => true)),
   );
 });
