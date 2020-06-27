@@ -1,6 +1,6 @@
 {
   "name": "s-rxjs-utils",
-  "version": "3.0.0",
+  "version": "4.0.0",
   "author": "Simonton Software",
   "repository": "simontonsoftware/s-rxjs-utils",
   "license": "MIT",
@@ -9,7 +9,5 @@
     "rxjs": "~6.5.5",
     "s-js-utils": "^7.0.0"
   },
-  "dependencies": {
-    "tslib": "^2.0.0"
-  }
+  "dependencies": { "tslib": "^2.0.0" }
 }

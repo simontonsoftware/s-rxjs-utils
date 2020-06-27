@@ -1110,13 +1110,13 @@ source.next(<span class="hljs-number">2000</span>); <span class="hljs-comment">/
 				<a name="filterbehavior" class="tsd-anchor"></a>
 				<h3>filter<wbr>Behavior</h3>
 				<ul class="tsd-signatures tsd-kind-function tsd-has-type-parameter">
-					<li class="tsd-signature tsd-kind-icon">filter<wbr>Behavior&lt;T&gt;<span class="tsd-signature-symbol">(</span>predicate<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Predicate</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">OperatorFunction</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></li>
+					<li class="tsd-signature tsd-kind-icon">filter<wbr>Behavior&lt;T&gt;<span class="tsd-signature-symbol">(</span>predicate<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Predicate</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">MonoTypeOperatorFunction</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></li>
 				</ul>
 				<ul class="tsd-descriptions">
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/simontonsoftware/s-rxjs-utils/blob/master/projects/s-rxjs-utils/src/lib/operators/filter-behavior.ts#L14">projects/s-rxjs-utils/src/lib/operators/filter-behavior.ts:14</a></li>
+								<li>Defined in <a href="https://github.com/simontonsoftware/s-rxjs-utils/blob/master/projects/s-rxjs-utils/src/lib/operators/filter-behavior.ts#L15">projects/s-rxjs-utils/src/lib/operators/filter-behavior.ts:15</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
@@ -1141,26 +1141,26 @@ filter<span class="hljs-constructor">Behavior(<span class="hljs-params">identity
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/simontonsoftware/s-rxjs-utils/blob/master/projects/s-rxjs-utils/src/lib/operators/log-values.ts#L24">projects/s-rxjs-utils/src/lib/operators/log-values.ts:24</a></li>
+								<li>Defined in <a href="https://github.com/simontonsoftware/s-rxjs-utils/blob/master/projects/s-rxjs-utils/src/lib/operators/log-values.ts#L25">projects/s-rxjs-utils/src/lib/operators/log-values.ts:25</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
 							<div class="lead">
 								<p>Logs values, errors and completion to the console, and passes them all along unchanged.</p>
 							</div>
-							<pre><code class="language-ts">of(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>).pipe(logValues()).subscribe();
+							<pre><code class="language-ts"><span class="hljs-keyword">of</span>(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>).pipe(logValues()).subscribe();
 <span class="hljs-comment">// prints using console.log:</span>
 <span class="hljs-comment">// [value] 1</span>
 <span class="hljs-comment">// [value] 2</span>
 <span class="hljs-comment">// [complete]</span>
 
-of(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>).pipe(logValues(<span class="hljs-string">"my number"</span>, <span class="hljs-string">"debug"</span>)).subscribe();
+<span class="hljs-keyword">of</span>(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>).pipe(logValues(<span class="hljs-string">&quot;my number&quot;</span>, <span class="hljs-string">&quot;debug&quot;</span>)).subscribe();
 <span class="hljs-comment">// prints using console.debug:</span>
 <span class="hljs-comment">// [value] my number 1</span>
 <span class="hljs-comment">// [value] my number 2</span>
 <span class="hljs-comment">// [complete] my number</span>
 
-throwError(<span class="hljs-string">"boo"</span>).pipe(logValues(<span class="hljs-string">"pipe says"</span>, <span class="hljs-string">"warn"</span>)).subscribe();
+throwError(<span class="hljs-string">&quot;boo&quot;</span>).pipe(logValues(<span class="hljs-string">&quot;pipe says&quot;</span>, <span class="hljs-string">&quot;warn&quot;</span>)).subscribe();
 <span class="hljs-comment">// prints using console.warn:</span>
 <span class="hljs-comment">// [error] pipe says boo</span></code></pre>
 						</div>
@@ -1195,7 +1195,7 @@ throwError(<span class="hljs-string">"boo"</span>).pipe(logValues(<span class="h
 				<a name="skipafter" class="tsd-anchor"></a>
 				<h3>skip<wbr>After</h3>
 				<ul class="tsd-signatures tsd-kind-function tsd-has-type-parameter">
-					<li class="tsd-signature tsd-kind-icon">skip<wbr>After&lt;T&gt;<span class="tsd-signature-symbol">(</span>skip$<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Observable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">OperatorFunction</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></li>
+					<li class="tsd-signature tsd-kind-icon">skip<wbr>After&lt;T&gt;<span class="tsd-signature-symbol">(</span>skip$<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Observable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">MonoTypeOperatorFunction</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></li>
 				</ul>
 				<ul class="tsd-descriptions">
 					<li class="tsd-description">
@@ -1239,7 +1239,7 @@ source.next(<span class="hljs-number">5</span>); <span class="hljs-comment">// r
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/simontonsoftware/s-rxjs-utils/blob/master/projects/s-rxjs-utils/src/lib/operators/with-history.ts#L12">projects/s-rxjs-utils/src/lib/operators/with-history.ts:12</a></li>
+								<li>Defined in <a href="https://github.com/simontonsoftware/s-rxjs-utils/blob/master/projects/s-rxjs-utils/src/lib/operators/with-history.ts#L13">projects/s-rxjs-utils/src/lib/operators/with-history.ts:13</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">

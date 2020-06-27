@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [4.0.0](https://github.com/simontonsoftware/s-rxjs-utils/compare/v3.0.0...v4.0.0) (2020-06-27)
+
+### ⚠ BREAKING CHANGES
+
+- requires micro-dash 8.0
+- requires s-js-utils 7.0
+- uses Typescript 3.9
+
+- upgrade buildchain ([b4b65b2](https://github.com/simontonsoftware/s-rxjs-utils/commit/b4b65b2f57a065d440b2112ab2eda9d5064c896d))
+- upgrade other dependencies ([0428bb3](https://github.com/simontonsoftware/s-rxjs-utils/commit/0428bb3050ae8aedbeaf17a047980029b132e29e))
+
 ## [3.0.0](https://github.com/simontonsoftware/s-rxjs-utils/compare/v2.3.1...v3.0.0) (2020-02-08)
 
 ### ⚠ BREAKING CHANGES
