@@ -7,6 +7,7 @@ import {
   delayOnMicrotaskQueue,
   distinctUntilKeysChanged,
   filterBehavior,
+  logToReduxDevtoolsExtension,
   logValues,
   mapAndCacheArrayElements,
   mapAndCacheObjectElements,
@@ -26,23 +27,23 @@ export class AppComponent {
 
   constructor() {
     // just use each function once, to prove it can be imported
-    new SubscriptionManager().subscribeTo(
-      new Subject<number>().pipe(
-        cache(),
-        createOperatorFunction(noop),
-        delayOnMicrotaskQueue(),
-        filterBehavior(() => true),
-        logValues(),
-        mapToLatestFrom(of(1)),
-        skipAfter(new Subject()),
+    const observable = new Subject<number>().pipe(
+      cache(),
+      createOperatorFunction(noop),
+      delayOnMicrotaskQueue(),
+      filterBehavior(() => true),
+      logValues(),
+      mapToLatestFrom(of(1)),
+      skipAfter(new Subject()),
 
-        // switch type to number[]
-        withHistory(3),
-        mapAndCacheArrayElements(identity, identity),
-        mapAndCacheObjectElements(identity, identity),
-        distinctUntilKeysChanged(),
-      ),
+      // switch type to number[]
+      withHistory(3),
+      mapAndCacheArrayElements(identity, identity),
+      mapAndCacheObjectElements(identity, identity),
+      distinctUntilKeysChanged(),
     );
+    new SubscriptionManager().subscribeTo(observable);
+    logToReduxDevtoolsExtension(observable);
 
     this.title = 's-rxjs-utils-platform';
   }
